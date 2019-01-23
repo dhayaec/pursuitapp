@@ -13,6 +13,24 @@
   },
   "scripts": {
     "build": "tsc",
-    "lint": "tslint 'src/**/*.ts' --fix"
+    "lint": "tslint 'src/**/*.ts' --fix",
+    "test": "jest"
+  },
+  "jest": {
+    "rootDir": "./src",
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx"
+    ]
   }
 }

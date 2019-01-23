@@ -15,7 +15,8 @@
     "build": "tsc",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public",
-    "lint": "tslint 'src/**/*.ts' --fix"
+    "lint": "tslint 'src/**/*.ts' --fix",
+    "test": "echo 'hello ui'"
   },
   "eslintConfig": {
     "extends": "react-app"
