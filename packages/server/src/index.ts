@@ -1,13 +1,22 @@
+// tslint:disable-next-line:no-import-side-effect
 import 'reflect-metadata';
+// tslint:disable-next-line:no-var-requires
+require('dotenv-safe').config();
 import { ApolloServer } from 'apollo-server-express';
 import * as express from 'express';
 import { buildSchema } from 'type-graphql';
 
-import { createTypeormConn } from './createTypeormConn';
+import { createDb, dbConnection } from './db';
 import { UserResolver } from './modules/user/UserResolver';
 
 const startServer = async () => {
-  await createTypeormConn();
+  try {
+    await createDb();
+  } catch (error) {
+    throw new Error(error);
+  }
+
+  await dbConnection();
 
   const app = express();
 

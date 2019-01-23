@@ -14,7 +14,8 @@
     "start": "styleguidist server",
     "build": "tsc",
     "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "lint": "tslint 'src/**/*.ts' --fix"
   },
   "eslintConfig": {
     "extends": "react-app"
