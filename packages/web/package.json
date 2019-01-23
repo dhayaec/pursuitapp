@@ -1,6 +1,6 @@
 {
   "name": "@pursuitapp/web",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "scripts": {
     "precommit": "lint-staged",
     "dev": "nodemon",
@@ -21,8 +21,8 @@
     ]
   },
   "dependencies": {
-    "@pursuitapp/common": "^1.0.2",
-    "@pursuitapp/ui": "^1.0.2",
+    "@pursuitapp/common": "^1.0.3",
+    "@pursuitapp/ui": "^1.0.3",
     "apollo-boost": "0.1.27",
     "formik": "1.4.2",
     "isomorphic-unfetch": "3.0.0",
