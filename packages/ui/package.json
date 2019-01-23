@@ -15,8 +15,18 @@
     "build": "tsc",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public",
-    "lint": "tslint 'src/**/*.ts' --fix",
-    "test": "echo 'hello ui'"
+    "lint": "tslint 'src/**/*.t{s,sx}' --fix",
+    "test": "echo 'hello ui'",
+    "pretty": "prettier 'src/**/*.t{s,sx}' --write",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "yarn pretty",
+      "yarn lint",
+      "jest --bail --findRelatedTests",
+      "git add ."
+    ]
   },
   "eslintConfig": {
     "extends": "react-app"

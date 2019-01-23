@@ -17,5 +17,5 @@ export const registerSchema = yup.object().shape({
     .string()
     .min(5)
     .max(1000)
-    .required(),
+    .required()
 });

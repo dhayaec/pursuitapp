@@ -1,6 +1,6 @@
 import { createServer } from 'http';
-import { parse } from 'url';
 import * as next from 'next';
+import { parse } from 'url';
 
 import { routes } from './routes';
 
@@ -15,7 +15,9 @@ app.prepare().then(() => {
 
     handle(req, res, parsedUrl);
   }).listen(port, err => {
-    if (err) throw err;
+    if (err) {
+      throw err;
+    }
     console.log(`> Ready on http://localhost:${port}`);
   });
 });

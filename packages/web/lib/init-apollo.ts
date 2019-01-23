@@ -1,8 +1,8 @@
 import {
   ApolloClient,
-  InMemoryCache,
   HttpLink,
-  NormalizedCacheObject,
+  InMemoryCache,
+  NormalizedCacheObject
 } from 'apollo-boost';
 import fetch from 'isomorphic-unfetch';
 
@@ -26,10 +26,10 @@ function create(initialState?: any) {
         process.env.NODE_ENV === 'production'
           ? 'https://server.pursuitapp.com/graphql'
           : 'http://localhost:4000/graphql',
-      credentials: 'include',
+      credentials: 'include'
     }),
 
-    cache: new InMemoryCache().restore(initialState || {}),
+    cache: new InMemoryCache().restore(initialState || {})
   });
 }
 

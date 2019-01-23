@@ -1,19 +1,19 @@
-import * as React from 'react';
 import Link from 'next/link';
+import * as React from 'react';
 
 const pages = [
   {
     path: '/',
-    pageName: 'Home',
+    pageName: 'Home'
   },
   {
     path: '/about',
-    pageName: 'About Us',
+    pageName: 'About Us'
   },
   {
     path: '/contact',
-    pageName: 'Contact Us',
-  },
+    pageName: 'Contact Us'
+  }
 ];
 
 export const HeaderNavMenu: React.SFC = () => (

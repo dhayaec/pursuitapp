@@ -14,7 +14,17 @@
   "scripts": {
     "build": "tsc",
     "lint": "tslint 'src/**/*.ts' --fix",
-    "test": "jest"
+    "test": "jest",
+    "pretty": "prettier 'src/**/*.ts' --write",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "yarn pretty",
+      "yarn lint",
+      "jest --bail --findRelatedTests",
+      "git add ."
+    ]
   },
   "jest": {
     "rootDir": "./src",

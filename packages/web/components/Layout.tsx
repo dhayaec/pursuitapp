@@ -1,9 +1,9 @@
-import * as React from 'react';
 import Head from 'next/head';
+import * as React from 'react';
 
-type Props = {
+interface Props {
   title: string;
-};
+}
 
 const Layout: React.SFC<Props> = ({ children, title }) => (
   <div>
