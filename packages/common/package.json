@@ -12,6 +12,7 @@
     "yup": "^0.26.6"
   },
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "lint": "tslint 'src/**/*.ts' --fix"
   }
 }

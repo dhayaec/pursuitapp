@@ -2,7 +2,9 @@
   "private": true,
   "scripts": {
     "build:server": "lerna run build --scope={@pursuitapp/common,@pursuitapp/server}",
-    "build:web": "lerna run build --scope={@pursuitapp/ui,@pursuitapp/common,@pursuitapp/web}"
+    "build:web": "lerna run build --scope={@pursuitapp/ui,@pursuitapp/common,@pursuitapp/web}",
+    "lint": "lerna exec -- npm run lint",
+    "new-version": "lerna version --conventional-commits --yes"
   },
   "workspaces": {
     "packages": [
@@ -10,9 +12,13 @@
     ]
   },
   "devDependencies": {
-    "lerna": "3.10.6"
+    "@types/node": "^10.12.18",
+    "lerna": "3.10.6",
+    "tslint": "^5.12.1",
+    "tslint-config-prettier": "^1.17.0",
+    "tslint-react": "^3.6.0"
   },
   "resolutions": {
-    "graphql": "14.0.2"
+    "graphql": "14.1.1"
   }
 }

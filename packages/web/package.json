@@ -6,7 +6,8 @@
     "build": "next build",
     "start": "next start",
     "type-check": "tsc",
-    "generate": "gql-gen"
+    "generate": "gql-gen",
+    "lint": "tslint 'src/**/*.ts' --fix"
   },
   "dependencies": {
     "@pursuitapp/common": "1.0.0",
