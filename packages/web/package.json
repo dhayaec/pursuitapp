@@ -2,13 +2,23 @@
   "name": "@pursuitapp/web",
   "version": "1.0.2",
   "scripts": {
+    "precommit": "lint-staged",
     "dev": "nodemon",
     "build": "next build",
     "start": "next start",
     "type-check": "tsc",
     "generate": "gql-gen",
-    "lint": "tslint 'src/**/*.ts' --fix",
-    "test": "jest"
+    "lint": "tslint 'src/**/*.t{s,sx}' --fix",
+    "test": "jest",
+    "pretty": "prettier 'pages/**/*.t{s,sx}' 'server/**/*.t{s,sx}' 'lib/**/*.t{s,sx}' 'components/**/*.t{s,sx}' --write"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "yarn pretty",
+      "yarn lint",
+      "jest --bail --findRelatedTests",
+      "git add ."
+    ]
   },
   "dependencies": {
     "@pursuitapp/common": "^1.0.2",

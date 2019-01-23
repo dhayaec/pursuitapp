@@ -1,6 +1,6 @@
-import React from 'react';
-import Head from 'next/head';
 import { ApolloClient, NormalizedCacheObject } from 'apollo-boost';
+import Head from 'next/head';
+import React from 'react';
 import { getDataFromTree } from 'react-apollo';
 
 import initApollo from './init-apollo';
@@ -8,6 +8,13 @@ import initApollo from './init-apollo';
 export default (App: any) => {
   return class Apollo extends React.Component {
     static displayName = 'withApollo(App)';
+
+    apolloClient: ApolloClient<NormalizedCacheObject>;
+
+    constructor(props: any) {
+      super(props);
+      this.apolloClient = initApollo(props.apolloState);
+    }
     static async getInitialProps(ctx: any) {
       const { Component, router } = ctx;
 
@@ -28,7 +35,7 @@ export default (App: any) => {
               Component={Component}
               router={router}
               apolloClient={apollo}
-            />,
+            />
           );
         } catch (error) {
           // Prevent Apollo Client GraphQL errors from crashing SSR.
@@ -47,15 +54,8 @@ export default (App: any) => {
 
       return {
         ...appProps,
-        apolloState,
+        apolloState
       };
-    }
-
-    apolloClient: ApolloClient<NormalizedCacheObject>;
-
-    constructor(props: any) {
-      super(props);
-      this.apolloClient = initApollo(props.apolloState);
     }
 
     render() {

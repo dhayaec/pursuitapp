@@ -1,5 +1,5 @@
-import { HeaderNavMenu } from '../components/HeaderNavMenu';
 import { CustomButton } from '@pursuitapp/ui';
+import { HeaderNavMenu } from '../components/HeaderNavMenu';
 
 export default () => (
   <div>

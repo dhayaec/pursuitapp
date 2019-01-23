@@ -26,7 +26,16 @@
     "start": "NODE_ENV=development nodemon --exec ts-node src/index.ts",
     "generate": "gql-gen",
     "lint": "tslint 'src/**/*.ts' --fix",
-    "test": "jest"
+    "test": "jest",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "yarn pretty",
+      "yarn lint",
+      "jest --bail --findRelatedTests",
+      "git add ."
+    ]
   },
   "workspaces": {
     "nohoist": [
