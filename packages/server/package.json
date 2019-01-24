@@ -37,7 +37,8 @@
     "lint": "tslint 'src/**/*.ts' --fix",
     "test": "jest",
     "precommit": "lint-staged",
-    "pretty": "prettier 'src/**/*.ts' --write"
+    "pretty": "prettier 'src/**/*.ts' --write",
+    "cover": "jest --coverage"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
@@ -54,20 +55,23 @@
     ]
   },
   "jest": {
+    "collectCoverage": true,
     "rootDir": "./src",
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
     },
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
     "moduleDirectories": [
-      "node_modules",
-      "src"
+      "node_modules"
     ],
     "moduleFileExtensions": [
       "ts",
       "tsx",
       "js",
       "jsx"
+    ],
+    "collectCoverageFrom": [
+      "**/*.{ts,tsx}"
     ]
   }
 }

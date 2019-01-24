@@ -3,6 +3,7 @@
   "scripts": {
     "build:server": "lerna run build --scope={@pursuitapp/common,@pursuitapp/server}",
     "build:web": "lerna run build --scope={@pursuitapp/ui,@pursuitapp/common,@pursuitapp/web}",
+    "cover": "lerna run cover --scope={@pursuitapp/server,@pursuitapp/common,@pursuitapp/web}",
     "lint": "lerna exec -- npm run lint",
     "new-version": "lerna version --conventional-commits --yes",
     "test": "lerna exec -- npm run test",
