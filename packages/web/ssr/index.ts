@@ -1,5 +1,5 @@
 import { createServer } from 'http';
-import * as next from 'next';
+import next from 'next';
 import { parse } from 'url';
 
 import { routes } from './routes';

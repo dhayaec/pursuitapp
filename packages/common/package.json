@@ -16,7 +16,8 @@
     "lint": "tslint 'src/**/*.ts' --fix",
     "test": "jest",
     "pretty": "prettier 'src/**/*.ts' --write",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "cover": "jest --coverage"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
@@ -27,6 +28,7 @@
     ]
   },
   "jest": {
+    "collectCoverage": true,
     "rootDir": "./src",
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
@@ -41,6 +43,9 @@
       "tsx",
       "js",
       "jsx"
+    ],
+    "collectCoverageFrom": [
+      "**/*.{ts,tsx}"
     ]
   }
 }

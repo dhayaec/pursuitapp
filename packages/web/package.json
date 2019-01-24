@@ -3,6 +3,7 @@
   "version": "1.0.3",
   "scripts": {
     "precommit": "lint-staged",
+    "cover": "jest --coverage",
     "dev": "nodemon",
     "build": "next build",
     "start": "next start",
@@ -10,7 +11,7 @@
     "generate": "gql-gen",
     "lint": "tslint 'src/**/*.t{s,sx}' --fix",
     "test": "jest",
-    "pretty": "prettier 'pages/**/*.t{s,sx}' 'server/**/*.t{s,sx}' 'lib/**/*.t{s,sx}' 'components/**/*.t{s,sx}' --write"
+    "pretty": "prettier 'pages/**/*.t{s,sx}' 'ssr/**/*.t{s,sx}' 'lib/**/*.t{s,sx}' 'components/**/*.t{s,sx}' --write"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
@@ -51,6 +52,7 @@
   },
   "license": "ISC",
   "jest": {
+    "collectCoverage": true,
     "rootDir": "./",
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
@@ -64,6 +66,9 @@
       "tsx",
       "js",
       "jsx"
+    ],
+    "collectCoverageFrom": [
+      "**/*.{ts,tsx}"
     ]
   }
 }

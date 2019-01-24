@@ -12,7 +12,7 @@ const {
   DB_TYPE,
   ROOT_USER,
   ROOT_PASS,
-  NODE_ENV,
+  NODE_ENV
 } = process.env;
 
 const connectionList: ConnectionList = {
@@ -32,8 +32,8 @@ const connectionList: ConnectionList = {
     cli: {
       entitiesDir: 'src/entity',
       migrationsDir: 'src/migration',
-      subscribersDir: 'src/subscriber',
-    },
+      subscribersDir: 'src/subscriber'
+    }
   },
   test: {
     name: 'test',
@@ -52,8 +52,8 @@ const connectionList: ConnectionList = {
     cli: {
       entitiesDir: 'src/entity',
       migrationsDir: 'src/migration',
-      subscribersDir: 'src/subscriber',
-    },
+      subscribersDir: 'src/subscriber'
+    }
   },
   production: {
     name: 'production',
@@ -67,7 +67,7 @@ const connectionList: ConnectionList = {
     logging: false,
     entities: ['dist/entity/**/*.*'],
     migrations: ['dist/migration/**/*.*'],
-    subscribers: ['dist/subscriber/**/*.*'],
+    subscribers: ['dist/subscriber/**/*.*']
   },
   root: {
     name: 'root',
@@ -75,15 +75,15 @@ const connectionList: ConnectionList = {
     host: DB_HOST,
     port: DB_PORT,
     username: ROOT_USER,
-    password: ROOT_PASS,
-  },
+    password: ROOT_PASS
+  }
 };
 
 export async function createDb() {
   const connectionOptions = connectionList.root;
   const rootConnection = await createConnection({
     ...connectionOptions,
-    name: 'default',
+    name: 'default'
   });
 
   let dbName: string;
@@ -114,7 +114,7 @@ export async function dbConnection() {
       const options = connectionList[NODE_ENV as string] as any;
       return createConnection({
         ...options,
-        name: 'default',
+        name: 'default'
       });
     } catch (err) {
       console.log(err);
