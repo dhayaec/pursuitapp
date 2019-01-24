@@ -1,6 +1,6 @@
 {
   "name": "@pursuitapp/web",
-  "version": "1.0.3",
+  "version": "0.0.3",
   "scripts": {
     "precommit": "lint-staged",
     "cover": "jest --coverage",
