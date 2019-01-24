@@ -1,19 +1,75 @@
+import * as bcryptjs from 'bcryptjs';
 import { Field, ObjectType } from 'type-graphql';
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  BaseEntity,
+  BeforeInsert,
+  Column,
+  CreateDateColumn,
+  Entity,
+  Index,
+  PrimaryGeneratedColumn,
+  Unique,
+  UpdateDateColumn,
+  VersionColumn
+} from 'typeorm';
 
-@Entity()
+@Entity('users')
+@Unique(['email'])
+@Index(['isBanned', 'username', 'confirmed', 'isAdmin'])
 @ObjectType()
 export class User extends BaseEntity {
-  @PrimaryGeneratedColumn('uuid') id: string;
+  @Field()
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Field()
-  @Column({ type: 'varchar', length: 255 })
+  @Column('varchar', { length: 100 })
   name: string;
 
   @Field()
-  @Column({ type: 'varchar', length: 255, unique: true })
+  @Column('varchar', { length: 255 })
   email: string;
 
-  @Column()
+  @Field()
+  @Column('varchar', { length: 30, nullable: true })
+  username: string;
+
+  @Field()
+  @Column('varchar', { length: 20, nullable: true })
+  mobile: string;
+
+  @Column('text')
   password: string;
+
+  @Field()
+  @Column({ default: false })
+  confirmed: boolean;
+
+  @Column({ default: false })
+  isBanned: boolean;
+
+  @Column({ nullable: true })
+  lastResetRequestTime: Date;
+
+  @Field()
+  @Column('varchar', { length: 255, nullable: true })
+  profilePic: string;
+
+  @Column({ default: false })
+  isAdmin: boolean;
+
+  @Field()
+  @CreateDateColumn()
+  createdAt: Date;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
+
+  @VersionColumn()
+  version: number;
+
+  @BeforeInsert()
+  async hashPassword() {
+    this.password = await bcryptjs.hash(this.password, 10);
+  }
 }

@@ -10,7 +10,7 @@
     "generate": "gql-gen",
     "lint": "tslint 'src/**/*.t{s,sx}' --fix",
     "test": "jest",
-    "pretty": "prettier 'pages/**/*.t{s,sx}' 'server/**/*.t{s,sx}' 'lib/**/*.t{s,sx}' 'components/**/*.t{s,sx}' --write"
+    "pretty": "prettier 'pages/**/*.t{s,sx}' 'ssr/**/*.t{s,sx}' 'lib/**/*.t{s,sx}' 'components/**/*.t{s,sx}' --write"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
