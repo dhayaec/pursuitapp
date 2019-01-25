@@ -1,5 +1,5 @@
 import { AppContext } from 'src/types/types';
-import { Ctx, Query, Resolver } from 'type-graphql';
+import { Arg, Ctx, Query, Resolver } from 'type-graphql';
 import { User } from '../../entity/User';
 
 @Resolver(User)
@@ -10,5 +10,13 @@ export class UserResolver {
       return;
     }
     return User.findOne(ctx.req.session!.userId);
+  }
+
+  @Query(() => User, { nullable: true })
+  async getUser(@Arg('id') id: string): Promise<User | undefined> {
+    if (!id) {
+      return;
+    }
+    return await User.findOne(id);
   }
 }

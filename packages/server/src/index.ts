@@ -9,6 +9,9 @@ import * as express from 'express';
 import * as session from 'express-session';
 import { buildSchema, formatArgumentValidationError } from 'type-graphql';
 import { createDb, dbConnection } from './db';
+import { LoginResolver } from './modules/user/Login';
+import { LogoutResolver } from './modules/user/Logout';
+import { RegisterResolver } from './modules/user/Register';
 import { UserResolver } from './modules/user/UserResolver';
 import { redis } from './redis';
 
@@ -25,7 +28,7 @@ const startServer = async () => {
 
   const server = new ApolloServer({
     schema: await buildSchema({
-      resolvers: [UserResolver]
+      resolvers: [UserResolver, RegisterResolver, LoginResolver, LogoutResolver]
     }),
     formatError: formatArgumentValidationError,
     context: ({ req, res }: any) => ({ req, res })
