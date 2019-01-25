@@ -1,4 +1,4 @@
-import * as bcryptjs from 'bcryptjs';
+// import * as bcryptjs from 'bcryptjs';
 import { Arg, Mutation, Resolver } from 'type-graphql';
 import { User } from '../../entity/User';
 import { RegisterInput } from './register/RegisterInput';
@@ -13,12 +13,11 @@ export class RegisterResolver {
     name,
     mobile
   }: RegisterInput) {
-    const hashedPassword = await bcryptjs.hash(password, 12);
     const user = await User.create({
       name,
       mobile,
       email,
-      password: hashedPassword
+      password
     }).save();
     // await sendEmail()
     return user;

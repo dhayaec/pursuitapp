@@ -23,6 +23,9 @@ export class LoginResolver {
     }
 
     ctx.req.session!.userId = user.id;
+    ctx.req.session!.name = user.name;
+    ctx.req.session!.email = user.email;
+
     return user;
   }
 }

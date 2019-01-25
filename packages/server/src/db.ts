@@ -111,7 +111,9 @@ export async function dbConnection() {
   let retries = 5;
   while (retries) {
     try {
-      const options = connectionList[NODE_ENV as string] as any;
+      const options = connectionList[
+        (NODE_ENV || 'development') as string
+      ] as any;
       return createConnection({
         ...options,
         name: 'default'
