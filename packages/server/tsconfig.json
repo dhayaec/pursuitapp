@@ -23,6 +23,9 @@
     "experimentalDecorators": true,
     "skipLibCheck": true,
     "baseUrl": ".",
+    "paths": {
+      "src/*": ["./src/*"]
+    },
     "rootDir": "src"
   },
   "exclude": ["node_modules"],
