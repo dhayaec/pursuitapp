@@ -12,6 +12,7 @@ import { createDb, dbConnection } from './db';
 import { LoginResolver } from './modules/user/Login';
 import { LogoutResolver } from './modules/user/Logout';
 import { RegisterResolver } from './modules/user/Register';
+import { UserAccountUtils } from './modules/user/UserAccountUtils';
 import { UserResolver } from './modules/user/UserResolver';
 import { redis } from './redis';
 
@@ -28,7 +29,13 @@ const startServer = async () => {
 
   const server = new ApolloServer({
     schema: await buildSchema({
-      resolvers: [UserResolver, RegisterResolver, LoginResolver, LogoutResolver]
+      resolvers: [
+        UserResolver,
+        RegisterResolver,
+        LoginResolver,
+        LogoutResolver,
+        UserAccountUtils
+      ]
     }),
     formatError: formatArgumentValidationError,
     context: ({ req, res }: any) => ({ req, res })

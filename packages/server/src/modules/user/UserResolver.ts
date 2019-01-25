@@ -1,6 +1,6 @@
+import { User } from 'src/entity/User';
 import { AppContext } from 'src/types/types';
 import { Arg, Ctx, Query, Resolver } from 'type-graphql';
-import { User } from '../../entity/User';
 
 @Resolver(User)
 export class UserResolver {

@@ -22,8 +22,8 @@
     ]
   },
   "dependencies": {
-    "@pursuitapp/common": "^1.0.3",
-    "@pursuitapp/ui": "^1.0.3",
+    "@pursuitapp/common": "^0.0.4",
+    "@pursuitapp/ui": "^0.0.4",
     "apollo-boost": "0.1.27",
     "formik": "1.4.2",
     "isomorphic-unfetch": "3.0.0",
