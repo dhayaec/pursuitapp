@@ -13,7 +13,7 @@ import {
   VersionColumn
 } from 'typeorm';
 
-import { makeSlug } from 'src/utils/utils';
+import { makeSlug } from '../utils/utils';
 import { Category } from './Category';
 
 @Entity('products')
@@ -70,7 +70,7 @@ export class Product extends BaseEntity {
   @VersionColumn()
   version: number;
 
-  @Field()
+  @Field(() => Category)
   @ManyToOne(() => Category, category => category.products)
   category: Category;
 

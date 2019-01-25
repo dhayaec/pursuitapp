@@ -9,6 +9,7 @@ import * as express from 'express';
 import * as session from 'express-session';
 import { buildSchema, formatArgumentValidationError } from 'type-graphql';
 import { createDb, dbConnection } from './db';
+import { ProductResolver } from './modules/product/ProductResolver';
 import { LoginResolver } from './modules/user/Login';
 import { LogoutResolver } from './modules/user/Logout';
 import { RegisterResolver } from './modules/user/Register';
@@ -34,7 +35,8 @@ const startServer = async () => {
         RegisterResolver,
         LoginResolver,
         LogoutResolver,
-        UserAccountUtils
+        UserAccountUtils,
+        ProductResolver
       ]
     }),
     formatError: formatArgumentValidationError,

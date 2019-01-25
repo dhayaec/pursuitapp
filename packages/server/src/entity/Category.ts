@@ -16,7 +16,7 @@ import {
   VersionColumn
 } from 'typeorm';
 
-import { makeSlug } from 'src/utils/utils';
+import { makeSlug } from '../utils/utils';
 import { Product } from './Product';
 
 @Entity('categories')

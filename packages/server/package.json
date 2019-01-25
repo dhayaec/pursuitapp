@@ -35,15 +35,15 @@
     "uuid": "^3.3.2"
   },
   "scripts": {
-    "start": "NODE_ENV=development nodemon --exec ts-node -r tsconfig-paths/register src/",
+    "start": "NODE_ENV=development nodemon",
     "generate": "gql-gen",
     "lint": "tslint 'src/**/*.ts' --fix",
     "test": "jest",
     "precommit": "lint-staged",
     "pretty": "prettier 'src/**/*.ts' --write",
     "cover": "jest --coverage",
-    "start:debug:ts": "nodemon --inspect --require ts-node/register ./src/index.ts",
-    "start:debug:ts:brk": "node --inspect-brk --require ts-node/register ./src/index.ts"
+    "start:debug:ts": "nodemon --inspect ./src/index.ts",
+    "start:debug:ts:brk": "nodemon --inspect-brk ./src/index.ts"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
@@ -60,14 +60,15 @@
     ]
   },
   "jest": {
-    "collectCoverage": true,
-    "rootDir": "./src",
+    "collectCoverage": false,
+    "rootDir": ".",
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
     },
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
     "moduleDirectories": [
-      "node_modules"
+      "node_modules",
+      "src"
     ],
     "moduleFileExtensions": [
       "ts",
@@ -77,6 +78,10 @@
     ],
     "collectCoverageFrom": [
       "**/*.{ts,tsx}"
+    ],
+    "roots": [
+      "<rootDir>",
+      "<rootDir>/src"
     ]
   }
 }

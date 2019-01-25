@@ -7,7 +7,6 @@
     "outDir": "./dist",
     "moduleResolution": "node",
     "declaration": false,
-
     "composite": false,
     "removeComments": true,
     "noImplicitAny": true,
@@ -22,10 +21,6 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "skipLibCheck": true,
-    "baseUrl": ".",
-    "paths": {
-      "src/*": ["./src/*"]
-    },
     "rootDir": "src"
   },
   "exclude": ["node_modules"],
