@@ -7,15 +7,10 @@ import * as connectRedis from 'connect-redis';
 import * as cors from 'cors';
 import * as express from 'express';
 import * as session from 'express-session';
-import { buildSchema, formatArgumentValidationError } from 'type-graphql';
-import { createDb, dbConnection } from './db';
-import { ProductResolver } from './modules/product/ProductResolver';
-import { LoginResolver } from './modules/user/Login';
-import { LogoutResolver } from './modules/user/Logout';
-import { RegisterResolver } from './modules/user/Register';
-import { UserAccountUtils } from './modules/user/UserAccountUtils';
-import { UserResolver } from './modules/user/UserResolver';
+import { formatArgumentValidationError } from 'type-graphql';
+import { connectDb, createDb } from './db';
 import { redis } from './redis';
+import { createSchema } from './utils/create-schema';
 
 const startServer = async () => {
   try {
@@ -24,21 +19,12 @@ const startServer = async () => {
     throw new Error(error);
   }
 
-  await dbConnection();
+  await connectDb();
 
   const app = express();
 
   const server = new ApolloServer({
-    schema: await buildSchema({
-      resolvers: [
-        UserResolver,
-        RegisterResolver,
-        LoginResolver,
-        LogoutResolver,
-        UserAccountUtils,
-        ProductResolver
-      ]
-    }),
+    schema: await createSchema(),
     formatError: formatArgumentValidationError,
     context: ({ req, res }: any) => ({ req, res })
   });
