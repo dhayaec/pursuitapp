@@ -1,4 +1,13 @@
-import { createConnection } from 'typeorm';
+// tslint:disable-next-line:no-var-requires
+require('dotenv-safe').config();
+// tslint:disable-next-line:no-import-side-effect
+import 'reflect-metadata';
+// tslint:disable-next-line:no-var-requires
+const iconv = require('iconv-lite');
+// tslint:disable-next-line:no-var-requires
+const encodings = require('iconv-lite/encodings');
+iconv.encodings = encodings;
+import { Connection, createConnection } from 'typeorm';
 import { ConnectionList } from './types/types';
 
 const {
@@ -107,7 +116,7 @@ export async function createDb() {
     });
 }
 
-export async function dbConnection() {
+export async function connectDb() {
   let retries = 5;
   while (retries) {
     try {
@@ -126,4 +135,17 @@ export async function dbConnection() {
     }
   }
   return null;
+}
+
+export async function connectTestDb(
+  drop: boolean = false
+): Promise<Connection> {
+  const options = connectionList.test;
+
+  return createConnection({
+    ...options,
+    synchronize: drop,
+    dropSchema: drop,
+    name: 'default'
+  });
 }

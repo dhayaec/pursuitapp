@@ -54,6 +54,7 @@
     "resave",
     "rspace",
     "slugify",
+    "tsutils",
     "typeorm",
     "unfetch",
     "varchar",
