@@ -46,8 +46,9 @@
     "precommit": "lint-staged",
     "pretty": "prettier 'src/**/*.ts' --write",
     "cover": "jest --coverage",
-    "start:debug:ts": "nodemon --inspect ./src/index.ts",
-    "start:debug:ts:brk": "nodemon --inspect-brk ./src/index.ts",
+    "debug:ts": "nodemon --inspect ./src/index.ts",
+    "debug:ts:brk": "nodemon --inspect-brk ./src/index.ts",
+    "debug:jest": "yarn setup && node --inspect-brk ../../node_modules/.bin/jest --runInBand --bail",
     "test:ci": "yarn setup && jest --bail --findRelatedTests ./src/**/**.ts"
   },
   "lint-staged": {
