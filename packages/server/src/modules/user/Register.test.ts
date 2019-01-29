@@ -40,8 +40,6 @@ describe('Register', () => {
       }
     });
 
-    console.log(JSON.stringify(response));
-
     expect(response).toMatchObject({
       data: {
         register: {
