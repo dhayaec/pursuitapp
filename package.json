@@ -6,9 +6,8 @@
     "cover": "lerna run cover --scope={@pursuitapp/server,@pursuitapp/common,@pursuitapp/web}",
     "lint": "lerna exec -- npm run lint",
     "new-version": "lerna version --conventional-commits --yes",
-    "test": "lerna run test --scope={@pursuitapp/ui,@pursuitapp/common,@pursuitapp/web}",
-    "precommit": "lerna run --concurrency 1 --stream precommit",
-    "test:server": "lerna run test --scope=@pursuitapp/server"
+    "test": "lerna run test",
+    "precommit": "lerna run --concurrency 1 --stream precommit"
   },
   "workspaces": {
     "packages": [
