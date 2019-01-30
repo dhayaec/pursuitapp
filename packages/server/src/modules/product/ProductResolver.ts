@@ -1,8 +1,10 @@
-import { Arg, Query, Resolver } from 'type-graphql';
+import { Arg, Mutation, Query, Resolver } from 'type-graphql';
 import { Category } from '../../entity/Category';
 import { Product } from '../../entity/Product';
+import errorMessages from '../../i18n/error-messages';
 import { ITEMS_PER_PAGE } from '../../utils/constants';
 import { skipPage } from '../../utils/utils';
+import { ProductInput } from './ProductInput';
 
 @Resolver(Product)
 export class ProductResolver {
@@ -27,9 +29,9 @@ export class ProductResolver {
     @Arg('categoryId') categoryId: string,
     @Arg('page', { defaultValue: 1 }) page: number
   ): Promise<Product[]> {
-    const category = Category.findOne(categoryId);
+    const category = await Category.findOne(categoryId);
     if (!category) {
-      throw new Error('invalid category');
+      throw new Error(errorMessages.invalidCategory);
     }
 
     return await Product.find({
@@ -38,5 +40,35 @@ export class ProductResolver {
       where: { category },
       relations: ['category']
     });
+  }
+
+  @Mutation(() => Product)
+  async addProduct(@Arg('data')
+  {
+    title,
+    coverImage,
+    description,
+    rating,
+    price,
+    offerPrice,
+    categoryId
+  }: ProductInput): Promise<Product> {
+    const category = await Category.findOne(categoryId);
+
+    if (!category) {
+      throw new Error(errorMessages.invalidCategory);
+    }
+
+    const c = Product.create({
+      title,
+      coverImage,
+      rating,
+      description,
+      price,
+      offerPrice,
+      category
+    });
+
+    return await c.save();
   }
 }

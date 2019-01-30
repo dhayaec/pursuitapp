@@ -120,3 +120,61 @@ export const getProductsByCategoryQuery = gql`
     }
   }
 `;
+
+export const getCategoryByIdQuery = gql`
+  query GetCategory($id: String!) {
+    getCategoryById(id: $id) {
+      name
+      id
+    }
+  }
+`;
+
+export const addProductMutation = gql`
+  mutation AddProduct($data: ProductInput!) {
+    addProduct(data: $data) {
+      title
+      price
+      category {
+        name
+      }
+    }
+  }
+`;
+
+export const addCategoryMutation = gql`
+  mutation AddCategory($name: String!) {
+    addCategory(name: $name) {
+      name
+    }
+  }
+`;
+
+export const getMainCategoryQuery = gql`
+  query {
+    getMainCategory {
+      name
+    }
+  }
+`;
+
+export const getChildCategoriesQuery = gql`
+  query GetChildCategories($id: String!) {
+    getChildCategories(id: $id) {
+      name
+      children {
+        name
+      }
+    }
+  }
+`;
+export const getBreadCrumbPathQuery = gql`
+  query GetBreadCrumbPath($id: String!) {
+    getBreadCrumbPath(id: $id) {
+      name
+      parent {
+        name
+      }
+    }
+  }
+`;

@@ -37,11 +37,11 @@ export class Category extends BaseEntity {
   @Column('varchar', { length: 255 })
   slug: string;
 
-  @Field(() => [Category])
+  @Field(() => [Category], { nullable: true })
   @TreeChildren()
   children: Category[];
 
-  @Field(() => Category)
+  @Field(() => Category, { nullable: true })
   @TreeParent()
   parent: Category;
 
