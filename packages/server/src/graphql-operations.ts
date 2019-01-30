@@ -93,3 +93,30 @@ export const changeEmailMutation = gql`
     }
   }
 `;
+
+export const listProductsQuery = gql`
+  query {
+    listProducts {
+      title
+      id
+    }
+  }
+`;
+
+export const getProductQuery = gql`
+  query GetProduct($id: String!) {
+    getProduct(id: $id) {
+      title
+      id
+    }
+  }
+`;
+
+export const getProductsByCategoryQuery = gql`
+  query GetProduct($categoryId: String!) {
+    getProductsByCategory(categoryId: $categoryId) {
+      title
+      id
+    }
+  }
+`;
