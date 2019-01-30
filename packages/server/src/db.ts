@@ -142,6 +142,11 @@ export async function connectTestDb(
 ): Promise<Connection> {
   const options = connectionList.test;
 
+  // const c = getConnection('default');
+  // if (c.isConnected) {
+  //   return c;
+  // }
+
   return createConnection({
     ...options,
     synchronize: drop,

@@ -42,14 +42,14 @@
     "lint": "tslint 'src/**/*.ts' --fix",
     "setup": "ts-node ./src/scripts/setup-test-db.ts",
     "create:db": "ts-node ./src/scripts/create-db.ts",
-    "test": "yarn setup && jest",
+    "test": "jest",
     "precommit": "lint-staged",
     "pretty": "prettier 'src/**/*.ts' --write",
     "cover": "jest --coverage",
     "debug:ts": "nodemon --inspect ./src/index.ts",
     "debug:ts:brk": "nodemon --inspect-brk ./src/index.ts",
-    "debug:jest": "yarn setup && node --inspect-brk ../../node_modules/.bin/jest --runInBand --bail",
-    "test:ci": "yarn setup && jest --bail --findRelatedTests ./src/**/**.ts"
+    "debug:jest": "node --inspect-brk ../../node_modules/.bin/jest --runInBand --bail",
+    "test:ci": "jest --bail --findRelatedTests ./src/**/**.ts"
   },
   "lint-staged": {
     "*.{ts,tsx}": [

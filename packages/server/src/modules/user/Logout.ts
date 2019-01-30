@@ -5,16 +5,15 @@ import { AppContext } from '../../types/types';
 export class LogoutResolver {
   @Mutation(() => Boolean)
   async logout(@Ctx() ctx: AppContext): Promise<boolean> {
-    return new Promise((res, rej) =>
+    const { userId } = ctx.req.session!;
+    if (userId) {
       ctx.req.session!.destroy(err => {
         if (err) {
           console.log(err);
-          return rej(false);
         }
-
-        ctx.res.clearCookie('qid');
-        return res(true);
-      })
-    );
+      });
+    }
+    ctx.res.clearCookie('qid');
+    return userId !== '';
   }
 }

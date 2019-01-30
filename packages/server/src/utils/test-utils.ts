@@ -8,27 +8,28 @@ interface Options {
   variableValues?: Maybe<{
     [key: string]: any;
   }>;
-  userId?: number;
+  userId?: string;
 }
 
 let schema: GraphQLSchema;
 
 export const gqlCall = async ({
   source,
-  variableValues,
-  userId = 0
+  variableValues = {},
+  userId = ''
 }: Options) => {
   if (!schema) {
     schema = await createSchema();
   }
-  const { errors, data } = await graphql({
+  const result = await graphql({
     schema,
     source,
     variableValues,
     contextValue: {
       req: {
         session: {
-          userId
+          userId,
+          destroy: jest.fn()
         }
       },
       res: {
@@ -37,9 +38,8 @@ export const gqlCall = async ({
     }
   });
 
-  const e = errors && errors.map(formatArgumentValidationError);
   return {
-    data,
-    errors: e
+    data: result.data,
+    errors: result.errors && result.errors.map(formatArgumentValidationError)
   };
 };
