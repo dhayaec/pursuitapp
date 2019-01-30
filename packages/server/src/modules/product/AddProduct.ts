@@ -1,6 +1,7 @@
 import { Arg, Mutation, Resolver } from 'type-graphql';
 import { Category } from '../../entity/Category';
 import { Product } from '../../entity/Product';
+import errorMessages from '../../i18n/error-messages';
 import { ProductInput } from './ProductInput';
 
 @Resolver()
@@ -19,7 +20,7 @@ export class AddProduct {
     const category = await Category.findOne(categoryId);
 
     if (!category) {
-      throw new Error('invalid category');
+      throw new Error(errorMessages.invalidCategory);
     }
 
     const c = Product.create({
