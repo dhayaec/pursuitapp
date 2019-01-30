@@ -56,7 +56,7 @@ export class UserAccountUtils {
     @Arg('token') token: string,
     @Arg('password') password: string,
     @Arg('confirmPassword') confirmPassword: string
-  ) {
+  ): Promise<User> {
     if (password !== confirmPassword) {
       throw new Error('passwords dont match');
     }
@@ -83,11 +83,11 @@ export class UserAccountUtils {
   async changePassword(
     @Ctx() ctx: AppContext,
     @Arg('oldPassword') oldPassword: string,
-    @Arg('newPassword') password: string
-  ) {
+    @Arg('password') password: string
+  ): Promise<User> {
     const userId = ctx.req.session!.userId;
     if (!userId) {
-      return false;
+      throw new Error('Login First');
     }
 
     const user = await User.findOne(userId);
@@ -107,7 +107,10 @@ export class UserAccountUtils {
   }
 
   @Mutation(() => User)
-  async changeEmail(@Ctx() ctx: AppContext, @Arg('email') email: string) {
+  async changeEmail(
+    @Ctx() ctx: AppContext,
+    @Arg('email') email: string
+  ): Promise<User | undefined> {
     const userId = ctx.req.session!.userId;
     if (!userId) {
       throw new Error('Login first');
