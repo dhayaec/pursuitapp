@@ -1,14 +1,14 @@
 import { print } from 'graphql/language/printer';
 import { Connection } from 'typeorm';
 import { connectTestDb } from '../../db';
-import { gqlCall } from '../../utils/test-utils';
 import {
   loginMutation,
   logoutMutation,
   meQuery,
   registerMutation,
   user
-} from './test-data';
+} from '../../graphql-operations';
+import { gqlCall } from '../../utils/test-utils';
 
 let conn: Connection;
 beforeAll(async () => {

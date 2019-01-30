@@ -1,11 +1,6 @@
 import { print } from 'graphql/language/printer';
 import { Connection } from 'typeorm';
 import { connectTestDb } from '../../db';
-import { redis } from '../../redis';
-import { TokenTypes } from '../../utils/constants';
-import { gqlCall } from '../../utils/test-utils';
-import { User } from './../../entity/User';
-import { createTokenLink } from './../../utils/utils';
 import {
   changeEmailMutation,
   changePasswordMutation,
@@ -14,14 +9,19 @@ import {
   meQuery,
   resendVerifySignup as resendVerifySignupMutation,
   verifyForgotPasswordMutation
-} from './test-data';
+} from '../../graphql-operations';
+import { redis } from '../../redis';
+import { TokenTypes } from '../../utils/constants';
+import { gqlCall } from '../../utils/test-utils';
+import { User } from './../../entity/User';
+import { createTokenLink } from './../../utils/utils';
 
 let userId: string;
 let name: string;
 let email: string;
 let conn: Connection;
 beforeAll(async () => {
-  conn = await connectTestDb(true);
+  conn = await connectTestDb();
   const user = await User.create({
     name: 'test user',
     email: 'testing@testing.co',

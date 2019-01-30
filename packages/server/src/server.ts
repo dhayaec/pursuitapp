@@ -14,12 +14,13 @@ import { Env } from './utils/constants';
 import { createSchema } from './utils/create-schema';
 
 export const startServer = async () => {
+  try {
+    await createDb();
+  } catch (error) {
+    throw new Error(error);
+  }
+
   if (process.env.NODE_ENV !== Env.test) {
-    try {
-      await createDb();
-    } catch (error) {
-      throw new Error(error);
-    }
     await connectDb();
   }
 
@@ -61,7 +62,7 @@ export const startServer = async () => {
 
   server.applyMiddleware({ app }); // app is from an existing express app
 
-  const port = process.env.NODE_ENV === Env.test ? 4001 : 400;
+  const port = process.env.NODE_ENV === Env.test ? 4001 : 4000;
 
   return app.listen({ port }, () =>
     console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
