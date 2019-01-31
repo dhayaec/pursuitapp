@@ -43,6 +43,7 @@
     "setup": "ts-node ./src/scripts/setup-test-db.ts",
     "create:db": "ts-node ./src/scripts/create-db.ts",
     "test": "jest",
+    "test:w": "jest --watch",
     "precommit": "lint-staged",
     "pretty": "prettier 'src/**/*.ts' --write",
     "cover": "jest --coverage",

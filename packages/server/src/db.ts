@@ -7,7 +7,7 @@ const iconv = require('iconv-lite');
 // tslint:disable-next-line:no-var-requires
 const encodings = require('iconv-lite/encodings');
 iconv.encodings = encodings;
-import { Connection, createConnection } from 'typeorm';
+import { Connection, createConnection, getConnectionManager } from 'typeorm';
 import { ConnectionList } from './types/types';
 
 const {
@@ -141,6 +141,11 @@ export async function connectTestDb(
   drop: boolean = false
 ): Promise<Connection> {
   const options = connectionList.test;
+
+  const c = getConnectionManager();
+  if (c.has('default')) {
+    return c.get('default');
+  }
 
   return createConnection({
     ...options,

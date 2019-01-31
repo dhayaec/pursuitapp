@@ -1,6 +1,7 @@
 import * as bcryptjs from 'bcryptjs';
 import { Arg, Ctx, Mutation, Resolver } from 'type-graphql';
 import { User } from '../../entity/User';
+import errorMessages from '../../i18n/error-messages';
 import { redis } from '../../redis';
 import { AppContext } from '../../types/types';
 import { TokenTypes } from '../../utils/constants';
@@ -51,30 +52,26 @@ export class UserAccountUtils {
     return true;
   }
 
-  @Mutation(() => User)
+  @Mutation(() => User, { nullable: true })
   async verifyForgotPassword(
     @Arg('token') token: string,
     @Arg('password') password: string,
     @Arg('confirmPassword') confirmPassword: string
-  ): Promise<User> {
+  ): Promise<User | undefined> {
     if (password !== confirmPassword) {
-      throw new Error('passwords dont match');
+      throw new Error(errorMessages.passwordsDontMatch);
     }
 
     const userId = await redis.get(token);
     if (!userId) {
-      throw new Error('invalid token');
+      throw new Error(errorMessages.invalidToken);
     }
-
-    await redis.del(token);
 
     const user = await User.findOne(userId);
-    if (!user) {
-      throw new Error('user not found');
-    }
 
     const hashedPassword = await bcryptjs.hash(password, 10);
     await User.update(userId, { password: hashedPassword });
+    await redis.del(token);
     // TODO send an alert email
     return user;
   }
@@ -87,17 +84,17 @@ export class UserAccountUtils {
   ): Promise<User> {
     const userId = ctx.req.session!.userId;
     if (!userId) {
-      throw new Error('Login First');
+      throw new Error(errorMessages.loginToContinue);
     }
 
     const user = await User.findOne(userId);
     if (!user) {
-      throw new Error('user not found');
+      throw new Error(errorMessages.userNotFound);
     }
 
     const valid = await bcryptjs.compare(oldPassword, user.password);
     if (!valid) {
-      throw new Error('Invalid old password');
+      throw new Error(errorMessages.invalidOldPassword);
     }
 
     const hashedPassword = await bcryptjs.hash(password, 10);
@@ -113,16 +110,16 @@ export class UserAccountUtils {
   ): Promise<User | undefined> {
     const userId = ctx.req.session!.userId;
     if (!userId) {
-      throw new Error('Login first');
+      throw new Error(errorMessages.loginToContinue);
     }
 
     const user = await User.findOne(userId);
     if (!user) {
-      throw new Error('user not found');
+      throw new Error(errorMessages.userNotFound);
     }
 
     if (user.email === email) {
-      throw new Error('New email is same as old one');
+      throw new Error(errorMessages.newEmailSameAsOld);
     }
 
     await User.update(userId, { email });

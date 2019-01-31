@@ -13,6 +13,8 @@
   "editor.fontLigatures": true,
   "tslint.autoFixOnSave": true,
   "editor.emptySelectionClipboard": false,
+  "workbench.editor.enablePreviewFromQuickOpen": false,
+  "workbench.editor.showTabs": true,
   "typescript.tsdk": "node_modules/typescript/lib",
   "cSpell.words": [
     "Dhayanandhan",

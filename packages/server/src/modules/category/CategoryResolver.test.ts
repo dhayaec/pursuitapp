@@ -3,10 +3,12 @@ import { Connection, getManager } from 'typeorm';
 import { connectTestDb } from '../../db';
 import {
   addCategoryMutation,
+  addCategoryWithParentMutation,
   getBreadCrumbPathQuery,
   getCategoryByIdQuery,
   getChildCategoriesQuery
 } from '../../graphql-operations';
+import errorMessages from '../../i18n/error-messages';
 import { Category } from './../../entity/Category';
 import { getMainCategoryQuery } from './../../graphql-operations';
 import { gqlCall } from './../../utils/test-utils';
@@ -64,6 +66,18 @@ describe('CategoryResolver', () => {
           }
         }
       });
+
+      const res = await gqlCall({
+        source: print(getCategoryByIdQuery),
+        variableValues: {
+          id: ''
+        }
+      });
+      expect(res).toMatchObject({
+        data: {
+          getCategoryById: null
+        }
+      });
     });
   });
   describe('addCategory', () => {
@@ -80,6 +94,17 @@ describe('CategoryResolver', () => {
             name: 'a2'
           }
         }
+      });
+
+      const res = await gqlCall({
+        source: print(addCategoryWithParentMutation),
+        variableValues: {
+          name: 'a3',
+          parentId: '0'
+        }
+      });
+      expect(res).toMatchObject({
+        errors: [{ message: errorMessages.invalidParentCategory }]
       });
     });
   });
@@ -125,6 +150,16 @@ describe('CategoryResolver', () => {
           }
         }
       });
+      const res = await gqlCall({
+        source: print(getChildCategoriesQuery),
+        variableValues: {
+          id: '0'
+        }
+      });
+
+      expect(res).toMatchObject({
+        errors: [{ message: errorMessages.invalidCategory }]
+      });
     });
   });
   describe('getBreadCrumbPath', () => {
@@ -145,6 +180,16 @@ describe('CategoryResolver', () => {
             }
           }
         }
+      });
+      const res = await gqlCall({
+        source: print(getBreadCrumbPathQuery),
+        variableValues: {
+          id: '0'
+        }
+      });
+
+      expect(res).toMatchObject({
+        errors: [{ message: errorMessages.invalidCategory }]
       });
     });
   });

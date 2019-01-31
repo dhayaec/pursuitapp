@@ -150,6 +150,14 @@ export const addCategoryMutation = gql`
   }
 `;
 
+export const addCategoryWithParentMutation = gql`
+  mutation AddCategory($name: String!, $parentId: String) {
+    addCategory(name: $name, parentId: $parentId) {
+      name
+    }
+  }
+`;
+
 export const getMainCategoryQuery = gql`
   query {
     getMainCategory {
