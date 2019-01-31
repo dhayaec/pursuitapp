@@ -10,6 +10,7 @@ import {
   resendVerifySignup as resendVerifySignupMutation,
   verifyForgotPasswordMutation
 } from '../../graphql-operations';
+import errorMessages from '../../i18n/error-messages';
 import { redis } from '../../redis';
 import { TokenTypes } from '../../utils/constants';
 import { gqlCall } from '../../utils/test-utils';
@@ -85,10 +86,19 @@ describe('UserAccountUtils', () => {
       const response = await gqlCall({
         source: print(getUserQuery),
         variableValues: {
+          id: ''
+        }
+      });
+
+      expect(response).toMatchObject({ data: { getUser: null } });
+
+      const res = await gqlCall({
+        source: print(getUserQuery),
+        variableValues: {
           id: userId
         }
       });
-      expect(response).toMatchObject({
+      expect(res).toMatchObject({
         data: {
           getUser: {
             name,
@@ -161,7 +171,33 @@ describe('UserAccountUtils', () => {
       });
 
       expect(failCase).toMatchObject({
-        data: null
+        errors: [{ message: errorMessages.invalidOldPassword }]
+      });
+
+      const failCase2 = await gqlCall({
+        source: print(changePasswordMutation),
+        variableValues: {
+          oldPassword: 'something',
+          password: '1234567'
+        },
+        userId: ''
+      });
+
+      expect(failCase2).toMatchObject({
+        errors: [{ message: errorMessages.loginToContinue }]
+      });
+
+      const failCase3 = await gqlCall({
+        source: print(changePasswordMutation),
+        variableValues: {
+          oldPassword: 'something',
+          password: '1234567'
+        },
+        userId: '99'
+      });
+
+      expect(failCase3).toMatchObject({
+        errors: [{ message: errorMessages.userNotFound }]
       });
     });
   });
@@ -185,6 +221,30 @@ describe('UserAccountUtils', () => {
         }
       });
 
+      const res1 = await gqlCall({
+        source: print(changeEmailMutation),
+        variableValues: {
+          email: 'email@email.com'
+        },
+        userId: ''
+      });
+
+      expect(res1).toMatchObject({
+        errors: [{ message: errorMessages.loginToContinue }]
+      });
+
+      const res2 = await gqlCall({
+        source: print(changeEmailMutation),
+        variableValues: {
+          email: 'email@email.com'
+        },
+        userId: '99'
+      });
+
+      expect(res2).toMatchObject({
+        errors: [{ message: errorMessages.userNotFound }]
+      });
+
       const fail = await gqlCall({
         source: print(changeEmailMutation),
         variableValues: {
@@ -194,7 +254,7 @@ describe('UserAccountUtils', () => {
       });
 
       expect(fail).toMatchObject({
-        data: null
+        errors: [{ message: errorMessages.newEmailSameAsOld }]
       });
     });
   });
@@ -202,7 +262,7 @@ describe('UserAccountUtils', () => {
   describe('verifyForgotPassword', () => {
     it('should send forgot password email', async () => {
       const t = await createTokenLink('/', userId, redis, TokenTypes.reset);
-      const token = t.split('/').splice(-1)[0];
+      const token = extractToken(t);
       const response = await gqlCall({
         source: print(verifyForgotPasswordMutation),
         variableValues: {
@@ -220,6 +280,37 @@ describe('UserAccountUtils', () => {
           }
         }
       });
+      const res = await gqlCall({
+        source: print(verifyForgotPasswordMutation),
+        variableValues: {
+          token,
+          password: 'newPassword',
+          confirmPassword: 'newPassword2'
+        },
+        userId
+      });
+
+      expect(res).toMatchObject({
+        errors: [{ message: errorMessages.passwordsDontMatch }]
+      });
+
+      const res2 = await gqlCall({
+        source: print(verifyForgotPasswordMutation),
+        variableValues: {
+          token: '',
+          password: 'newPassword',
+          confirmPassword: 'newPassword'
+        },
+        userId
+      });
+
+      expect(res2).toMatchObject({
+        errors: [{ message: errorMessages.invalidToken }]
+      });
     });
   });
 });
+
+function extractToken(t: string) {
+  return t.split('/').splice(-1)[0];
+}

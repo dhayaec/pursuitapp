@@ -54,7 +54,7 @@ export class CategoryResolver {
     if (parentId) {
       parent = await Category.findOne(parentId);
       if (!parent) {
-        throw new Error(errorMessages.invalidCategory);
+        throw new Error(errorMessages.invalidParentCategory);
       }
     }
 

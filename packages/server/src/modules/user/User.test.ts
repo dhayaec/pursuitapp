@@ -8,6 +8,7 @@ import {
   registerMutation,
   user
 } from '../../graphql-operations';
+import errorMessages from '../../i18n/error-messages';
 import { gqlCall } from '../../utils/test-utils';
 
 let conn: Connection;
@@ -35,6 +36,16 @@ describe('Register', () => {
           email: user.email
         }
       }
+    });
+    const res = await gqlCall({
+      source: print(registerMutation),
+      variableValues: {
+        data: user
+      }
+    });
+
+    expect(res).toMatchObject({
+      errors: [{ message: errorMessages.emailAlreadyExists }]
     });
   });
 });
@@ -97,6 +108,12 @@ describe('Logout', () => {
       source: print(logoutMutation)
     });
     expect(res).toEqual({ data: { logout: false } });
+
+    const res2 = await gqlCall({
+      source: print(logoutMutation),
+      userId: '1'
+    });
+    expect(res2).toEqual({ data: { logout: true } });
   });
   it('should return logged in user', async () => {
     const result = await gqlCall({

@@ -1,3 +1,5 @@
-module.exports = async function() {
-  process.exit();
+module.exports = async function(config) {
+  if (!(config.watch || config.watchAll)) {
+    process.exit();
+  }
 };
