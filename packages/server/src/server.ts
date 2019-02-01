@@ -7,7 +7,6 @@ import * as connectRedis from 'connect-redis';
 import * as cors from 'cors';
 import * as express from 'express';
 import * as session from 'express-session';
-import { formatArgumentValidationError } from 'type-graphql';
 import { connectDb, createDb } from './db';
 import { redis } from './redis';
 import { Env } from './utils/constants';
@@ -28,7 +27,6 @@ export const startServer = async () => {
 
   const server = new ApolloServer({
     schema: await createSchema(),
-    formatError: formatArgumentValidationError,
     context: ({ req, res }: any) => ({ req, res })
   });
 

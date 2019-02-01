@@ -84,7 +84,11 @@ describe('ProductResolver', () => {
       const product = {
         title: 'Product Name',
         coverImage: 'something',
-        description: 'something',
+        description:
+          'description must be at least 140 characters description must be at' +
+          'least 140 characters description must be at least 140 characters ' +
+          'description must be at least 140 characters description must be at' +
+          'least 140 characters',
         rating: 0,
         price: 99,
         offerPrice: 99,
@@ -108,6 +112,17 @@ describe('ProductResolver', () => {
             }
           }
         }
+      });
+
+      const invalid = await gqlCall({
+        source: print(addProductMutation),
+        variableValues: {
+          data: { ...product, title: '' }
+        }
+      });
+
+      expect(invalid).toMatchObject({
+        errors: [{ message: errorMessages.validationFailed }]
       });
 
       const invalidProd = { ...product, categoryId: '0' };

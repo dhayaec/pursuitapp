@@ -19,6 +19,7 @@
     "typescript": "3.2.4"
   },
   "dependencies": {
+    "apollo-errors": "^1.9.0",
     "apollo-server-express": "2.3.1",
     "argon2": "0.20.0",
     "bcryptjs": "^2.4.3",
@@ -47,8 +48,8 @@
     "precommit": "lint-staged",
     "pretty": "prettier 'src/**/*.ts' --write",
     "cover": "jest --coverage",
-    "debug:ts": "nodemon --inspect ./src/index.ts",
-    "debug:ts:brk": "nodemon --inspect-brk ./src/index.ts",
+    "debug:ts": "node --inspect --require ts-node/register  ./src/index.ts",
+    "debug:ts:brk": "node --inspect-brk --require ts-node/register ./src/index.ts",
     "debug:jest": "node --inspect-brk ../../node_modules/.bin/jest --runInBand --bail",
     "test:ci": "jest --bail --findRelatedTests ./src/**/**.ts"
   },

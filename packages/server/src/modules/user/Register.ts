@@ -1,10 +1,12 @@
 // import * as bcryptjs from 'bcryptjs';
+import { userSchema } from '@pursuitapp/common';
 import { Arg, Mutation, Resolver } from 'type-graphql';
 import { User } from '../../entity/User';
 import errorMessages from '../../i18n/error-messages';
+import { validateInputs } from '../../utils/utils';
 import { RegisterInput } from './register/RegisterInput';
 
-@Resolver()
+@Resolver(User)
 export class RegisterResolver {
   @Mutation(() => User)
   async register(@Arg('data')
@@ -14,6 +16,8 @@ export class RegisterResolver {
     name,
     mobile
   }: RegisterInput) {
+    await validateInputs(userSchema, { email, password, name, mobile });
+
     const userAlreadyExists = await User.findOne({
       where: {
         email

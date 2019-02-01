@@ -1,9 +1,10 @@
+import { productSchema } from '@pursuitapp/common';
 import { Arg, Mutation, Query, Resolver } from 'type-graphql';
 import { Category } from '../../entity/Category';
 import { Product } from '../../entity/Product';
 import errorMessages from '../../i18n/error-messages';
 import { ITEMS_PER_PAGE } from '../../utils/constants';
-import { skipPage } from '../../utils/utils';
+import { skipPage, validateInputs } from '../../utils/utils';
 import { ProductInput } from './ProductInput';
 
 @Resolver(Product)
@@ -53,6 +54,15 @@ export class ProductResolver {
     offerPrice,
     categoryId
   }: ProductInput): Promise<Product> {
+    await validateInputs(productSchema, {
+      title,
+      coverImage,
+      description,
+      rating,
+      price,
+      offerPrice
+    });
+
     const category = await Category.findOne(categoryId);
 
     if (!category) {
