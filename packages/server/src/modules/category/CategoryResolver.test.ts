@@ -1,6 +1,7 @@
 import { print } from 'graphql/language/printer';
 import { Connection, getManager } from 'typeorm';
 import { connectTestDb } from '../../db';
+import { User } from '../../entity/User';
 import {
   addCategoryMutation,
   addCategoryWithParentMutation,
@@ -16,9 +17,17 @@ import { gqlCall } from './../../utils/test-utils';
 let conn: Connection;
 let a1: Category;
 let a12: Category;
+let user: User;
 beforeAll(async () => {
   conn = await connectTestDb();
   const manager = getManager();
+
+  user = await User.create({
+    name: 'test user',
+    email: 'admin-user@gmail.com',
+    password: 'secret-password',
+    isAdmin: true
+  }).save();
 
   a1 = new Category();
   a1.name = 'a1';
@@ -86,7 +95,9 @@ describe('CategoryResolver', () => {
         source: print(addCategoryMutation),
         variableValues: {
           name: 'a2'
-        }
+        },
+        userId: user.id.toString(),
+        isAdmin: user.isAdmin
       });
       expect(response).toMatchObject({
         data: {
@@ -101,7 +112,9 @@ describe('CategoryResolver', () => {
         variableValues: {
           name: 'a3',
           parentId: '0'
-        }
+        },
+        userId: user.id.toString(),
+        isAdmin: user.isAdmin
       });
       expect(res).toMatchObject({
         errors: [{ message: errorMessages.invalidParentCategory }]

@@ -1,20 +1,23 @@
 // import * as bcryptjs from 'bcryptjs';
 import { userSchema } from '@pursuitapp/common';
-import { Arg, Mutation, Resolver } from 'type-graphql';
+import { Arg, Mutation, Resolver, UseMiddleware } from 'type-graphql';
 import { User } from '../../entity/User';
 import errorMessages from '../../i18n/error-messages';
+import { checkIsAdminToRegister } from '../../middlewares';
 import { validateInputs } from '../../utils/utils';
 import { RegisterInput } from './register/RegisterInput';
 
 @Resolver(User)
 export class RegisterResolver {
   @Mutation(() => User)
+  @UseMiddleware(checkIsAdminToRegister)
   async register(@Arg('data')
   {
     email,
     password,
     name,
-    mobile
+    mobile,
+    isAdmin
   }: RegisterInput) {
     await validateInputs(userSchema, { email, password, name, mobile });
 
@@ -32,7 +35,8 @@ export class RegisterResolver {
       name,
       mobile,
       email,
-      password
+      password,
+      isAdmin
     }).save();
     // await sendEmail()
     return user;

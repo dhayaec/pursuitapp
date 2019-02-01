@@ -13,4 +13,7 @@ export class RegisterInput {
 
   @Field({ nullable: true })
   mobile: string;
+
+  @Field({ defaultValue: false })
+  isAdmin: boolean;
 }

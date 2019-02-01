@@ -1,7 +1,8 @@
-import { Arg, Mutation, Query, Resolver } from 'type-graphql';
+import { Arg, Mutation, Query, Resolver, UseMiddleware } from 'type-graphql';
 import { getManager } from 'typeorm';
 import { Product } from '../../entity/Product';
 import errorMessages from '../../i18n/error-messages';
+import { checkIsAdmin } from '../../middlewares';
 import { Category } from './../../entity/Category';
 
 @Resolver(Product)
@@ -46,6 +47,7 @@ export class CategoryResolver {
   }
 
   @Mutation(() => Category)
+  @UseMiddleware(checkIsAdmin)
   async addCategory(
     @Arg('name') name: string,
     @Arg('parentId', { nullable: true }) parentId: string
@@ -63,5 +65,18 @@ export class CategoryResolver {
       parent
     });
     return await c.save();
+  }
+
+  @Mutation(() => Boolean)
+  @UseMiddleware(checkIsAdmin)
+  async removeCategory(
+    @Arg('id', { nullable: true }) id: string
+  ): Promise<boolean> {
+    const category = await Category.findOne(id);
+    if (!category) {
+      return false;
+    }
+    await Category.remove(category);
+    return true;
   }
 }
