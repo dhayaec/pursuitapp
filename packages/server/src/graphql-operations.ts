@@ -95,8 +95,8 @@ export const changeEmailMutation = gql`
 `;
 
 export const listProductsQuery = gql`
-  query {
-    listProducts {
+  query ListProduct($page: Float) {
+    listProducts(page: $page) {
       title
       id
     }

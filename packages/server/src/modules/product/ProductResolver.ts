@@ -11,7 +11,7 @@ import { ProductInput } from './ProductInput';
 export class ProductResolver {
   @Query(() => [Product])
   async listProducts(
-    @Arg('page', { defaultValue: 1 }) page: number = 1
+    @Arg('page', { defaultValue: 1 }) page: number
   ): Promise<Product[]> {
     return await Product.find({
       skip: skipPage(page),

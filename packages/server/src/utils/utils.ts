@@ -21,7 +21,7 @@ export const createTokenLink = async (
 };
 
 export function skipPage(page: number) {
-  return page && page > 0 ? (page - 1) * ITEMS_PER_PAGE : 0;
+  return (page - 1) * ITEMS_PER_PAGE;
 }
 
 export const formatYupError = (err: ValidationError) => {

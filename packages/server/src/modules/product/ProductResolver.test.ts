@@ -33,6 +33,17 @@ describe('ProductResolver', () => {
           listProducts: []
         }
       });
+      const res2 = await gqlCall({
+        source: print(listProductsQuery),
+        variableValues: {
+          page: 2
+        }
+      });
+      expect(res2).toMatchObject({
+        data: {
+          listProducts: []
+        }
+      });
     });
   });
 
@@ -95,6 +106,17 @@ describe('ProductResolver', () => {
         categoryId: category.id.toString()
       };
 
+      const invalid = await gqlCall({
+        source: print(addProductMutation),
+        variableValues: {
+          data: { ...product, title: '' }
+        }
+      });
+
+      expect(invalid).toMatchObject({
+        errors: [{ message: errorMessages.validationFailed }]
+      });
+
       const response = await gqlCall({
         source: print(addProductMutation),
         variableValues: {
@@ -112,17 +134,6 @@ describe('ProductResolver', () => {
             }
           }
         }
-      });
-
-      const invalid = await gqlCall({
-        source: print(addProductMutation),
-        variableValues: {
-          data: { ...product, title: '' }
-        }
-      });
-
-      expect(invalid).toMatchObject({
-        errors: [{ message: errorMessages.validationFailed }]
       });
 
       const invalidProd = { ...product, categoryId: '0' };
