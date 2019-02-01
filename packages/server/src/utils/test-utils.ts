@@ -9,6 +9,7 @@ interface Options {
     [key: string]: any;
   }>;
   userId?: string;
+  isAdmin?: boolean;
 }
 
 let schema: GraphQLSchema;
@@ -16,7 +17,8 @@ let schema: GraphQLSchema;
 export const gqlCall = async ({
   source,
   variableValues = {},
-  userId = ''
+  userId = '',
+  isAdmin = false
 }: Options) => {
   if (!schema) {
     schema = await createSchema();
@@ -29,6 +31,7 @@ export const gqlCall = async ({
       req: {
         session: {
           userId,
+          isAdmin,
           destroy: jest.fn()
         }
       },

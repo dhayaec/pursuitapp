@@ -37,6 +37,18 @@ describe('Register', () => {
         }
       }
     });
+
+    const invalid = await gqlCall({
+      source: print(registerMutation),
+      variableValues: {
+        data: { ...user, email: 'some' }
+      }
+    });
+
+    expect(invalid).toMatchObject({
+      errors: [{ message: errorMessages.validationFailed }]
+    });
+
     const res = await gqlCall({
       source: print(registerMutation),
       variableValues: {

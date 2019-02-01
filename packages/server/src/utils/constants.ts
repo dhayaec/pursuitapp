@@ -1,3 +1,6 @@
+import { createError } from 'apollo-errors';
+import errorMessages from '../i18n/error-messages';
+
 export enum Env {
   development = 'development',
   test = 'test',
@@ -10,3 +13,7 @@ export enum TokenTypes {
 }
 
 export const ITEMS_PER_PAGE = 20;
+
+export const InputValidationError = createError('InputValidationError', {
+  message: errorMessages.validationFailed
+});

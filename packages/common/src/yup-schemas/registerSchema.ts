@@ -1,21 +1,19 @@
 import * as yup from 'yup';
 
-export const registerSchema = yup.object().shape({
-  username: yup
+export const userSchema = yup.object().shape({
+  name: yup
     .string()
-    .matches(/^[a-zA-Z0-9]*$/, 'username can only contain letters and numbers')
+    .trim()
     .min(3)
-    .max(30)
-    .required(),
+    .max(100),
   email: yup
     .string()
-    .email()
-    .min(3)
-    .max(500)
-    .required(),
+    .trim()
+    .min(6)
+    .max(255)
+    .email(),
   password: yup
     .string()
-    .min(5)
-    .max(1000)
-    .required()
+    .min(6)
+    .max(255)
 });

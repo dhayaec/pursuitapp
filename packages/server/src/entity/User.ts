@@ -30,7 +30,7 @@ export class User extends BaseEntity {
   @Column('varchar', { length: 255 })
   email: string;
 
-  @Field()
+  @Field({ nullable: true })
   @Column('varchar', { length: 30, nullable: true })
   username: string;
 

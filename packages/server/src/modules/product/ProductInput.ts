@@ -1,18 +1,15 @@
-import { IsNumber, Length } from 'class-validator';
+import { IsNumber } from 'class-validator';
 import { Field, InputType } from 'type-graphql';
 
 @InputType()
 export class ProductInput {
   @Field()
-  @Length(1, 255)
   title: string;
 
   @Field()
-  @Length(1, 255)
   coverImage: string;
 
   @Field()
-  @IsNumber()
   rating: number;
 
   @Field()
@@ -23,7 +20,6 @@ export class ProductInput {
   price: number;
 
   @Field()
-  @IsNumber()
   offerPrice: number;
 
   @Field()

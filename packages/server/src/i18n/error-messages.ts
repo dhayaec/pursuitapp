@@ -11,5 +11,7 @@ export default {
   productNotFound: 'Product not found',
   alreadyInCart: 'Already in cart',
   itemNotInCart: 'Item not in cart',
-  cartIsEmpty: 'Cart is empty'
+  cartIsEmpty: 'Cart is empty',
+  validationFailed: 'Validation failed',
+  notAuthorized: 'You are not authorized to perform this task'
 };
