@@ -186,3 +186,37 @@ export const getBreadCrumbPathQuery = gql`
     }
   }
 `;
+
+export const getCartQuery = gql`
+  query {
+    getCart {
+      title
+      product {
+        title
+      }
+      user {
+        name
+      }
+    }
+  }
+`;
+
+export const addToCartMutation = gql`
+  mutation AddToCart($productId: String!) {
+    addToCart(productId: $productId) {
+      title
+    }
+  }
+`;
+
+export const removeFromCartMutation = gql`
+  mutation RemoveFromCart($productId: String!) {
+    removeFromCart(productId: $productId)
+  }
+`;
+
+export const emptyCartMutation = gql`
+  mutation {
+    emptyCart
+  }
+`;

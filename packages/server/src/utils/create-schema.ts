@@ -1,4 +1,5 @@
 import { buildSchema } from 'type-graphql';
+import { CartResolver } from '../modules/cart/CartResolver';
 import { CategoryResolver } from '../modules/category/CategoryResolver';
 import { ProductResolver } from '../modules/product/ProductResolver';
 import { LoginResolver } from '../modules/user/Login';
@@ -16,6 +17,7 @@ export const createSchema = () =>
       LogoutResolver,
       UserAccountUtils,
       ProductResolver,
-      CategoryResolver
+      CategoryResolver,
+      CartResolver
     ]
   });
