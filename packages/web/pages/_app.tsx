@@ -1,12 +1,11 @@
 import App, { Container } from 'next/app';
 import React from 'react';
 import { ApolloProvider } from 'react-apollo';
+import withApollo from '../lib/withApollo';
 
-import withApolloClient from '../lib/with-apollo-client';
-
-class MyApp extends App {
+class PursuitApp extends App<any> {
   render() {
-    const { Component, pageProps, apolloClient } = this.props as any;
+    const { Component, pageProps, apolloClient } = this.props;
     return (
       <Container>
         <ApolloProvider client={apolloClient}>
@@ -17,4 +16,4 @@ class MyApp extends App {
   }
 }
 
-export default withApolloClient(MyApp);
+export default withApollo(PursuitApp);
