@@ -13,5 +13,6 @@ export default {
   itemNotInCart: 'Item not in cart',
   cartIsEmpty: 'Cart is empty',
   validationFailed: 'Validation failed',
-  notAuthorized: 'You are not authorized to perform this task'
+  notAuthorized: 'You are not authorized to perform this task',
+  invalidUsernameOrPassword: 'Invalid email or password'
 };

@@ -1,6 +1,7 @@
 import * as bcryptjs from 'bcryptjs';
 import { Arg, Ctx, Mutation, Resolver } from 'type-graphql';
 import { User } from '../../entity/User';
+import errorMessages from '../../i18n/error-messages';
 import { AppContext } from '../../types/types';
 
 @Resolver()
@@ -10,15 +11,15 @@ export class LoginResolver {
     @Arg('email') email: string,
     @Arg('password') password: string,
     @Ctx() ctx: AppContext
-  ): Promise<User | undefined> {
+  ): Promise<User> {
     const user = await User.findOne({ where: { email } });
     if (!user) {
-      return;
+      throw new Error(errorMessages.invalidUsernameOrPassword);
     }
 
     const valid = await bcryptjs.compare(password, user.password);
     if (!valid) {
-      return;
+      throw new Error(errorMessages.invalidUsernameOrPassword);
     }
 
     ctx.req.session!.userId = user.id;

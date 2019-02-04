@@ -22,6 +22,9 @@ export class ProductResolver {
 
   @Query(() => Product, { nullable: true })
   async getProduct(@Arg('id') id: string): Promise<Product | undefined> {
+    if (!id) {
+      return;
+    }
     return await Product.findOne(id, { relations: ['category'] });
   }
 

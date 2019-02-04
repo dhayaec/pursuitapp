@@ -58,7 +58,7 @@ export const startServer = async () => {
 
   app.get('/', (_, res) => res.json({ message: 'pong' }));
 
-  server.applyMiddleware({ app }); // app is from an existing express app
+  server.applyMiddleware({ app, cors: false }); // app is from an existing express app
 
   const port = process.env.NODE_ENV === Env.test ? 4001 : 4000;
 
