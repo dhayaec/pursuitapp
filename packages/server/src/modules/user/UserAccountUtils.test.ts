@@ -6,6 +6,7 @@ import {
   changePasswordMutation,
   forgotPasswordMutation,
   getUserQuery,
+  isEmailExistsQuery,
   meQuery,
   resendVerifySignup as resendVerifySignupMutation,
   verifyForgotPasswordMutation,
@@ -60,6 +61,47 @@ describe('UserAccountUtils', () => {
         data: {
           resendVerifySignup: false,
         },
+      });
+    });
+  });
+
+  describe('isEmailExists', () => {
+    it('should check email already exists', async () => {
+      const response = await gqlCall({
+        source: print(isEmailExistsQuery),
+        variableValues: {
+          email: 'testing@testing.co',
+        },
+      });
+
+      expect(response).toMatchObject({
+        data: {
+          isEmailExists: true,
+        },
+      });
+
+      const res1 = await gqlCall({
+        source: print(isEmailExistsQuery),
+        variableValues: {
+          email: 'testing@blah.com',
+        },
+      });
+
+      expect(res1).toMatchObject({
+        data: {
+          isEmailExists: false,
+        },
+      });
+
+      const res = await gqlCall({
+        source: print(isEmailExistsQuery),
+        variableValues: {
+          email: 'testing',
+        },
+      });
+
+      expect(res).toMatchObject({
+        errors: [{ message: 'Validation failed' }],
       });
     });
   });

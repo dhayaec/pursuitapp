@@ -1,6 +1,8 @@
+import { emailSchema } from '@pursuitapp/common';
 import { Arg, Ctx, Query, Resolver } from 'type-graphql';
 import { User } from '../../entity/User';
 import { AppContext } from '../../types/types';
+import { validateInputs } from '../../utils/utils';
 
 @Resolver(User)
 export class UserResolver {
@@ -18,5 +20,17 @@ export class UserResolver {
       return;
     }
     return await User.findOne(id);
+  }
+
+  @Query(() => Boolean)
+  async isEmailExists(@Arg('email') email: string): Promise<boolean> {
+    await validateInputs(emailSchema, { email });
+
+    const user = await User.findOne({
+      where: {
+        email,
+      },
+    });
+    return user ? true : false;
   }
 }

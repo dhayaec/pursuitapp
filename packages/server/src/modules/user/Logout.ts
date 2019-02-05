@@ -7,11 +7,15 @@ export class LogoutResolver {
   async logout(@Ctx() ctx: AppContext): Promise<boolean> {
     const { userId } = ctx.req.session!;
     if (userId) {
-      ctx.req.session!.destroy(err => {
-        if (err) {
-          console.log(err);
-        }
-      });
+      ctx.req.session!.destroy(
+        /* istanbul ignore next */
+        err => {
+          if (err) {
+            console.log(err);
+          }
+        },
+        /* istanbul ignore next */
+      );
     }
     ctx.res.clearCookie('qid');
     return userId !== '';

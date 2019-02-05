@@ -49,6 +49,17 @@ describe('ProductResolver', () => {
 
   describe('getProduct', () => {
     it('should return list of products', async () => {
+      const res = await gqlCall({
+        source: print(getProductQuery),
+        variableValues: {
+          id: '',
+        },
+      });
+      expect(res).toMatchObject({
+        data: {
+          getProduct: null,
+        },
+      });
       const response = await gqlCall({
         source: print(getProductQuery),
         variableValues: {

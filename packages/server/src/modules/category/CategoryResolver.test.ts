@@ -8,6 +8,7 @@ import {
   getBreadCrumbPathQuery,
   getCategoryByIdQuery,
   getChildCategoriesQuery,
+  removeCategoryMutation,
 } from '../../graphql-operations';
 import errorMessages from '../../i18n/error-messages';
 import { Category } from './../../entity/Category';
@@ -17,6 +18,7 @@ import { gqlCall } from './../../utils/test-utils';
 let conn: Connection;
 let a1: Category;
 let a12: Category;
+let a112: Category;
 let user: User;
 beforeAll(async () => {
   conn = await connectTestDb();
@@ -48,7 +50,7 @@ beforeAll(async () => {
   a111.parent = a11;
   await manager.save(a111);
 
-  const a112 = new Category();
+  a112 = new Category();
   a112.name = 'a112';
   a112.parent = a11;
   await manager.save(a112);
@@ -119,8 +121,65 @@ describe('CategoryResolver', () => {
       expect(res).toMatchObject({
         errors: [{ message: errorMessages.invalidParentCategory }],
       });
+      const res1 = await gqlCall({
+        source: print(addCategoryWithParentMutation),
+        variableValues: {
+          name: 'a3',
+          parentId: '0',
+        },
+        userId: user.id.toString(),
+        isAdmin: false,
+      });
+      expect(res1).toMatchObject({
+        errors: [{ message: errorMessages.notAuthorized }],
+      });
+      const res2 = await gqlCall({
+        source: print(addCategoryWithParentMutation),
+        variableValues: {
+          name: 'a3',
+          parentId: '0',
+        },
+        userId: '',
+        isAdmin: false,
+      });
+      expect(res2).toMatchObject({
+        errors: [{ message: errorMessages.loginToContinue }],
+      });
     });
   });
+
+  describe('removeCategory', () => {
+    it('should remove category', async () => {
+      const response = await gqlCall({
+        source: print(removeCategoryMutation),
+        variableValues: {
+          id: a112.id.toString(),
+        },
+        userId: user.id.toString(),
+        isAdmin: user.isAdmin,
+      });
+      expect(response).toMatchObject({
+        data: {
+          removeCategory: true,
+        },
+      });
+
+      const res = await gqlCall({
+        source: print(removeCategoryMutation),
+        variableValues: {
+          id: '0',
+        },
+        userId: user.id.toString(),
+        isAdmin: user.isAdmin,
+      });
+      expect(res).toMatchObject({
+        data: {
+          removeCategory: false,
+        },
+      });
+    });
+  });
+
   describe('getMainCategory', () => {
     it('should return main category', async () => {
       const response: any = await gqlCall({
