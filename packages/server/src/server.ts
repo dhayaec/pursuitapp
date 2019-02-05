@@ -27,7 +27,7 @@ export const startServer = async () => {
 
   const server = new ApolloServer({
     schema: await createSchema(),
-    context: ({ req, res }: any) => ({ req, res })
+    context: ({ req, res }: any) => ({ req, res }),
   });
 
   const RedisStore = connectRedis(session);
@@ -35,14 +35,14 @@ export const startServer = async () => {
   app.use(
     cors({
       credentials: true,
-      origin: 'http://localhost:3000'
-    })
+      origin: 'http://localhost:3000',
+    }),
   );
 
   app.use(
     session({
       store: new RedisStore({
-        client: redis as any
+        client: redis as any,
       }),
       name: 'qid',
       secret: 'superSecret',
@@ -51,9 +51,9 @@ export const startServer = async () => {
       cookie: {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
-        maxAge: 1000 * 60 * 60 * 24 * 7 * 365 // 7 years
-      }
-    })
+        maxAge: 1000 * 60 * 60 * 24 * 7 * 365, // 7 years
+      },
+    }),
   );
 
   app.get('/', (_, res) => res.json({ message: 'pong' }));
@@ -63,6 +63,8 @@ export const startServer = async () => {
   const port = process.env.NODE_ENV === Env.test ? 4001 : 4000;
 
   return app.listen({ port }, () =>
-    console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
+    console.log(
+      `🚀 Server ready at http://localhost:4000${server.graphqlPath}`,
+    ),
   );
 };

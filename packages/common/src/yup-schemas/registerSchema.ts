@@ -15,5 +15,5 @@ export const userSchema = yup.object().shape({
   password: yup
     .string()
     .min(6)
-    .max(255)
+    .max(255),
 });

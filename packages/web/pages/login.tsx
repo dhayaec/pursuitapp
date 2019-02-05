@@ -3,28 +3,32 @@ import React from 'react';
 import { ErrorField } from '../components/fields/ErrorField';
 import { InputField } from '../components/fields/InputField';
 import Layout from '../components/Layout';
-import { RegisterComponent } from '../generated/apolloComponents';
+import { LoginComponent } from '../generated/apolloComponents';
 import { displayErrors } from '../utils/displayErrors';
 
 export default () => {
   return (
-    <Layout title="Register page">
-      <RegisterComponent>
+    <Layout title="Login page">
+      <LoginComponent>
         {register => (
           <Formik
             validateOnBlur={false}
             validateOnChange={false}
-            onSubmit={async (data, { setErrors }) => {
+            onSubmit={async (
+              { email: emailValue, password },
+              { setErrors },
+            ) => {
               try {
                 const res = await register({
                   variables: {
-                    data,
+                    email: emailValue,
+                    password,
                   },
                 });
                 if (res) {
                   const {
                     data: {
-                      register: { name, email },
+                      login: { name, email },
                     },
                   } = res;
                   console.log(name);
@@ -46,19 +50,8 @@ export default () => {
                 <Field name="default" component={ErrorField} />
 
                 <Field
-                  name="name"
-                  placeholder="full name"
-                  component={InputField}
-                />
-
-                <Field
                   name="email"
                   placeholder="email"
-                  component={InputField}
-                />
-                <Field
-                  name="mobile"
-                  placeholder="mobile"
                   component={InputField}
                 />
                 <Field
@@ -67,12 +60,12 @@ export default () => {
                   type="password"
                   component={InputField}
                 />
-                <button type="submit">submit</button>
+                <button type="submit">Login</button>
               </form>
             )}
           </Formik>
         )}
-      </RegisterComponent>
+      </LoginComponent>
     </Layout>
   );
 };

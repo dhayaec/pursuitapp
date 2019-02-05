@@ -8,7 +8,7 @@ import {
   getUserQuery,
   meQuery,
   resendVerifySignup as resendVerifySignupMutation,
-  verifyForgotPasswordMutation
+  verifyForgotPasswordMutation,
 } from '../../graphql-operations';
 import errorMessages from '../../i18n/error-messages';
 import { redis } from '../../redis';
@@ -26,7 +26,7 @@ beforeAll(async () => {
   const user = await User.create({
     name: 'test user',
     email: 'testing@testing.co',
-    password: '123456'
+    password: '123456',
   }).save();
   userId = user.id;
   name = user.name;
@@ -42,24 +42,24 @@ describe('UserAccountUtils', () => {
     it('should send verify signup', async () => {
       const response = await gqlCall({
         source: print(resendVerifySignupMutation),
-        userId
+        userId,
       });
 
       expect(response).toMatchObject({
         data: {
-          resendVerifySignup: true
-        }
+          resendVerifySignup: true,
+        },
       });
 
       const response2 = await gqlCall({
         source: print(resendVerifySignupMutation),
-        userId: ''
+        userId: '',
       });
 
       expect(response2).toMatchObject({
         data: {
-          resendVerifySignup: false
-        }
+          resendVerifySignup: false,
+        },
       });
     });
   });
@@ -68,15 +68,15 @@ describe('UserAccountUtils', () => {
     it('should return me', async () => {
       const response = await gqlCall({
         source: print(meQuery),
-        userId
+        userId,
       });
       expect(response).toMatchObject({
         data: {
           me: {
             name,
-            email
-          }
-        }
+            email,
+          },
+        },
       });
     });
   });
@@ -86,8 +86,8 @@ describe('UserAccountUtils', () => {
       const response = await gqlCall({
         source: print(getUserQuery),
         variableValues: {
-          id: ''
-        }
+          id: '',
+        },
       });
 
       expect(response).toMatchObject({ data: { getUser: null } });
@@ -95,16 +95,16 @@ describe('UserAccountUtils', () => {
       const res = await gqlCall({
         source: print(getUserQuery),
         variableValues: {
-          id: userId
-        }
+          id: userId,
+        },
       });
       expect(res).toMatchObject({
         data: {
           getUser: {
             name,
-            email
-          }
-        }
+            email,
+          },
+        },
       });
     });
   });
@@ -114,29 +114,29 @@ describe('UserAccountUtils', () => {
       const response = await gqlCall({
         source: print(forgotPasswordMutation),
         variableValues: {
-          email
+          email,
         },
-        userId
+        userId,
       });
 
       expect(response).toMatchObject({
         data: {
-          forgotPassword: true
-        }
+          forgotPassword: true,
+        },
       });
 
       const response2 = await gqlCall({
         source: print(forgotPasswordMutation),
         variableValues: {
-          email: ''
+          email: '',
         },
-        userId: ''
+        userId: '',
       });
 
       expect(response2).toMatchObject({
         data: {
-          forgotPassword: false
-        }
+          forgotPassword: false,
+        },
       });
     });
   });
@@ -147,57 +147,57 @@ describe('UserAccountUtils', () => {
         source: print(changePasswordMutation),
         variableValues: {
           oldPassword: '123456',
-          password: '1234567'
+          password: '1234567',
         },
-        userId
+        userId,
       });
 
       expect(response).toMatchObject({
         data: {
           changePassword: {
             name,
-            email
-          }
-        }
+            email,
+          },
+        },
       });
 
       const failCase = await gqlCall({
         source: print(changePasswordMutation),
         variableValues: {
           oldPassword: 'something',
-          password: '1234567'
+          password: '1234567',
         },
-        userId
+        userId,
       });
 
       expect(failCase).toMatchObject({
-        errors: [{ message: errorMessages.invalidOldPassword }]
+        errors: [{ message: errorMessages.invalidOldPassword }],
       });
 
       const failCase2 = await gqlCall({
         source: print(changePasswordMutation),
         variableValues: {
           oldPassword: 'something',
-          password: '1234567'
+          password: '1234567',
         },
-        userId: ''
+        userId: '',
       });
 
       expect(failCase2).toMatchObject({
-        errors: [{ message: errorMessages.loginToContinue }]
+        errors: [{ message: errorMessages.loginToContinue }],
       });
 
       const failCase3 = await gqlCall({
         source: print(changePasswordMutation),
         variableValues: {
           oldPassword: 'something',
-          password: '1234567'
+          password: '1234567',
         },
-        userId: '99'
+        userId: '99',
       });
 
       expect(failCase3).toMatchObject({
-        errors: [{ message: errorMessages.userNotFound }]
+        errors: [{ message: errorMessages.userNotFound }],
       });
     });
   });
@@ -207,54 +207,54 @@ describe('UserAccountUtils', () => {
       const response = await gqlCall({
         source: print(changeEmailMutation),
         variableValues: {
-          email: 'email@email.com'
+          email: 'email@email.com',
         },
-        userId
+        userId,
       });
 
       expect(response).toMatchObject({
         data: {
           changeEmail: {
             name,
-            email: 'email@email.com'
-          }
-        }
+            email: 'email@email.com',
+          },
+        },
       });
 
       const res1 = await gqlCall({
         source: print(changeEmailMutation),
         variableValues: {
-          email: 'email@email.com'
+          email: 'email@email.com',
         },
-        userId: ''
+        userId: '',
       });
 
       expect(res1).toMatchObject({
-        errors: [{ message: errorMessages.loginToContinue }]
+        errors: [{ message: errorMessages.loginToContinue }],
       });
 
       const res2 = await gqlCall({
         source: print(changeEmailMutation),
         variableValues: {
-          email: 'email@email.com'
+          email: 'email@email.com',
         },
-        userId: '99'
+        userId: '99',
       });
 
       expect(res2).toMatchObject({
-        errors: [{ message: errorMessages.userNotFound }]
+        errors: [{ message: errorMessages.userNotFound }],
       });
 
       const fail = await gqlCall({
         source: print(changeEmailMutation),
         variableValues: {
-          email: 'email@email.com'
+          email: 'email@email.com',
         },
-        userId
+        userId,
       });
 
       expect(fail).toMatchObject({
-        errors: [{ message: errorMessages.newEmailSameAsOld }]
+        errors: [{ message: errorMessages.newEmailSameAsOld }],
       });
     });
   });
@@ -268,30 +268,30 @@ describe('UserAccountUtils', () => {
         variableValues: {
           token,
           password: 'newPassword',
-          confirmPassword: 'newPassword'
+          confirmPassword: 'newPassword',
         },
-        userId
+        userId,
       });
 
       expect(response).toMatchObject({
         data: {
           verifyForgotPassword: {
-            id: userId
-          }
-        }
+            id: userId,
+          },
+        },
       });
       const res = await gqlCall({
         source: print(verifyForgotPasswordMutation),
         variableValues: {
           token,
           password: 'newPassword',
-          confirmPassword: 'newPassword2'
+          confirmPassword: 'newPassword2',
         },
-        userId
+        userId,
       });
 
       expect(res).toMatchObject({
-        errors: [{ message: errorMessages.passwordsDontMatch }]
+        errors: [{ message: errorMessages.passwordsDontMatch }],
       });
 
       const res2 = await gqlCall({
@@ -299,13 +299,13 @@ describe('UserAccountUtils', () => {
         variableValues: {
           token: '',
           password: 'newPassword',
-          confirmPassword: 'newPassword'
+          confirmPassword: 'newPassword',
         },
-        userId
+        userId,
       });
 
       expect(res2).toMatchObject({
-        errors: [{ message: errorMessages.invalidToken }]
+        errors: [{ message: errorMessages.invalidToken }],
       });
     });
   });

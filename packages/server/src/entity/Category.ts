@@ -13,7 +13,7 @@ import {
   TreeParent,
   Unique,
   UpdateDateColumn,
-  VersionColumn
+  VersionColumn,
 } from 'typeorm';
 
 import { makeSlug } from '../utils/utils';

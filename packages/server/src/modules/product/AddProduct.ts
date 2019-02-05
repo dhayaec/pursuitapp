@@ -15,7 +15,7 @@ export class AddProduct {
     description,
     price,
     offerPrice,
-    categoryId
+    categoryId,
   }: ProductInput): Promise<Product> {
     const category = await Category.findOne(categoryId);
 
@@ -30,7 +30,7 @@ export class AddProduct {
       description,
       price,
       offerPrice,
-      category
+      category,
     });
 
     return await c.save();

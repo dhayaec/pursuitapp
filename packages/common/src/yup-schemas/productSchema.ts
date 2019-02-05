@@ -26,5 +26,5 @@ export const productSchema = yup.object().shape({
   price: yup
     .number()
     .min(1)
-    .required()
+    .required(),
 });

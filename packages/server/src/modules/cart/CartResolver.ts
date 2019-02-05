@@ -22,7 +22,7 @@ export class CartResolver {
   async addToCart(
     @Ctx() ctx: AppContext,
     @Arg('productId') productId: string,
-    @Arg('quantity', { defaultValue: 1 }) quantity: number
+    @Arg('quantity', { defaultValue: 1 }) quantity: number,
   ): Promise<Cart> {
     const userId = ctx.req.session!.userId;
     if (!userId) {
@@ -39,8 +39,8 @@ export class CartResolver {
     const cart = await Cart.findOne({
       where: {
         product,
-        user
-      }
+        user,
+      },
     });
 
     if (cart) {
@@ -51,7 +51,7 @@ export class CartResolver {
       product,
       user,
       title: product.title,
-      quantity: quantity
+      quantity: quantity,
     });
 
     return await c.save();
@@ -60,7 +60,7 @@ export class CartResolver {
   @Mutation(() => Boolean)
   async removeFromCart(
     @Ctx() ctx: AppContext,
-    @Arg('productId') productId: string
+    @Arg('productId') productId: string,
   ): Promise<boolean> {
     const userId = ctx.req.session!.userId;
     if (!userId) {
@@ -77,8 +77,8 @@ export class CartResolver {
     const cart = await Cart.findOne({
       where: {
         product,
-        user
-      }
+        user,
+      },
     });
 
     if (!cart) {
@@ -100,8 +100,8 @@ export class CartResolver {
     const user = await User.findOne(userId);
     const cart = await Cart.find({
       where: {
-        user
-      }
+        user,
+      },
     });
 
     if (!cart.length) {

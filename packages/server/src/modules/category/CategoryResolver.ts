@@ -50,7 +50,7 @@ export class CategoryResolver {
   @UseMiddleware(checkIsAdmin)
   async addCategory(
     @Arg('name') name: string,
-    @Arg('parentId', { nullable: true }) parentId: string
+    @Arg('parentId', { nullable: true }) parentId: string,
   ): Promise<Category> {
     let parent;
     if (parentId) {
@@ -62,7 +62,7 @@ export class CategoryResolver {
 
     const c = Category.create({
       name,
-      parent
+      parent,
     });
     return await c.save();
   }
@@ -70,7 +70,7 @@ export class CategoryResolver {
   @Mutation(() => Boolean)
   @UseMiddleware(checkIsAdmin)
   async removeCategory(
-    @Arg('id', { nullable: true }) id: string
+    @Arg('id', { nullable: true }) id: string,
   ): Promise<boolean> {
     const category = await Category.findOne(id);
     if (!category) {

@@ -18,7 +18,7 @@ export const gqlCall = async ({
   source,
   variableValues = {},
   userId = '',
-  isAdmin = false
+  isAdmin = false,
 }: Options) => {
   if (!schema) {
     schema = await createSchema();
@@ -32,17 +32,17 @@ export const gqlCall = async ({
         session: {
           userId,
           isAdmin,
-          destroy: jest.fn()
-        }
+          destroy: jest.fn(),
+        },
       },
       res: {
-        clearCookie: jest.fn()
-      }
-    }
+        clearCookie: jest.fn(),
+      },
+    },
   });
 
   return {
     data: result.data,
-    errors: result.errors && result.errors.map(formatArgumentValidationError)
+    errors: result.errors && result.errors.map(formatArgumentValidationError),
   };
 };

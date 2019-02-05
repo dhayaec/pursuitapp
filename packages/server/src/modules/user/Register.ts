@@ -17,14 +17,14 @@ export class RegisterResolver {
     password,
     name,
     mobile,
-    isAdmin
+    isAdmin,
   }: RegisterInput) {
     await validateInputs(userSchema, { email, password, name, mobile });
 
     const userAlreadyExists = await User.findOne({
       where: {
-        email
-      }
+        email,
+      },
     });
 
     if (userAlreadyExists) {
@@ -36,7 +36,7 @@ export class RegisterResolver {
       mobile,
       email,
       password,
-      isAdmin
+      isAdmin,
     }).save();
     // await sendEmail()
     return user;
