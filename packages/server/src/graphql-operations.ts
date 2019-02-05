@@ -48,6 +48,12 @@ export const getUserQuery = gql`
   }
 `;
 
+export const isEmailExistsQuery = gql`
+  query IsEmailExists($email: String!) {
+    isEmailExists(email: $email)
+  }
+`;
+
 export const resendVerifySignup = gql`
   mutation {
     resendVerifySignup
@@ -155,6 +161,12 @@ export const addCategoryWithParentMutation = gql`
     addCategory(name: $name, parentId: $parentId) {
       name
     }
+  }
+`;
+
+export const removeCategoryMutation = gql`
+  mutation RemoveCategory($id: String) {
+    removeCategory(id: $id)
   }
 `;
 

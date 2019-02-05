@@ -59,6 +59,16 @@ describe('Register', () => {
     expect(res).toMatchObject({
       errors: [{ message: errorMessages.emailAlreadyExists }],
     });
+    const res1 = await gqlCall({
+      source: print(registerMutation),
+      variableValues: {
+        data: { ...user, isAdmin: true },
+      },
+    });
+
+    expect(res1).toMatchObject({
+      errors: [{ message: errorMessages.notAuthorized }],
+    });
   });
 });
 
