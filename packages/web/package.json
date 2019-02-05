@@ -1,6 +1,6 @@
 {
   "name": "@pursuitapp/web",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "scripts": {
     "precommit": "lint-staged",
     "cover": "jest --coverage",
@@ -22,8 +22,8 @@
     ]
   },
   "dependencies": {
-    "@pursuitapp/common": "^0.0.6",
-    "@pursuitapp/ui": "^0.0.6",
+    "@pursuitapp/common": "^0.1.0",
+    "@pursuitapp/ui": "^0.1.0",
     "apollo-boost": "0.1.27",
     "apollo-link-context": "^1.0.14",
     "formik": "^1.4.3",
