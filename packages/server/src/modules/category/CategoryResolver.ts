@@ -15,6 +15,20 @@ export class CategoryResolver {
     return await Category.findOne(id);
   }
 
+  @Query(() => Category, { nullable: true })
+  async getCategoryBySlug(
+    @Arg('slug') slug: string,
+  ): Promise<Category | undefined> {
+    if (!slug) {
+      return;
+    }
+    return await Category.findOne({
+      where: {
+        slug,
+      },
+    });
+  }
+
   @Query(() => [Category])
   async getMainCategory(): Promise<Category[]> {
     return await getManager()
