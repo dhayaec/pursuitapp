@@ -4,7 +4,7 @@ import { AppContext } from './types/types';
 
 export const checkIsAdmin: MiddlewareFn<AppContext> = async (
   { context },
-  next
+  next,
 ) => {
   const { userId, isAdmin } = context.req.session as Express.Session;
   if (!userId) {
@@ -20,7 +20,7 @@ export const checkIsAdmin: MiddlewareFn<AppContext> = async (
 
 export const checkIsAdminToRegister: MiddlewareFn<AppContext> = async (
   { context, args },
-  next
+  next,
 ) => {
   const { isAdmin } = context.req.session as Express.Session;
 

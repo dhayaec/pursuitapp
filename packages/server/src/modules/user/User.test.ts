@@ -6,7 +6,7 @@ import {
   logoutMutation,
   meQuery,
   registerMutation,
-  user
+  user,
 } from '../../graphql-operations';
 import errorMessages from '../../i18n/error-messages';
 import { gqlCall } from '../../utils/test-utils';
@@ -25,39 +25,39 @@ describe('Register', () => {
     const response = await gqlCall({
       source: print(registerMutation),
       variableValues: {
-        data: user
-      }
+        data: user,
+      },
     });
 
     expect(response).toMatchObject({
       data: {
         register: {
           name: user.name,
-          email: user.email
-        }
-      }
+          email: user.email,
+        },
+      },
     });
 
     const invalid = await gqlCall({
       source: print(registerMutation),
       variableValues: {
-        data: { ...user, email: 'some' }
-      }
+        data: { ...user, email: 'some' },
+      },
     });
 
     expect(invalid).toMatchObject({
-      errors: [{ message: errorMessages.validationFailed }]
+      errors: [{ message: errorMessages.validationFailed }],
     });
 
     const res = await gqlCall({
       source: print(registerMutation),
       variableValues: {
-        data: user
-      }
+        data: user,
+      },
     });
 
     expect(res).toMatchObject({
-      errors: [{ message: errorMessages.emailAlreadyExists }]
+      errors: [{ message: errorMessages.emailAlreadyExists }],
     });
   });
 });
@@ -68,16 +68,16 @@ describe('Login', () => {
       source: print(loginMutation),
       variableValues: {
         email: user.email,
-        password: user.password
-      }
+        password: user.password,
+      },
     });
 
     expect(response).toMatchObject({
       data: {
         login: {
-          email: user.email
-        }
-      }
+          email: user.email,
+        },
+      },
     });
 
     const user2 = { email: user.email, password: 'something' };
@@ -86,14 +86,14 @@ describe('Login', () => {
       source: print(loginMutation),
       variableValues: {
         email: user2.email,
-        password: user2.password
-      }
+        password: user2.password,
+      },
     });
 
     expect(response2).toMatchObject({
       data: {
-        login: null
-      }
+        login: null,
+      },
     });
 
     const user3 = { password: user.password, email: 'something@some.com' };
@@ -102,14 +102,14 @@ describe('Login', () => {
       source: print(loginMutation),
       variableValues: {
         email: user3.email,
-        password: user3.password
-      }
+        password: user3.password,
+      },
     });
 
     expect(response3).toMatchObject({
       data: {
-        login: null
-      }
+        login: null,
+      },
     });
   });
 });
@@ -117,24 +117,24 @@ describe('Login', () => {
 describe('Logout', () => {
   it('should logout user', async () => {
     const res = await gqlCall({
-      source: print(logoutMutation)
+      source: print(logoutMutation),
     });
     expect(res).toEqual({ data: { logout: false } });
 
     const res2 = await gqlCall({
       source: print(logoutMutation),
-      userId: '1'
+      userId: '1',
     });
     expect(res2).toEqual({ data: { logout: true } });
   });
   it('should return logged in user', async () => {
     const result = await gqlCall({
-      source: print(meQuery)
+      source: print(meQuery),
     });
     expect(result).toEqual({
       data: {
-        me: null
-      }
+        me: null,
+      },
     });
   });
 });

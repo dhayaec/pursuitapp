@@ -20,7 +20,7 @@ export class UserAccountUtils {
       url,
       userId,
       redis,
-      TokenTypes.confirm
+      TokenTypes.confirm,
     );
     console.log(confirmLink);
     // TODO send confirmLink email
@@ -31,8 +31,8 @@ export class UserAccountUtils {
   async forgotPassword(@Arg('email') email: string): Promise<boolean> {
     const user = await User.findOne({
       where: {
-        email
-      }
+        email,
+      },
     });
 
     if (!user) {
@@ -45,7 +45,7 @@ export class UserAccountUtils {
       url,
       userId,
       redis,
-      TokenTypes.reset
+      TokenTypes.reset,
     );
 
     console.log(resetLink);
@@ -56,7 +56,7 @@ export class UserAccountUtils {
   async verifyForgotPassword(
     @Arg('token') token: string,
     @Arg('password') password: string,
-    @Arg('confirmPassword') confirmPassword: string
+    @Arg('confirmPassword') confirmPassword: string,
   ): Promise<User | undefined> {
     if (password !== confirmPassword) {
       throw new Error(errorMessages.passwordsDontMatch);
@@ -80,7 +80,7 @@ export class UserAccountUtils {
   async changePassword(
     @Ctx() ctx: AppContext,
     @Arg('oldPassword') oldPassword: string,
-    @Arg('password') password: string
+    @Arg('password') password: string,
   ): Promise<User> {
     const userId = ctx.req.session!.userId;
     if (!userId) {
@@ -106,7 +106,7 @@ export class UserAccountUtils {
   @Mutation(() => User)
   async changeEmail(
     @Ctx() ctx: AppContext,
-    @Arg('email') email: string
+    @Arg('email') email: string,
   ): Promise<User | undefined> {
     const userId = ctx.req.session!.userId;
     if (!userId) {

@@ -13,7 +13,7 @@ export default class Home extends React.Component {
             <button
               onClick={async () => {
                 const response = await mutate({
-                  variables: { email: 'test@test.com', password: 'password' }
+                  variables: { email: 'test@test.com', password: 'password' },
                 });
 
                 console.log(response);

@@ -9,9 +9,9 @@
     "start": "next start",
     "type-check": "tsc",
     "generate": "gql-gen --config codegen.yml",
-    "lint": "tslint 'src/**/*.t{s,sx}' --fix",
+    "lint": "tslint 'pages/**/*.t{s,sx}' 'ssr/**/*.t{s,sx}' 'lib/**/*.t{s,sx}' 'components/**/*.t{s,sx}' 'utils/**/*.t{s,sx}' --fix",
     "test": "jest",
-    "pretty": "prettier 'pages/**/*.t{s,sx}' 'ssr/**/*.t{s,sx}' 'lib/**/*.t{s,sx}' 'components/**/*.t{s,sx}' --write"
+    "pretty": "prettier 'pages/**/*.t{s,sx}' 'ssr/**/*.t{s,sx}' 'lib/**/*.t{s,sx}' 'components/**/*.t{s,sx}' 'utils/**/*.t{s,sx}' --write"
   },
   "lint-staged": {
     "*.{ts,tsx}": [

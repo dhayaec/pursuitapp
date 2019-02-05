@@ -14,5 +14,5 @@ export default {
   cartIsEmpty: 'Cart is empty',
   validationFailed: 'Validation failed',
   notAuthorized: 'You are not authorized to perform this task',
-  invalidUsernameOrPassword: 'Invalid email or password'
+  invalidUsernameOrPassword: 'Invalid email or password',
 };

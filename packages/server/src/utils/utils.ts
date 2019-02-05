@@ -13,7 +13,7 @@ export const createTokenLink = async (
   url: string,
   userId: string,
   redis: IORedis.Redis,
-  type: TokenTypes
+  type: TokenTypes,
 ) => {
   const id = v4();
   await redis.set(id, userId, 'ex', 60 * 60 * 24);
@@ -29,7 +29,7 @@ export const formatYupError = (err: ValidationError) => {
   err.inner.forEach((e: any) => {
     errors.push({
       path: e.path,
-      message: e.message
+      message: e.message,
     });
   });
   return errors;

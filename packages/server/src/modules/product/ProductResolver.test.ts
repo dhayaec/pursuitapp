@@ -5,7 +5,7 @@ import {
   addProductMutation,
   getProductQuery,
   getProductsByCategoryQuery,
-  listProductsQuery
+  listProductsQuery,
 } from '../../graphql-operations';
 import errorMessages from '../../i18n/error-messages';
 import { Category } from './../../entity/Category';
@@ -26,23 +26,23 @@ describe('ProductResolver', () => {
   describe('listProducts', () => {
     it('should return list of products', async () => {
       const response = await gqlCall({
-        source: print(listProductsQuery)
+        source: print(listProductsQuery),
       });
       expect(response).toMatchObject({
         data: {
-          listProducts: []
-        }
+          listProducts: [],
+        },
       });
       const res2 = await gqlCall({
         source: print(listProductsQuery),
         variableValues: {
-          page: 2
-        }
+          page: 2,
+        },
       });
       expect(res2).toMatchObject({
         data: {
-          listProducts: []
-        }
+          listProducts: [],
+        },
       });
     });
   });
@@ -52,13 +52,13 @@ describe('ProductResolver', () => {
       const response = await gqlCall({
         source: print(getProductQuery),
         variableValues: {
-          id: '123'
-        }
+          id: '123',
+        },
       });
       expect(response).toMatchObject({
         data: {
-          getProduct: null
-        }
+          getProduct: null,
+        },
       });
     });
   });
@@ -68,23 +68,23 @@ describe('ProductResolver', () => {
       const response = await gqlCall({
         source: print(getProductsByCategoryQuery),
         variableValues: {
-          categoryId: category.id.toString()
-        }
+          categoryId: category.id.toString(),
+        },
       });
       expect(response).toMatchObject({
         data: {
-          getProductsByCategory: []
-        }
+          getProductsByCategory: [],
+        },
       });
 
       const res = await gqlCall({
         source: print(getProductsByCategoryQuery),
         variableValues: {
-          categoryId: '0'
-        }
+          categoryId: '0',
+        },
       });
       expect(res).toMatchObject({
-        errors: [{ message: errorMessages.invalidCategory }]
+        errors: [{ message: errorMessages.invalidCategory }],
       });
       await Category.delete(category);
     });
@@ -103,25 +103,25 @@ describe('ProductResolver', () => {
         rating: 0,
         price: 99,
         offerPrice: 99,
-        categoryId: category.id.toString()
+        categoryId: category.id.toString(),
       };
 
       const invalid = await gqlCall({
         source: print(addProductMutation),
         variableValues: {
-          data: { ...product, title: '' }
-        }
+          data: { ...product, title: '' },
+        },
       });
 
       expect(invalid).toMatchObject({
-        errors: [{ message: errorMessages.validationFailed }]
+        errors: [{ message: errorMessages.validationFailed }],
       });
 
       const response = await gqlCall({
         source: print(addProductMutation),
         variableValues: {
-          data: product
-        }
+          data: product,
+        },
       });
 
       expect(response).toMatchObject({
@@ -130,10 +130,10 @@ describe('ProductResolver', () => {
             title: product.title,
             price: product.price,
             category: {
-              name: category.name
-            }
-          }
-        }
+              name: category.name,
+            },
+          },
+        },
       });
 
       const invalidProd = { ...product, categoryId: '0' };
@@ -141,12 +141,12 @@ describe('ProductResolver', () => {
       const res = await gqlCall({
         source: print(addProductMutation),
         variableValues: {
-          data: invalidProd
-        }
+          data: invalidProd,
+        },
       });
 
       expect(res).toMatchObject({
-        data: null
+        data: null,
       });
       await Category.delete(category);
     });

@@ -4,7 +4,7 @@ export const user = {
   name: 'someone',
   email: 'testing@gmail.com',
   password: '123456',
-  mobile: '1232323232'
+  mobile: '1232323232',
 };
 
 export const registerMutation = gql`

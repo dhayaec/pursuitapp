@@ -7,7 +7,7 @@ import {
   addCategoryWithParentMutation,
   getBreadCrumbPathQuery,
   getCategoryByIdQuery,
-  getChildCategoriesQuery
+  getChildCategoriesQuery,
 } from '../../graphql-operations';
 import errorMessages from '../../i18n/error-messages';
 import { Category } from './../../entity/Category';
@@ -26,7 +26,7 @@ beforeAll(async () => {
     name: 'test user',
     email: 'admin-user@gmail.com',
     password: 'secret-password',
-    isAdmin: true
+    isAdmin: true,
   }).save();
 
   a1 = new Category();
@@ -64,28 +64,28 @@ describe('CategoryResolver', () => {
       const response = await gqlCall({
         source: print(getCategoryByIdQuery),
         variableValues: {
-          id: a1.id.toString()
-        }
+          id: a1.id.toString(),
+        },
       });
       expect(response).toMatchObject({
         data: {
           getCategoryById: {
             id: a1.id.toString(),
-            name: a1.name
-          }
-        }
+            name: a1.name,
+          },
+        },
       });
 
       const res = await gqlCall({
         source: print(getCategoryByIdQuery),
         variableValues: {
-          id: ''
-        }
+          id: '',
+        },
       });
       expect(res).toMatchObject({
         data: {
-          getCategoryById: null
-        }
+          getCategoryById: null,
+        },
       });
     });
   });
@@ -94,48 +94,48 @@ describe('CategoryResolver', () => {
       const response = await gqlCall({
         source: print(addCategoryMutation),
         variableValues: {
-          name: 'a2'
+          name: 'a2',
         },
         userId: user.id.toString(),
-        isAdmin: user.isAdmin
+        isAdmin: user.isAdmin,
       });
       expect(response).toMatchObject({
         data: {
           addCategory: {
-            name: 'a2'
-          }
-        }
+            name: 'a2',
+          },
+        },
       });
 
       const res = await gqlCall({
         source: print(addCategoryWithParentMutation),
         variableValues: {
           name: 'a3',
-          parentId: '0'
+          parentId: '0',
         },
         userId: user.id.toString(),
-        isAdmin: user.isAdmin
+        isAdmin: user.isAdmin,
       });
       expect(res).toMatchObject({
-        errors: [{ message: errorMessages.invalidParentCategory }]
+        errors: [{ message: errorMessages.invalidParentCategory }],
       });
     });
   });
   describe('getMainCategory', () => {
     it('should return main category', async () => {
       const response: any = await gqlCall({
-        source: print(getMainCategoryQuery)
+        source: print(getMainCategoryQuery),
       });
       const {
-        data: { getMainCategory }
+        data: { getMainCategory },
       } = response;
 
       expect(getMainCategory).toEqual(
         expect.arrayContaining([
           expect.objectContaining({
-            name: 'a1'
-          })
-        ])
+            name: 'a1',
+          }),
+        ]),
       );
     });
   });
@@ -144,8 +144,8 @@ describe('CategoryResolver', () => {
       const response = await gqlCall({
         source: print(getChildCategoriesQuery),
         variableValues: {
-          id: a1.id.toString()
-        }
+          id: a1.id.toString(),
+        },
       });
 
       expect(response).toMatchObject({
@@ -154,24 +154,24 @@ describe('CategoryResolver', () => {
             name: 'a1',
             children: [
               {
-                name: 'a11'
+                name: 'a11',
               },
               {
-                name: 'a12'
-              }
-            ]
-          }
-        }
+                name: 'a12',
+              },
+            ],
+          },
+        },
       });
       const res = await gqlCall({
         source: print(getChildCategoriesQuery),
         variableValues: {
-          id: '0'
-        }
+          id: '0',
+        },
       });
 
       expect(res).toMatchObject({
-        errors: [{ message: errorMessages.invalidCategory }]
+        errors: [{ message: errorMessages.invalidCategory }],
       });
     });
   });
@@ -180,8 +180,8 @@ describe('CategoryResolver', () => {
       const response = await gqlCall({
         source: print(getBreadCrumbPathQuery),
         variableValues: {
-          id: a12.id.toString()
-        }
+          id: a12.id.toString(),
+        },
       });
 
       expect(response).toMatchObject({
@@ -189,20 +189,20 @@ describe('CategoryResolver', () => {
           getBreadCrumbPath: {
             name: 'a12',
             parent: {
-              name: 'a1'
-            }
-          }
-        }
+              name: 'a1',
+            },
+          },
+        },
       });
       const res = await gqlCall({
         source: print(getBreadCrumbPathQuery),
         variableValues: {
-          id: '0'
-        }
+          id: '0',
+        },
       });
 
       expect(res).toMatchObject({
-        errors: [{ message: errorMessages.invalidCategory }]
+        errors: [{ message: errorMessages.invalidCategory }],
       });
     });
   });

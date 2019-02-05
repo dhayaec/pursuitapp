@@ -7,6 +7,8 @@ export function displayErrors(err: any, setErrors: SetErrorsFn) {
     [key: string]: string;
   } = {};
 
+  console.info(JSON.stringify(err));
+
   if (err.graphQLErrors && err.graphQLErrors.length) {
     const exception = err.graphQLErrors[0].extensions.exception;
 

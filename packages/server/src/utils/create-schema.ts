@@ -18,6 +18,6 @@ export const createSchema = () =>
       UserAccountUtils,
       ProductResolver,
       CategoryResolver,
-      CartResolver
-    ]
+      CartResolver,
+    ],
   });

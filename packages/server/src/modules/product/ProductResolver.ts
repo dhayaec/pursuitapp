@@ -11,12 +11,12 @@ import { ProductInput } from './ProductInput';
 export class ProductResolver {
   @Query(() => [Product])
   async listProducts(
-    @Arg('page', { defaultValue: 1 }) page: number
+    @Arg('page', { defaultValue: 1 }) page: number,
   ): Promise<Product[]> {
     return await Product.find({
       skip: skipPage(page),
       take: ITEMS_PER_PAGE,
-      relations: ['category']
+      relations: ['category'],
     });
   }
 
@@ -31,7 +31,7 @@ export class ProductResolver {
   @Query(() => [Product])
   async getProductsByCategory(
     @Arg('categoryId') categoryId: string,
-    @Arg('page', { defaultValue: 1 }) page: number
+    @Arg('page', { defaultValue: 1 }) page: number,
   ): Promise<Product[]> {
     const category = await Category.findOne(categoryId);
     if (!category) {
@@ -42,7 +42,7 @@ export class ProductResolver {
       skip: skipPage(page),
       take: ITEMS_PER_PAGE,
       where: { category },
-      relations: ['category']
+      relations: ['category'],
     });
   }
 
@@ -55,7 +55,7 @@ export class ProductResolver {
     rating,
     price,
     offerPrice,
-    categoryId
+    categoryId,
   }: ProductInput): Promise<Product> {
     await validateInputs(productSchema, {
       title,
@@ -63,7 +63,7 @@ export class ProductResolver {
       description,
       rating,
       price,
-      offerPrice
+      offerPrice,
     });
 
     const category = await Category.findOne(categoryId);
@@ -79,7 +79,7 @@ export class ProductResolver {
       description,
       price,
       offerPrice,
-      category
+      category,
     });
 
     return await c.save();

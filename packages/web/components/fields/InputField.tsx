@@ -9,7 +9,7 @@ type InputProps = DetailedHTMLProps<
 export const InputField = ({
   field,
   form: { errors, touched },
-  ...props
+  ...props,
 }: FieldProps & InputProps) => {
   const errorMessage = touched[field.name] && errors[field.name];
   return (
