@@ -54,7 +54,7 @@
   },
   "license": "ISC",
   "jest": {
-    "collectCoverage": true,
+    "collectCoverage": false,
     "rootDir": "./",
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
