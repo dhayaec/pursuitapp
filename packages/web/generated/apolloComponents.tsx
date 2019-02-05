@@ -78,6 +78,44 @@ export type LoginLogin = {
   name: string;
 };
 
+export type GetMainCategoryVariables = {};
+
+export type GetMainCategoryQuery = {
+  __typename?: 'Query';
+
+  getMainCategory: GetMainCategoryGetMainCategory[];
+};
+
+export type GetMainCategoryGetMainCategory = {
+  __typename?: 'Category';
+
+  id: string;
+
+  name: string;
+
+  slug: string;
+};
+
+export type GetCategoryBySlugVariables = {
+  slug: string;
+};
+
+export type GetCategoryBySlugQuery = {
+  __typename?: 'Query';
+
+  getCategoryBySlug: Maybe<GetCategoryBySlugGetCategoryBySlug>;
+};
+
+export type GetCategoryBySlugGetCategoryBySlug = {
+  __typename?: 'Category';
+
+  id: string;
+
+  name: string;
+
+  slug: string;
+};
+
 import * as ReactApollo from 'react-apollo';
 import * as React from 'react';
 
@@ -125,7 +163,7 @@ export function RegisterHOC<TProps, TChildProps = any>(
         RegisterVariables,
         RegisterProps<TChildProps>
       >
-    | undefined
+    | undefined,
 ) {
   return ReactApollo.graphql<
     TProps,
@@ -171,7 +209,7 @@ export function LoginHOC<TProps, TChildProps = any>(
         LoginVariables,
         LoginProps<TChildProps>
       >
-    | undefined
+    | undefined,
 ) {
   return ReactApollo.graphql<
     TProps,
@@ -179,4 +217,92 @@ export function LoginHOC<TProps, TChildProps = any>(
     LoginVariables,
     LoginProps<TChildProps>
   >(LoginDocument, operationOptions);
+}
+export const GetMainCategoryDocument = gql`
+  query GetMainCategory {
+    getMainCategory {
+      id
+      name
+      slug
+    }
+  }
+`;
+export class GetMainCategoryComponent extends React.Component<
+  Partial<
+    ReactApollo.QueryProps<GetMainCategoryQuery, GetMainCategoryVariables>
+  >
+> {
+  render() {
+    return (
+      <ReactApollo.Query<GetMainCategoryQuery, GetMainCategoryVariables>
+        query={GetMainCategoryDocument}
+        {...(this as any)['props'] as any}
+      />
+    );
+  }
+}
+export type GetMainCategoryProps<TChildProps = any> = Partial<
+  ReactApollo.DataProps<GetMainCategoryQuery, GetMainCategoryVariables>
+> &
+  TChildProps;
+export function GetMainCategoryHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        GetMainCategoryQuery,
+        GetMainCategoryVariables,
+        GetMainCategoryProps<TChildProps>
+      >
+    | undefined,
+) {
+  return ReactApollo.graphql<
+    TProps,
+    GetMainCategoryQuery,
+    GetMainCategoryVariables,
+    GetMainCategoryProps<TChildProps>
+  >(GetMainCategoryDocument, operationOptions);
+}
+export const GetCategoryBySlugDocument = gql`
+  query GetCategoryBySlug($slug: String!) {
+    getCategoryBySlug(slug: $slug) {
+      id
+      name
+      slug
+    }
+  }
+`;
+export class GetCategoryBySlugComponent extends React.Component<
+  Partial<
+    ReactApollo.QueryProps<GetCategoryBySlugQuery, GetCategoryBySlugVariables>
+  >
+> {
+  render() {
+    return (
+      <ReactApollo.Query<GetCategoryBySlugQuery, GetCategoryBySlugVariables>
+        query={GetCategoryBySlugDocument}
+        {...(this as any)['props'] as any}
+      />
+    );
+  }
+}
+export type GetCategoryBySlugProps<TChildProps = any> = Partial<
+  ReactApollo.DataProps<GetCategoryBySlugQuery, GetCategoryBySlugVariables>
+> &
+  TChildProps;
+export function GetCategoryBySlugHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        GetCategoryBySlugQuery,
+        GetCategoryBySlugVariables,
+        GetCategoryBySlugProps<TChildProps>
+      >
+    | undefined,
+) {
+  return ReactApollo.graphql<
+    TProps,
+    GetCategoryBySlugQuery,
+    GetCategoryBySlugVariables,
+    GetCategoryBySlugProps<TChildProps>
+  >(GetCategoryBySlugDocument, operationOptions);
 }

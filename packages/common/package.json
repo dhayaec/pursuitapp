@@ -28,7 +28,7 @@
     ]
   },
   "jest": {
-    "collectCoverage": true,
+    "collectCoverage": false,
     "rootDir": "./src",
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
