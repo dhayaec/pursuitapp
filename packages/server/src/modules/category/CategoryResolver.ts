@@ -1,18 +1,49 @@
-import { Arg, Mutation, Query, Resolver, UseMiddleware } from 'type-graphql';
+import {
+  Arg,
+  Mutation,
+  Publisher,
+  PubSub,
+  Query,
+  Resolver,
+  Root,
+  Subscription,
+  UseMiddleware,
+} from 'type-graphql';
 import { getManager } from 'typeorm';
 import { Product } from '../../entity/Product';
 import errorMessages from '../../i18n/error-messages';
 import { checkIsAdmin } from '../../middlewares';
 import { Category } from './../../entity/Category';
+import { Notification, NotificationPayload } from './Notification';
 
 @Resolver(Product)
 export class CategoryResolver {
+  private autoIncrement = 0;
+
   @Query(() => Category, { nullable: true })
   async getCategoryById(@Arg('id') id: string): Promise<Category | undefined> {
     if (!id) {
       return;
     }
     return await Category.findOne(id);
+  }
+
+  @Subscription({ topics: 'NOTIFICATIONS' })
+  normalSubscription(@Root()
+  {
+    id,
+    message,
+  }: NotificationPayload): Notification {
+    return { id, message, date: new Date() };
+  }
+
+  @Mutation(() => Boolean)
+  async publisherMutation(
+    @PubSub('NOTIFICATIONS') publish: Publisher<NotificationPayload>,
+    @Arg('message', { nullable: true }) message?: string,
+  ): Promise<boolean> {
+    await publish({ id: ++this.autoIncrement, message });
+    return true;
   }
 
   @Query(() => Category, { nullable: true })

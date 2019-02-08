@@ -7,6 +7,7 @@ import * as connectRedis from 'connect-redis';
 import * as cors from 'cors';
 import * as express from 'express';
 import * as session from 'express-session';
+import * as http from 'http';
 import { connectDb, createDb } from './db';
 import { redis } from './redis';
 import { Env } from './utils/constants';
@@ -58,13 +59,18 @@ export const startServer = async () => {
 
   app.get('/', (_, res) => res.json({ message: 'pong' }));
 
-  server.applyMiddleware({ app, cors: false }); // app is from an existing express app
+  server.applyMiddleware({ app, cors: false });
 
   const port = process.env.NODE_ENV === Env.test ? 4001 : 4000;
+  const host = 'localhost';
 
-  return app.listen({ port }, () =>
-    console.log(
-      `🚀 Server ready at http://localhost:4000${server.graphqlPath}`,
-    ),
-  );
+  const httpServer = http.createServer(app);
+  server.installSubscriptionHandlers(httpServer);
+
+  const { graphqlPath, subscriptionsPath } = server;
+
+  return httpServer.listen({ port }, async () => {
+    console.log(`🚀 Server http://${host}:${port}${graphqlPath}`);
+    console.log(`🚀 Subscription ws://${host}:${port}${subscriptionsPath}`);
+  });
 };

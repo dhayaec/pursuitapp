@@ -1,7 +1,7 @@
 import { gql } from 'apollo-boost';
 
 export const getMainCategoryQuery = gql`
-  query GetMainCategory {
+  query MainCategory {
     getMainCategory {
       id
       name
@@ -11,11 +11,23 @@ export const getMainCategoryQuery = gql`
 `;
 
 export const getCategoryBySlugQuery = gql`
-  query GetCategoryBySlug($slug: String!) {
+  query CategoryBySlug($slug: String!) {
     getCategoryBySlug(slug: $slug) {
       id
       name
       slug
+    }
+  }
+`;
+
+export const getProductsByCategoryQuery = gql`
+  query ProductsByCategory($categoryId: String!) {
+    getProductsByCategory(categoryId: $categoryId) {
+      id
+      title
+      description
+      price
+      offerPrice
     }
   }
 `;

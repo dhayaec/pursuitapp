@@ -1,7 +1,9 @@
-import { Field, Formik } from 'formik';
+import { userSchema } from '@pursuitapp/common';
+import { Field, Form, Formik } from 'formik';
 import React from 'react';
 import { ErrorField } from '../components/fields/ErrorField';
 import { InputField } from '../components/fields/InputField';
+import { HeaderNavMenu } from '../components/HeaderNavMenu';
 import Layout from '../components/Layout';
 import { RegisterComponent } from '../generated/apolloComponents';
 import { displayErrors } from '../utils/displayErrors';
@@ -9,12 +11,18 @@ import { displayErrors } from '../utils/displayErrors';
 export default () => {
   return (
     <Layout title="Register page">
+      <HeaderNavMenu />
       <RegisterComponent>
         {register => (
           <Formik
-            validateOnBlur={false}
-            validateOnChange={false}
-            onSubmit={async (data, { setErrors }) => {
+            initialValues={{
+              email: '',
+              name: '',
+              mobile: '',
+              password: '',
+            }}
+            validationSchema={userSchema}
+            onSubmit={async (data, { setErrors, resetForm }) => {
               try {
                 const res = await register({
                   variables: {
@@ -29,47 +37,44 @@ export default () => {
                   } = res;
                   console.log(name);
                   console.log(email);
+                  resetForm();
                 }
               } catch (err) {
                 displayErrors(err, setErrors);
               }
             }}
-            initialValues={{
-              email: '',
-              name: '',
-              mobile: '',
-              password: '',
-            }}
           >
-            {({ handleSubmit }) => (
-              <form onSubmit={handleSubmit}>
-                <Field name="default" component={ErrorField} />
-
-                <Field
-                  name="name"
-                  placeholder="full name"
-                  component={InputField}
-                />
-
-                <Field
-                  name="email"
-                  placeholder="email"
-                  component={InputField}
-                />
-                <Field
-                  name="mobile"
-                  placeholder="mobile"
-                  component={InputField}
-                />
-                <Field
-                  name="password"
-                  placeholder="password"
-                  type="password"
-                  component={InputField}
-                />
-                <button type="submit">submit</button>
-              </form>
-            )}
+            {({ isSubmitting }) => {
+              return (
+                <Form>
+                  <Field component={ErrorField} />
+                  <Field
+                    name="name"
+                    placeholder="full name"
+                    component={InputField}
+                  />
+                  <Field
+                    name="email"
+                    placeholder="email"
+                    component={InputField}
+                  />
+                  <Field
+                    name="mobile"
+                    placeholder="mobile"
+                    component={InputField}
+                  />
+                  <Field
+                    name="password"
+                    placeholder="password"
+                    type="password"
+                    component={InputField}
+                  />
+                  <button disabled={isSubmitting} type="submit">
+                    Register
+                  </button>
+                </Form>
+              );
+            }}
           </Formik>
         )}
       </RegisterComponent>

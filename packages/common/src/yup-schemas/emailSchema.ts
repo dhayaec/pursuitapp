@@ -6,5 +6,6 @@ export const emailSchema = yup.object().shape({
     .trim()
     .min(6)
     .max(255)
-    .email(),
+    .email()
+    .required(),
 });
