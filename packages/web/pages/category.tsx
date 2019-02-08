@@ -1,31 +1,46 @@
 import React from 'react';
+import { HeaderNavMenu } from '../components/HeaderNavMenu';
 import {
-  GetCategoryBySlugGetCategoryBySlug,
-  GetCategoryBySlugProps,
-  GetCategoryBySlugQuery,
+  CategoryBySlugGetCategoryBySlug,
+  CategoryBySlugProps,
+  CategoryBySlugQuery,
+  ProductsByCategoryGetProductsByCategory,
+  ProductsByCategoryProps,
+  ProductsByCategoryQuery,
 } from '../generated/apolloComponents';
-import { getCategoryBySlugQuery } from '../graphql/queries';
+import {
+  getCategoryBySlugQuery,
+  getProductsByCategoryQuery,
+} from '../graphql/queries';
 import { MyContext } from '../utils/MyContext';
 
 interface Props {
   slug: string;
-  category: GetCategoryBySlugGetCategoryBySlug;
+  category: CategoryBySlugGetCategoryBySlug;
   err: {};
+  products: ProductsByCategoryGetProductsByCategory[];
 }
 
 export default class Category extends React.PureComponent<Props> {
+  static defaultProps = {
+    slug: '',
+    category: null,
+    err: null,
+    products: [],
+  };
+
   static async getInitialProps({
     query: { slug },
     apolloClient,
     ...ctx
   }: MyContext) {
     if (!slug) {
-      return {};
+      return this.defaultProps;
     }
 
     const category = await apolloClient.query<
-      GetCategoryBySlugQuery,
-      GetCategoryBySlugProps
+      CategoryBySlugQuery,
+      CategoryBySlugProps
     >({
       query: getCategoryBySlugQuery,
       variables: {
@@ -42,21 +57,43 @@ export default class Category extends React.PureComponent<Props> {
         },
       };
     }
-    return { slug, category: category.data.getCategoryBySlug };
+
+    const p = await apolloClient.query<
+      ProductsByCategoryQuery,
+      ProductsByCategoryProps
+    >({
+      query: getProductsByCategoryQuery,
+      variables: {
+        categoryId: category.data.getCategoryBySlug.id,
+      },
+    });
+
+    if (p) {
+      const products = p.data.getProductsByCategory;
+      return { slug, category: category.data.getCategoryBySlug, products };
+    }
   }
 
   render() {
-    const { slug, err } = this.props;
+    const { slug, err, products } = this.props;
 
     if (err) {
-      return <p>Not Found!</p>;
+      return (
+        <div>
+          <HeaderNavMenu />
+          <p>Not Found!</p>;
+        </div>
+      );
     }
 
     if (!slug) {
       return (
-        <ul>
-          <li>Main categories</li>
-        </ul>
+        <div>
+          <HeaderNavMenu />
+          <ul>
+            <li>Main categories</li>
+          </ul>
+        </div>
       );
     }
 
@@ -66,9 +103,22 @@ export default class Category extends React.PureComponent<Props> {
 
     return (
       <div>
+        <HeaderNavMenu />
         <h1>{slug}</h1>
         <p>{name}</p>
         <p>{id}</p>
+        {products.length > 0 ? (
+          products.map(item => {
+            return (
+              <div key={item.id}>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </div>
+            );
+          })
+        ) : (
+          <p>No products in this category</p>
+        )}
       </div>
     );
   }

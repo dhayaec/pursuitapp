@@ -5,15 +5,18 @@ export const userSchema = yup.object().shape({
     .string()
     .trim()
     .min(3)
-    .max(100),
+    .max(100)
+    .required(),
   email: yup
     .string()
     .trim()
     .min(6)
     .max(255)
-    .email(),
+    .email()
+    .required(),
   password: yup
     .string()
     .min(6)
-    .max(255),
+    .max(255)
+    .required(),
 });

@@ -1,7 +1,9 @@
-import { Field, Formik } from 'formik';
+import { emailSchema } from '@pursuitapp/common';
+import { Field, Form, Formik } from 'formik';
 import React from 'react';
 import { ErrorField } from '../components/fields/ErrorField';
 import { InputField } from '../components/fields/InputField';
+import { HeaderNavMenu } from '../components/HeaderNavMenu';
 import Layout from '../components/Layout';
 import { LoginComponent } from '../generated/apolloComponents';
 import { displayErrors } from '../utils/displayErrors';
@@ -9,11 +11,17 @@ import { displayErrors } from '../utils/displayErrors';
 export default () => {
   return (
     <Layout title="Login page">
+      <HeaderNavMenu />
       <LoginComponent>
         {register => (
           <Formik
-            validateOnBlur={false}
             validateOnChange={false}
+            validateOnBlur={false}
+            initialValues={{
+              email: '',
+              password: '',
+            }}
+            validationSchema={emailSchema}
             onSubmit={async (
               { email: emailValue, password },
               { setErrors },
@@ -38,21 +46,16 @@ export default () => {
                 displayErrors(err, setErrors);
               }
             }}
-            initialValues={{
-              email: '',
-              name: '',
-              mobile: '',
-              password: '',
-            }}
           >
-            {({ handleSubmit }) => (
-              <form onSubmit={handleSubmit}>
+            {({ isSubmitting }) => (
+              <Form>
                 <Field name="default" component={ErrorField} />
 
                 <Field
                   name="email"
                   placeholder="email"
                   component={InputField}
+                  autoComplete="off"
                 />
                 <Field
                   name="password"
@@ -60,8 +63,10 @@ export default () => {
                   type="password"
                   component={InputField}
                 />
-                <button type="submit">Login</button>
-              </form>
+                <button disabled={isSubmitting} type="submit">
+                  Login
+                </button>
+              </Form>
             )}
           </Formik>
         )}

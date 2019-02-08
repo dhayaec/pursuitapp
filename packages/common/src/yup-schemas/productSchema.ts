@@ -5,20 +5,24 @@ export const productSchema = yup.object().shape({
     .string()
     .trim()
     .min(3)
-    .max(255),
+    .max(255)
+    .required(),
   coverImage: yup
     .string()
     .trim()
     .min(3)
-    .max(255),
+    .max(255)
+    .required(),
   description: yup
     .string()
     .trim()
-    .min(50),
+    .min(50)
+    .required(),
   rating: yup
     .number()
     .min(0)
-    .max(10),
+    .max(10)
+    .required(),
   offerPrice: yup
     .number()
     .min(1)

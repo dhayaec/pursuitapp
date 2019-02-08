@@ -78,15 +78,15 @@ export type LoginLogin = {
   name: string;
 };
 
-export type GetMainCategoryVariables = {};
+export type MainCategoryVariables = {};
 
-export type GetMainCategoryQuery = {
+export type MainCategoryQuery = {
   __typename?: 'Query';
 
-  getMainCategory: GetMainCategoryGetMainCategory[];
+  getMainCategory: MainCategoryGetMainCategory[];
 };
 
-export type GetMainCategoryGetMainCategory = {
+export type MainCategoryGetMainCategory = {
   __typename?: 'Category';
 
   id: string;
@@ -96,17 +96,17 @@ export type GetMainCategoryGetMainCategory = {
   slug: string;
 };
 
-export type GetCategoryBySlugVariables = {
+export type CategoryBySlugVariables = {
   slug: string;
 };
 
-export type GetCategoryBySlugQuery = {
+export type CategoryBySlugQuery = {
   __typename?: 'Query';
 
-  getCategoryBySlug: Maybe<GetCategoryBySlugGetCategoryBySlug>;
+  getCategoryBySlug: Maybe<CategoryBySlugGetCategoryBySlug>;
 };
 
-export type GetCategoryBySlugGetCategoryBySlug = {
+export type CategoryBySlugGetCategoryBySlug = {
   __typename?: 'Category';
 
   id: string;
@@ -114,6 +114,46 @@ export type GetCategoryBySlugGetCategoryBySlug = {
   name: string;
 
   slug: string;
+};
+
+export type ProductsByCategoryVariables = {
+  categoryId: string;
+};
+
+export type ProductsByCategoryQuery = {
+  __typename?: 'Query';
+
+  getProductsByCategory: ProductsByCategoryGetProductsByCategory[];
+};
+
+export type ProductsByCategoryGetProductsByCategory = {
+  __typename?: 'Product';
+
+  id: string;
+
+  title: string;
+
+  description: string;
+
+  price: number;
+
+  offerPrice: number;
+};
+
+export type NewNotificationVariables = {};
+
+export type NewNotificationSubscription = {
+  __typename?: 'Subscription';
+
+  newNotification: NewNotificationNewNotification;
+};
+
+export type NewNotificationNewNotification = {
+  __typename?: 'Notification';
+
+  id: string;
+
+  message: Maybe<string>;
 };
 
 import * as ReactApollo from 'react-apollo';
@@ -218,8 +258,8 @@ export function LoginHOC<TProps, TChildProps = any>(
     LoginProps<TChildProps>
   >(LoginDocument, operationOptions);
 }
-export const GetMainCategoryDocument = gql`
-  query GetMainCategory {
+export const MainCategoryDocument = gql`
+  query MainCategory {
     getMainCategory {
       id
       name
@@ -227,43 +267,41 @@ export const GetMainCategoryDocument = gql`
     }
   }
 `;
-export class GetMainCategoryComponent extends React.Component<
-  Partial<
-    ReactApollo.QueryProps<GetMainCategoryQuery, GetMainCategoryVariables>
-  >
+export class MainCategoryComponent extends React.Component<
+  Partial<ReactApollo.QueryProps<MainCategoryQuery, MainCategoryVariables>>
 > {
   render() {
     return (
-      <ReactApollo.Query<GetMainCategoryQuery, GetMainCategoryVariables>
-        query={GetMainCategoryDocument}
+      <ReactApollo.Query<MainCategoryQuery, MainCategoryVariables>
+        query={MainCategoryDocument}
         {...(this as any)['props'] as any}
       />
     );
   }
 }
-export type GetMainCategoryProps<TChildProps = any> = Partial<
-  ReactApollo.DataProps<GetMainCategoryQuery, GetMainCategoryVariables>
+export type MainCategoryProps<TChildProps = any> = Partial<
+  ReactApollo.DataProps<MainCategoryQuery, MainCategoryVariables>
 > &
   TChildProps;
-export function GetMainCategoryHOC<TProps, TChildProps = any>(
+export function MainCategoryHOC<TProps, TChildProps = any>(
   operationOptions:
     | ReactApollo.OperationOption<
         TProps,
-        GetMainCategoryQuery,
-        GetMainCategoryVariables,
-        GetMainCategoryProps<TChildProps>
+        MainCategoryQuery,
+        MainCategoryVariables,
+        MainCategoryProps<TChildProps>
       >
     | undefined,
 ) {
   return ReactApollo.graphql<
     TProps,
-    GetMainCategoryQuery,
-    GetMainCategoryVariables,
-    GetMainCategoryProps<TChildProps>
-  >(GetMainCategoryDocument, operationOptions);
+    MainCategoryQuery,
+    MainCategoryVariables,
+    MainCategoryProps<TChildProps>
+  >(MainCategoryDocument, operationOptions);
 }
-export const GetCategoryBySlugDocument = gql`
-  query GetCategoryBySlug($slug: String!) {
+export const CategoryBySlugDocument = gql`
+  query CategoryBySlug($slug: String!) {
     getCategoryBySlug(slug: $slug) {
       id
       name
@@ -271,38 +309,131 @@ export const GetCategoryBySlugDocument = gql`
     }
   }
 `;
-export class GetCategoryBySlugComponent extends React.Component<
-  Partial<
-    ReactApollo.QueryProps<GetCategoryBySlugQuery, GetCategoryBySlugVariables>
-  >
+export class CategoryBySlugComponent extends React.Component<
+  Partial<ReactApollo.QueryProps<CategoryBySlugQuery, CategoryBySlugVariables>>
 > {
   render() {
     return (
-      <ReactApollo.Query<GetCategoryBySlugQuery, GetCategoryBySlugVariables>
-        query={GetCategoryBySlugDocument}
+      <ReactApollo.Query<CategoryBySlugQuery, CategoryBySlugVariables>
+        query={CategoryBySlugDocument}
         {...(this as any)['props'] as any}
       />
     );
   }
 }
-export type GetCategoryBySlugProps<TChildProps = any> = Partial<
-  ReactApollo.DataProps<GetCategoryBySlugQuery, GetCategoryBySlugVariables>
+export type CategoryBySlugProps<TChildProps = any> = Partial<
+  ReactApollo.DataProps<CategoryBySlugQuery, CategoryBySlugVariables>
 > &
   TChildProps;
-export function GetCategoryBySlugHOC<TProps, TChildProps = any>(
+export function CategoryBySlugHOC<TProps, TChildProps = any>(
   operationOptions:
     | ReactApollo.OperationOption<
         TProps,
-        GetCategoryBySlugQuery,
-        GetCategoryBySlugVariables,
-        GetCategoryBySlugProps<TChildProps>
+        CategoryBySlugQuery,
+        CategoryBySlugVariables,
+        CategoryBySlugProps<TChildProps>
       >
     | undefined,
 ) {
   return ReactApollo.graphql<
     TProps,
-    GetCategoryBySlugQuery,
-    GetCategoryBySlugVariables,
-    GetCategoryBySlugProps<TChildProps>
-  >(GetCategoryBySlugDocument, operationOptions);
+    CategoryBySlugQuery,
+    CategoryBySlugVariables,
+    CategoryBySlugProps<TChildProps>
+  >(CategoryBySlugDocument, operationOptions);
+}
+export const ProductsByCategoryDocument = gql`
+  query ProductsByCategory($categoryId: String!) {
+    getProductsByCategory(categoryId: $categoryId) {
+      id
+      title
+      description
+      price
+      offerPrice
+    }
+  }
+`;
+export class ProductsByCategoryComponent extends React.Component<
+  Partial<
+    ReactApollo.QueryProps<ProductsByCategoryQuery, ProductsByCategoryVariables>
+  >
+> {
+  render() {
+    return (
+      <ReactApollo.Query<ProductsByCategoryQuery, ProductsByCategoryVariables>
+        query={ProductsByCategoryDocument}
+        {...(this as any)['props'] as any}
+      />
+    );
+  }
+}
+export type ProductsByCategoryProps<TChildProps = any> = Partial<
+  ReactApollo.DataProps<ProductsByCategoryQuery, ProductsByCategoryVariables>
+> &
+  TChildProps;
+export function ProductsByCategoryHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        ProductsByCategoryQuery,
+        ProductsByCategoryVariables,
+        ProductsByCategoryProps<TChildProps>
+      >
+    | undefined,
+) {
+  return ReactApollo.graphql<
+    TProps,
+    ProductsByCategoryQuery,
+    ProductsByCategoryVariables,
+    ProductsByCategoryProps<TChildProps>
+  >(ProductsByCategoryDocument, operationOptions);
+}
+export const NewNotificationDocument = gql`
+  subscription NewNotification {
+    newNotification {
+      id
+      message
+    }
+  }
+`;
+export class NewNotificationComponent extends React.Component<
+  Partial<
+    ReactApollo.SubscriptionProps<
+      NewNotificationSubscription,
+      NewNotificationVariables
+    >
+  >
+> {
+  render() {
+    return (
+      <ReactApollo.Subscription<
+        NewNotificationSubscription,
+        NewNotificationVariables
+      >
+        subscription={NewNotificationDocument}
+        {...(this as any)['props'] as any}
+      />
+    );
+  }
+}
+export type NewNotificationProps<TChildProps = any> = Partial<
+  ReactApollo.DataProps<NewNotificationSubscription, NewNotificationVariables>
+> &
+  TChildProps;
+export function NewNotificationHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        NewNotificationSubscription,
+        NewNotificationVariables,
+        NewNotificationProps<TChildProps>
+      >
+    | undefined,
+) {
+  return ReactApollo.graphql<
+    TProps,
+    NewNotificationSubscription,
+    NewNotificationVariables,
+    NewNotificationProps<TChildProps>
+  >(NewNotificationDocument, operationOptions);
 }
