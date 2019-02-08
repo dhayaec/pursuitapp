@@ -7,6 +7,7 @@ import * as connectRedis from 'connect-redis';
 import * as cors from 'cors';
 import * as express from 'express';
 import * as session from 'express-session';
+import * as helmet from 'helmet';
 import * as http from 'http';
 import { connectDb, createDb } from './db';
 import { redis } from './redis';
@@ -32,6 +33,8 @@ export const startServer = async () => {
   });
 
   const RedisStore = connectRedis(session);
+
+  app.use(helmet());
 
   app.use(
     cors({

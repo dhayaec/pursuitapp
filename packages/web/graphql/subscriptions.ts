@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
-export const newNotificationSub = gql`
-  subscription NewNotification {
-    newNotification {
+export const normalSubscription = gql`
+  subscription NormalSubscription {
+    normalSubscription {
       id
       message
     }

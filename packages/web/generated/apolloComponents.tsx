@@ -140,15 +140,15 @@ export type ProductsByCategoryGetProductsByCategory = {
   offerPrice: number;
 };
 
-export type NewNotificationVariables = {};
+export type NormalSubscriptionVariables = {};
 
-export type NewNotificationSubscription = {
+export type NormalSubscriptionSubscription = {
   __typename?: 'Subscription';
 
-  newNotification: NewNotificationNewNotification;
+  normalSubscription: NormalSubscriptionNormalSubscription;
 };
 
-export type NewNotificationNewNotification = {
+export type NormalSubscriptionNormalSubscription = {
   __typename?: 'Notification';
 
   id: string;
@@ -388,52 +388,55 @@ export function ProductsByCategoryHOC<TProps, TChildProps = any>(
     ProductsByCategoryProps<TChildProps>
   >(ProductsByCategoryDocument, operationOptions);
 }
-export const NewNotificationDocument = gql`
-  subscription NewNotification {
-    newNotification {
+export const NormalSubscriptionDocument = gql`
+  subscription NormalSubscription {
+    normalSubscription {
       id
       message
     }
   }
 `;
-export class NewNotificationComponent extends React.Component<
+export class NormalSubscriptionComponent extends React.Component<
   Partial<
     ReactApollo.SubscriptionProps<
-      NewNotificationSubscription,
-      NewNotificationVariables
+      NormalSubscriptionSubscription,
+      NormalSubscriptionVariables
     >
   >
 > {
   render() {
     return (
       <ReactApollo.Subscription<
-        NewNotificationSubscription,
-        NewNotificationVariables
+        NormalSubscriptionSubscription,
+        NormalSubscriptionVariables
       >
-        subscription={NewNotificationDocument}
+        subscription={NormalSubscriptionDocument}
         {...(this as any)['props'] as any}
       />
     );
   }
 }
-export type NewNotificationProps<TChildProps = any> = Partial<
-  ReactApollo.DataProps<NewNotificationSubscription, NewNotificationVariables>
+export type NormalSubscriptionProps<TChildProps = any> = Partial<
+  ReactApollo.DataProps<
+    NormalSubscriptionSubscription,
+    NormalSubscriptionVariables
+  >
 > &
   TChildProps;
-export function NewNotificationHOC<TProps, TChildProps = any>(
+export function NormalSubscriptionHOC<TProps, TChildProps = any>(
   operationOptions:
     | ReactApollo.OperationOption<
         TProps,
-        NewNotificationSubscription,
-        NewNotificationVariables,
-        NewNotificationProps<TChildProps>
+        NormalSubscriptionSubscription,
+        NormalSubscriptionVariables,
+        NormalSubscriptionProps<TChildProps>
       >
     | undefined,
 ) {
   return ReactApollo.graphql<
     TProps,
-    NewNotificationSubscription,
-    NewNotificationVariables,
-    NewNotificationProps<TChildProps>
-  >(NewNotificationDocument, operationOptions);
+    NormalSubscriptionSubscription,
+    NormalSubscriptionVariables,
+    NormalSubscriptionProps<TChildProps>
+  >(NormalSubscriptionDocument, operationOptions);
 }
