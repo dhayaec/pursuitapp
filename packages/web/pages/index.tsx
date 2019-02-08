@@ -24,7 +24,6 @@ export default class Home extends React.Component {
             }
           }}
         </NormalSubscriptionComponent>
-        <Header>Welcome to my web site</Header>
       </div>
     );
   }
