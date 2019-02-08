@@ -1,4 +1,3 @@
-import { Header } from '@pursuitapp/ui';
 import React from 'react';
 import { HeaderNavMenu } from '../components/HeaderNavMenu';
 import { NormalSubscriptionComponent } from '../generated/apolloComponents';
