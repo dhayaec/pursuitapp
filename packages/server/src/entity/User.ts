@@ -1,5 +1,5 @@
 import * as bcryptjs from 'bcryptjs';
-import { Field, ObjectType } from 'type-graphql';
+import { Field, ID, ObjectType } from 'type-graphql';
 import {
   BaseEntity,
   BeforeInsert,
@@ -18,7 +18,7 @@ import {
 @Index(['isBanned', 'username', 'confirmed', 'isAdmin'])
 @ObjectType()
 export class User extends BaseEntity {
-  @Field()
+  @Field(() => ID)
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

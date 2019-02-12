@@ -38,7 +38,7 @@ export const HeaderNavMenu: React.SFC = () => (
     </ul>
     <MainCategoryComponent>
       {({ data, error }) => {
-        if (!data.getMainCategory || error) {
+        if ((data && !data.getMainCategory) || error) {
           return <p>No data</p>;
         }
         return data.getMainCategory.map(item => (

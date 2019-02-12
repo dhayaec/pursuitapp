@@ -1,4 +1,4 @@
-import { Field, ObjectType } from 'type-graphql';
+import { Field, ID, ObjectType } from 'type-graphql';
 import {
   BaseEntity,
   BeforeInsert,
@@ -21,7 +21,7 @@ import { Category } from './Category';
 @Index(['isBanned'])
 @ObjectType()
 export class Product extends BaseEntity {
-  @Field()
+  @Field(() => ID)
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
