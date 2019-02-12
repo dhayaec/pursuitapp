@@ -58,6 +58,39 @@ export class CartResolver {
   }
 
   @Mutation(() => Boolean)
+  async updateCart(
+    @Ctx() ctx: AppContext,
+    @Arg('productId') productId: string,
+    @Arg('quantity', { defaultValue: 1 }) quantity: number,
+  ): Promise<boolean> {
+    const userId = ctx.req.session!.userId;
+    if (!userId) {
+      throw new Error(errorMessages.loginToContinue);
+    }
+
+    const product = await Product.findOne(productId);
+    if (!product) {
+      throw new Error(errorMessages.productNotFound);
+    }
+
+    const user = await User.findOne(userId);
+
+    const cart = await Cart.findOne({
+      where: {
+        product,
+        user,
+      },
+    });
+
+    if (!cart) {
+      throw new Error(errorMessages.itemNotInCart);
+    }
+    const newQuantity = cart.quantity + quantity;
+    await Cart.update(cart.id, { quantity: newQuantity });
+    return true;
+  }
+
+  @Mutation(() => Boolean)
   async removeFromCart(
     @Ctx() ctx: AppContext,
     @Arg('productId') productId: string,

@@ -1,4 +1,4 @@
-import { Field, ObjectType } from 'type-graphql';
+import { Field, ID, ObjectType } from 'type-graphql';
 import {
   BaseEntity,
   Column,
@@ -15,7 +15,7 @@ import { User } from './User';
 @Entity('cart')
 @ObjectType()
 export class Cart extends BaseEntity {
-  @Field()
+  @Field(() => ID)
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
