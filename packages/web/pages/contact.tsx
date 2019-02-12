@@ -1,16 +1,24 @@
-import { CustomButton } from '@pursuitapp/ui';
+import { Avatar, Block, InlineFlex } from 'reakit';
 import { HeaderNavMenu } from '../components/HeaderNavMenu';
 
 export default () => (
   <div>
     <HeaderNavMenu />
     <h1>Contact Us</h1>
-    <form action="">
-      <label htmlFor="name">
-        Full Name
-        <input type="text" />
-      </label>
-      <CustomButton>Save</CustomButton>
-    </form>
+    <InlineFlex justifyContent="space-evenly" width="100%">
+      <Block
+        width="100px"
+        height="100px"
+        backgroundColor="rgb(219, 112, 147)"
+      />
+      <Block
+        width="100px"
+        height="100px"
+        backgroundColor="rgb(219, 112, 198)"
+      />
+      <Block width="100px" height="100px" backgroundColor="rgb(205, 112, 219)">
+        <Avatar src="https://placekitten.com/100/100" alt="Kitten" />
+      </Block>
+    </InlineFlex>
   </div>
 );

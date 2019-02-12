@@ -1,5 +1,6 @@
 import { FieldProps } from 'formik';
 import React, { DetailedHTMLProps, InputHTMLAttributes } from 'react';
+import { Input } from 'reakit';
 
 type InputProps = DetailedHTMLProps<
   InputHTMLAttributes<HTMLInputElement>,
@@ -14,7 +15,7 @@ export const InputField = ({
   const errorMessage = touched[field.name] && errors[field.name];
   return (
     <div>
-      <input {...field} {...props} />
+      <Input autoComplete="false" {...field} {...props} />
       {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
     </div>
   );

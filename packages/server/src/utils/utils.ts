@@ -43,3 +43,6 @@ export const validateInputs = async (schema: any, inputs: any) => {
     throw new UserInputError(errorMessages.validationFailed, { errors });
   }
 };
+
+export const sleep = (ms: number) =>
+  new Promise(resolve => setTimeout(resolve, ms));

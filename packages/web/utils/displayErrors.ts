@@ -2,12 +2,16 @@ import { FormikErrors } from 'formik';
 
 type SetErrorsFn = (errors: FormikErrors<any>) => void;
 
-export function displayErrors(err: any, setErrors: SetErrorsFn) {
+export function displayErrors(
+  err: any,
+  setErrors: SetErrorsFn,
+  setSubmitting: any,
+) {
   const errors: {
     [key: string]: string;
   } = {};
 
-  console.info(JSON.stringify(err));
+  console.error(JSON.stringify(err));
 
   if (err.graphQLErrors && err.graphQLErrors.length) {
     const exception = err.graphQLErrors[0].extensions.exception;
@@ -24,4 +28,5 @@ export function displayErrors(err: any, setErrors: SetErrorsFn) {
   }
 
   setErrors(errors);
+  setSubmitting(false);
 }

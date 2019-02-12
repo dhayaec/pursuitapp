@@ -51,6 +51,7 @@
     "lspace",
     "mariadb",
     "middlewares",
+    "minmax",
     "nbsp",
     "nohoist",
     "ormconfig",
