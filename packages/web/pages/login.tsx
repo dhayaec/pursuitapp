@@ -1,6 +1,7 @@
 import { emailSchema } from '@pursuitapp/common';
 import { Field, Form, Formik } from 'formik';
 import React from 'react';
+import { Button } from 'reakit';
 import { ErrorField } from '../components/fields/ErrorField';
 import { InputField } from '../components/fields/InputField';
 import { HeaderNavMenu } from '../components/HeaderNavMenu';
@@ -24,8 +25,9 @@ export default () => {
             validationSchema={emailSchema}
             onSubmit={async (
               { email: emailValue, password },
-              { setErrors },
+              { setErrors, setSubmitting },
             ) => {
+              setSubmitting(true);
               try {
                 const res = await register({
                   variables: {
@@ -33,6 +35,7 @@ export default () => {
                     password,
                   },
                 });
+
                 if (res) {
                   const {
                     data: {
@@ -41,9 +44,10 @@ export default () => {
                   } = res;
                   console.log(name);
                   console.log(email);
+                  setSubmitting(false);
                 }
               } catch (err) {
-                displayErrors(err, setErrors);
+                displayErrors(err, setErrors, setSubmitting);
               }
             }}
           >
@@ -63,9 +67,9 @@ export default () => {
                   type="password"
                   component={InputField}
                 />
-                <button disabled={isSubmitting} type="submit">
+                <Button disabled={isSubmitting} type="submit">
                   Login
-                </button>
+                </Button>
               </Form>
             )}
           </Formik>
