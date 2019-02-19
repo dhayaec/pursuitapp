@@ -46,7 +46,7 @@ table {
 }
 /* app overrides */
 body {
-    background: #fafafa;
+    background: #dfdfdf;
     color: #333;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }

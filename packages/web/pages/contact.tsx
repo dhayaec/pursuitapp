@@ -1,9 +1,10 @@
 import { Avatar, Block, InlineFlex } from 'reakit';
-import { HeaderNavMenu } from '../components/HeaderNavMenu';
+import Header from '../components/ui/Header';
+import { menuItems } from '../lib/data';
 
 export default () => (
   <div>
-    <HeaderNavMenu />
+    <Header logo="MyWebsite" menuItems={menuItems} />
     <h1>Contact Us</h1>
     <InlineFlex justifyContent="space-evenly" width="100%">
       <Block

@@ -5,13 +5,12 @@ import { Button } from 'reakit';
 import { ErrorField } from '../components/fields/ErrorField';
 import { InputField } from '../components/fields/InputField';
 import { HeaderNavMenu } from '../components/HeaderNavMenu';
-import Layout from '../components/Layout';
 import { LoginComponent } from '../generated/apolloComponents';
 import { displayErrors } from '../utils/displayErrors';
 
 export default () => {
   return (
-    <Layout title="Login page">
+    <div>
       <HeaderNavMenu />
       <LoginComponent>
         {register => (
@@ -75,6 +74,6 @@ export default () => {
           </Formik>
         )}
       </LoginComponent>
-    </Layout>
+    </div>
   );
 };
