@@ -16,5 +16,6 @@
     "sourceMap": true,
     "composite": true
   },
-  "references": [{ "path": "../common" }, { "path": "../ui" }]
+  "references": [{ "path": "../common" }, { "path": "../ui" }],
+  "exclude": ["node_modules"]
 }
