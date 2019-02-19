@@ -7,3 +7,5 @@ export const CustomButton = styled.button`
   background: orange;
   font-size: 16px;
 `;
+
+CustomButton.displayName = 'CustomButton';

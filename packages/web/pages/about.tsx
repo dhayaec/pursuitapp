@@ -1,83 +1,74 @@
 import * as React from 'react';
-import { Grid } from 'reakit';
-import { HeaderNavMenu } from '../components/HeaderNavMenu';
-
-const template = `
-  "a a a" 60px
-  "b c c" minmax(200px, 1fr)
-  "d d d" 100px / 150px
-`;
+import {
+  Block,
+  Button,
+  Card,
+  Divider,
+  Flex,
+  Heading,
+  Image,
+  Paragraph,
+  Tooltip,
+} from 'reakit';
+import {
+  AppButton,
+  AppCard,
+  ErrorButton,
+  NestedThing,
+  StyledLink,
+  Thing,
+  WrapperArea,
+} from '../components/ui/AppButton';
+import Header from '../components/ui/Header';
+import { menuItems } from '../lib/data';
 
 export default class Home extends React.Component {
   render() {
     return (
       <div>
-        <HeaderNavMenu />
-        <Grid template={template}>
-          <Grid.Item area="a" backgroundColor="orange">
-            Header
-          </Grid.Item>
-          <Grid.Item area="b" backgroundColor="green">
-            <ul>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-              <li>This is a sample</li>
-            </ul>
-          </Grid.Item>
-          <Grid.Item area="c" backgroundColor="papayawhip">
-            Content
-          </Grid.Item>
-          <Grid.Item area="d" backgroundColor="yellow">
-            Footer
-          </Grid.Item>
-        </Grid>
+        <Header logo="MyWebsite" menuItems={menuItems} />
+        <Flex
+          background="#555"
+          color="white"
+          padding={8}
+          justifyContent="center"
+        >
+          <Block>Apples</Block>
+          <Divider vertical={true} />
+          <Block>Oranges</Block>
+          <Divider vertical={true} />
+          <Block>Grape</Block>
+          <Divider vertical={true} />
+          <Block>Pineapple</Block>
+          <Divider vertical={true} />
+          <Block>Strawberry</Block>
+        </Flex>
+        <WrapperArea>
+          <AppCard>
+            <Heading use="h5">Card Heading</Heading>
+            <Card.Fit
+              use={Image}
+              src="https://placekitten.com/400/300"
+              alt="Kitten"
+              width={300}
+              height={300}
+            />
+            <Paragraph>Description for Card</Paragraph>
+          </AppCard>
+        </WrapperArea>
+        <AppButton>Default Button</AppButton>
+        <ErrorButton>Error Button</ErrorButton>
+        <AppButton primary={true}>Primary Button</AppButton>
+        <StyledLink className="test">test</StyledLink>
+        <Thing>Test</Thing>
+        <NestedThing>
+          <p className="something">Test</p>
+          Hello World!
+        </NestedThing>
+        <Button>
+          Save
+          <Tooltip>By Saving you agree to our terms of services</Tooltip>
+        </Button>
       </div>
     );
   }

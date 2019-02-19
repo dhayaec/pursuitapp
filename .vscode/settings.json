@@ -14,7 +14,9 @@
   },
   "git.autofetch": true,
   "editor.fontLigatures": true,
-  "tslint.autoFixOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.tslint": true
+  },
   "editor.emptySelectionClipboard": false,
   "workbench.editor.enablePreviewFromQuickOpen": false,
   "workbench.editor.showTabs": true,
@@ -56,6 +58,7 @@
     "nohoist",
     "ormconfig",
     "precommit",
+    "prefetch",
     "preheader",
     "proviced",
     "pursuitapp",
@@ -73,5 +76,6 @@
     "wcss",
     "woff",
     "zeit"
-  ]
+  ],
+  "prettier.tslintIntegration": true
 }
