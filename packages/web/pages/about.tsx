@@ -1,15 +1,5 @@
 import * as React from 'react';
-import {
-  Block,
-  Button,
-  Card,
-  Divider,
-  Flex,
-  Heading,
-  Image,
-  Paragraph,
-  Tooltip,
-} from 'reakit';
+import { Button, Card, Heading, Image, Paragraph, Tooltip } from 'reakit';
 import {
   AppButton,
   AppCard,
@@ -27,22 +17,6 @@ export default class Home extends React.Component {
     return (
       <div>
         <Header logo="MyWebsite" menuItems={menuItems} />
-        <Flex
-          background="#555"
-          color="white"
-          padding={8}
-          justifyContent="center"
-        >
-          <Block>Apples</Block>
-          <Divider vertical={true} />
-          <Block>Oranges</Block>
-          <Divider vertical={true} />
-          <Block>Grape</Block>
-          <Divider vertical={true} />
-          <Block>Pineapple</Block>
-          <Divider vertical={true} />
-          <Block>Strawberry</Block>
-        </Flex>
         <WrapperArea>
           <AppCard>
             <Heading use="h5">Card Heading</Heading>
