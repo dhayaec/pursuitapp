@@ -74,6 +74,8 @@ export default class Category extends React.PureComponent<Props> {
       const products = p.data.getProductsByCategory;
       return { slug, category: category.data.getCategoryBySlug, products };
     }
+
+    return {};
   }
 
   render() {
