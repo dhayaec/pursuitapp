@@ -16,7 +16,7 @@
     "build": "tsc",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public",
-    "lint": "tslint 'src/**/*.t{s,sx}' --fix",
+    "lint": "tslint -c ../../tslint.json 'src/**/*.t{s,sx}' --fix",
     "test": "echo 'hello ui'",
     "pretty": "prettier 'src/**/*.t{s,sx}' --write",
     "precommit": "lint-staged"

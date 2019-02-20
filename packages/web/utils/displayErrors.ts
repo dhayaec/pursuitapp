@@ -17,7 +17,7 @@ export function displayErrors(
     const exception = err.graphQLErrors[0].extensions.exception;
 
     if (exception.errors) {
-      exception.errors.forEach(x => {
+      exception.errors.forEach((x: any) => {
         errors[x.path] = x.message;
       });
     } else {

@@ -14,8 +14,26 @@
     "removeComments": false,
     "preserveConstEnums": true,
     "sourceMap": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "strictNullChecks": false,
+    "suppressImplicitAnyIndexErrors": true,
+    "declaration": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "composite": true
   },
-  "references": [{ "path": "../common" }, { "path": "../ui" }],
-  "exclude": ["node_modules"]
+  "include": [
+    "pages/**/*",
+    "graphql/**/*",
+    "server/**/*",
+    "lib/**/*",
+    "components/**/*",
+    "generated/**/*",
+    "utils/**/*"
+  ],
+  "exclude": ["node_modules", "build", "scripts", ".next", "coverage"]
 }

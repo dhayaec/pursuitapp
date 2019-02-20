@@ -23,7 +23,7 @@ interface Props {
 }
 
 export default class Category extends React.PureComponent<Props> {
-  static defaultProps = {
+  static defaultProps: Props = {
     slug: '',
     category: null,
     err: null,
@@ -49,8 +49,9 @@ export default class Category extends React.PureComponent<Props> {
       },
     });
 
+    ctx.res.statusCode = 404;
+
     if (!category.data.getCategoryBySlug) {
-      ctx.res.statusCode = 404;
       return {
         slug,
         err: {
@@ -73,6 +74,8 @@ export default class Category extends React.PureComponent<Props> {
       const products = p.data.getProductsByCategory;
       return { slug, category: category.data.getCategoryBySlug, products };
     }
+
+    return {};
   }
 
   render() {
