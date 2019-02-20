@@ -2,9 +2,8 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "module": "commonjs",
-    "outDir": "dist",
-    "target": "esnext",
-    "lib": ["es2017"]
+    "outDir": ".next/production-server/",
+    "allowSyntheticDefaultImports": false
   },
   "include": ["server/**/*.ts"]
 }
