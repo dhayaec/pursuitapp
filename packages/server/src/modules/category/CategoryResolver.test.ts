@@ -7,6 +7,7 @@ import {
   addCategoryWithParentMutation,
   getBreadCrumbPathQuery,
   getCategoryByIdQuery,
+  getCategoryBySlugQuery,
   getChildCategoriesQuery,
   removeCategoryMutation,
 } from '../../graphql-operations';
@@ -261,6 +262,44 @@ describe('CategoryResolver', () => {
       });
 
       expect(res).toMatchObject({
+        errors: [{ message: errorMessages.invalidCategory }],
+      });
+    });
+  });
+  describe('getCategoryBySlug', () => {
+    it('should return category', async () => {
+      const response = await gqlCall({
+        source: print(getCategoryBySlugQuery),
+        variableValues: {
+          slug: 'a1',
+        },
+      });
+
+      expect(response).toMatchObject({
+        data: {
+          getCategoryBySlug: {
+            name: 'a1',
+            slug: 'a1',
+          },
+        },
+      });
+      const res = await gqlCall({
+        source: print(getCategoryBySlugQuery),
+        variableValues: {
+          slug: 'blah',
+        },
+      });
+
+      expect(res).toMatchObject({
+        errors: [{ message: errorMessages.invalidCategory }],
+      });
+
+      const res1 = await gqlCall({
+        source: print(getCategoryBySlugQuery),
+        variableValues: { slug: '' },
+      });
+
+      expect(res1).toMatchObject({
         errors: [{ message: errorMessages.invalidCategory }],
       });
     });

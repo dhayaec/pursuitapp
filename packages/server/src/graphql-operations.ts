@@ -222,13 +222,28 @@ export const addToCartMutation = gql`
 `;
 
 export const removeFromCartMutation = gql`
-  mutation RemoveFromCart($productId: String!) {
-    removeFromCart(productId: $productId)
+  mutation RemoveFromCart($cartId: String!) {
+    removeFromCart(cartId: $cartId)
   }
 `;
 
 export const emptyCartMutation = gql`
   mutation {
     emptyCart
+  }
+`;
+
+export const getCategoryBySlugQuery = gql`
+  query GetCategoryBySlugQuery($slug: String!) {
+    getCategoryBySlug(slug: $slug) {
+      name
+      slug
+    }
+  }
+`;
+
+export const updateCartMutation = gql`
+  mutation UpdateCartMutation($cartId: String!, $quantity: Float!) {
+    updateCart(cartId: $cartId, quantity: $quantity)
   }
 `;
