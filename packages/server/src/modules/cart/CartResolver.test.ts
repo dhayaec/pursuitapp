@@ -1,6 +1,7 @@
 import { print } from 'graphql/language/printer';
 import { Connection } from 'typeorm';
 import { connectTestDb } from '../../db';
+import { Cart } from '../../entity/Cart';
 import { Product } from '../../entity/Product';
 import { User } from '../../entity/User';
 import {
@@ -8,6 +9,7 @@ import {
   emptyCartMutation,
   getCartQuery,
   removeFromCartMutation,
+  updateCartMutation,
 } from '../../graphql-operations';
 import errorMessages from '../../i18n/error-messages';
 import { gqlCall } from '../../utils/test-utils';
@@ -138,10 +140,16 @@ describe('CartResolver', () => {
     });
 
     it('should removeFromCart', async () => {
+      const cart = await Cart.create({
+        user,
+        product,
+        title: product.title,
+      }).save();
+
       const response = await gqlCall({
         source: print(removeFromCartMutation),
         variableValues: {
-          productId: product.id,
+          cartId: cart.id,
         },
         userId: user.id,
       });
@@ -150,48 +158,8 @@ describe('CartResolver', () => {
           removeFromCart: true,
         },
       });
-
-      const res = await gqlCall({
-        source: print(removeFromCartMutation),
-        variableValues: {
-          productId: product.id,
-        },
-        userId: '',
-      });
-      expect(res).toMatchObject({
-        errors: [{ message: errorMessages.loginToContinue }],
-      });
-
-      const res1 = await gqlCall({
-        source: print(removeFromCartMutation),
-        variableValues: {
-          productId: '0',
-        },
-        userId: user.id,
-      });
-      expect(res1).toMatchObject({
-        errors: [{ message: errorMessages.productNotFound }],
-      });
-
-      const res2 = await gqlCall({
-        source: print(removeFromCartMutation),
-        variableValues: {
-          productId: product.id,
-        },
-        userId: user.id,
-      });
-      expect(res2).toMatchObject({
-        errors: [{ message: errorMessages.itemNotInCart }],
-      });
     });
     it('should emptyCart', async () => {
-      const response = await gqlCall({
-        source: print(emptyCartMutation),
-        userId: user.id,
-      });
-      expect(response).toMatchObject({
-        errors: [{ message: errorMessages.cartIsEmpty }],
-      });
       const res = await gqlCall({
         source: print(emptyCartMutation),
         userId: '',
@@ -214,6 +182,30 @@ describe('CartResolver', () => {
         data: {
           emptyCart: true,
         },
+      });
+    });
+
+    describe('updateCart', () => {
+      it('should update quantity', async () => {
+        const cart = await Cart.create({
+          user,
+          product,
+          title: product.title,
+        }).save();
+
+        const res = await gqlCall({
+          source: print(updateCartMutation),
+          userId: user.id,
+          variableValues: {
+            cartId: cart.id,
+            quantity: 10,
+          },
+        });
+        expect(res).toMatchObject({
+          data: {
+            updateCart: true,
+          },
+        });
       });
     });
   });

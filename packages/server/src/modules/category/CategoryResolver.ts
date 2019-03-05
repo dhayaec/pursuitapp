@@ -51,13 +51,20 @@ export class CategoryResolver {
     @Arg('slug') slug: string,
   ): Promise<Category | undefined> {
     if (!slug) {
-      return;
+      throw new Error(errorMessages.invalidCategory);
     }
-    return await Category.findOne({
+
+    const category = await Category.findOne({
       where: {
         slug,
       },
     });
+
+    if (!category) {
+      throw new Error(errorMessages.invalidCategory);
+    }
+
+    return category;
   }
 
   @Query(() => [Category])
