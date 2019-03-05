@@ -1,5 +1,6 @@
 import { FieldProps } from 'formik';
 import React from 'react';
+import { ErrorDiv, InputHolder } from '../ui/ErrorField';
 
 export const ErrorField = ({ form: { errors } }: FieldProps) => {
   const errorMessage = errors.default;
@@ -8,8 +9,10 @@ export const ErrorField = ({ form: { errors } }: FieldProps) => {
   }
 
   return (
-    <div>
-      {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
-    </div>
+    <InputHolder>
+      {errorMessage && (
+        <ErrorDiv style={{ color: 'red' }}>{errorMessage}</ErrorDiv>
+      )}
+    </InputHolder>
   );
 };

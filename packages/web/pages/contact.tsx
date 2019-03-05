@@ -1,10 +1,9 @@
 import { Avatar, Block, InlineFlex } from 'reakit';
 import Header from '../components/ui/Header';
-import { menuItems } from '../lib/data';
 
 export default () => (
   <div>
-    <Header logo="MyWebsite" menuItems={menuItems} />
+    <Header logo="MyWebsite" />
     <h1>Contact Us</h1>
     <InlineFlex justifyContent="space-evenly" width="100%">
       <Block

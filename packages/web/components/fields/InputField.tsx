@@ -1,6 +1,7 @@
 import { FieldProps } from 'formik';
 import React, { DetailedHTMLProps, InputHTMLAttributes } from 'react';
 import { Input } from 'reakit';
+import { ErrorDiv, InputHolder } from '../ui/ErrorField';
 
 type InputProps = DetailedHTMLProps<
   InputHTMLAttributes<HTMLInputElement>,
@@ -14,9 +15,9 @@ export const InputField = ({
 }: FieldProps & InputProps) => {
   const errorMessage = touched[field.name] && errors[field.name];
   return (
-    <div>
+    <InputHolder>
       <Input autoComplete="false" {...field} {...props} />
-      {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
-    </div>
+      {errorMessage && <ErrorDiv>{errorMessage}</ErrorDiv>}
+    </InputHolder>
   );
 };

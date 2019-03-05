@@ -12,7 +12,6 @@ import {
   getCategoryBySlugQuery,
   getProductsByCategoryQuery,
 } from '../graphql/queries';
-import { menuItems } from '../lib/data';
 import { MyContext } from '../utils/MyContext';
 
 interface Props {
@@ -49,9 +48,8 @@ export default class Category extends React.PureComponent<Props> {
       },
     });
 
-    ctx.res.statusCode = 404;
-
     if (!category.data.getCategoryBySlug) {
+      ctx.res.statusCode = 404;
       return {
         slug,
         err: {
@@ -84,7 +82,7 @@ export default class Category extends React.PureComponent<Props> {
     if (err) {
       return (
         <div>
-          <Header menuItems={menuItems} />
+          <Header />
           <p>Not Found!</p>;
         </div>
       );
@@ -93,7 +91,7 @@ export default class Category extends React.PureComponent<Props> {
     if (!slug) {
       return (
         <div>
-          <Header menuItems={menuItems} />
+          <Header />
           <ul>
             <li>Main categories</li>
           </ul>
@@ -107,7 +105,7 @@ export default class Category extends React.PureComponent<Props> {
 
     return (
       <div>
-        <Header menuItems={menuItems} />
+        <Header />
         <h1>{slug}</h1>
         <p>{name}</p>
         <p>{id}</p>
