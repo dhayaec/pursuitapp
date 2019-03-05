@@ -134,18 +134,6 @@ describe('CategoryResolver', () => {
       expect(res1).toMatchObject({
         errors: [{ message: errorMessages.notAuthorized }],
       });
-      const res2 = await gqlCall({
-        source: print(addCategoryWithParentMutation),
-        variableValues: {
-          name: 'a3',
-          parentId: '0',
-        },
-        userId: '',
-        isAdmin: false,
-      });
-      expect(res2).toMatchObject({
-        errors: [{ message: errorMessages.loginToContinue }],
-      });
     });
   });
 

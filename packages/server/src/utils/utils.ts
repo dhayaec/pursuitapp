@@ -3,6 +3,7 @@ import * as IORedis from 'ioredis';
 import slugify from 'slugify';
 import { v4 } from 'uuid';
 import errorMessages from '../i18n/error-messages';
+import { AppContext } from '../types/types';
 import { ITEMS_PER_PAGE, TokenTypes } from './constants';
 
 export const printMessage = (str: string) => `Hello ${str}`;
@@ -46,3 +47,19 @@ export const validateInputs = async (schema: any, inputs: any) => {
 
 export const sleep = (ms: number) =>
   new Promise(resolve => setTimeout(resolve, ms));
+
+export const isAuthenticated = (ctx: AppContext): boolean => {
+  const userId = ctx.req.session!.userId;
+  if (!userId) {
+    throw new Error(errorMessages.loginToContinue);
+  }
+  return true;
+};
+
+export const isAuthorized = (ctx: AppContext): boolean => {
+  const isAdmin = ctx.req.session!.isAdmin;
+  if (!isAdmin) {
+    throw new Error(errorMessages.notAuthorized);
+  }
+  return true;
+};

@@ -1,20 +1,14 @@
 import { MiddlewareFn } from 'type-graphql';
 import errorMessages from './i18n/error-messages';
 import { AppContext } from './types/types';
+import { isAuthenticated, isAuthorized } from './utils/utils';
 
 export const checkIsAdmin: MiddlewareFn<AppContext> = async (
   { context },
   next,
 ) => {
-  const { userId, isAdmin } = context.req.session as Express.Session;
-  if (!userId) {
-    throw new Error(errorMessages.loginToContinue);
-  }
-
-  if (!isAdmin) {
-    throw new Error(errorMessages.notAuthorized);
-  }
-
+  isAuthenticated(context);
+  isAuthorized(context);
   return next();
 };
 
@@ -25,7 +19,7 @@ export const checkIsAdminToRegister: MiddlewareFn<AppContext> = async (
   const { isAdmin } = context.req.session as Express.Session;
 
   if (!isAdmin && args.data.isAdmin) {
-    throw new Error(errorMessages.notAuthorized);
+    throw new Error(errorMessages.notAuthorizedToRegister);
   }
 
   return next();

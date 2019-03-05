@@ -67,7 +67,7 @@ describe('Register', () => {
     });
 
     expect(res1).toMatchObject({
-      errors: [{ message: errorMessages.notAuthorized }],
+      errors: [{ message: errorMessages.notAuthorizedToRegister }],
     });
   });
 });
