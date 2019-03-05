@@ -2,6 +2,7 @@ import NextLink from 'next/link';
 import * as React from 'react';
 import { Flex, Input, List } from 'reakit';
 import styled from 'styled-components';
+import { menuItems } from '../../../lib/data';
 
 const NavContainer = styled.div`
   display: flex;
@@ -49,7 +50,7 @@ const NavList = styled(List)`
   justify-content: flex-end;
   flex: 3;
   li {
-    margin-left: 3rem;
+    margin: auto;
   }
   @media screen and (max-width: 600px) {
     flex: 0 1 100%;
@@ -69,30 +70,28 @@ const NavItem = styled.li`
 const NavLink = styled.a`
   color: #fff;
   text-decoration: none;
+  display: flex;
+  padding: 0 2rem;
   :hover {
     color: #fafafa;
     text-decoration: underline;
   }
+  @media screen and (max-width: 600px) {
+    padding: 0;
+  }
 `;
-
-interface Menu {
-  id: number;
-  link: string;
-  linkText: string;
-}
 
 interface HeaderProps {
   logo: string;
-  menuItems: Menu[];
 }
 
 export default class Header extends React.PureComponent<HeaderProps> {
   public static defaultProps = {
-    logo: 'MyApp',
+    logo: 'MyWebsite',
   };
 
   render() {
-    const { logo, menuItems } = this.props;
+    const { logo } = this.props;
     return (
       <NavContainer>
         <NavFlex>

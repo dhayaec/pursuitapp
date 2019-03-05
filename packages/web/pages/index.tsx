@@ -4,7 +4,6 @@ import { Card, Heading, Image, List, Paragraph } from 'reakit';
 import styled from 'styled-components';
 import Header from '../components/ui/Header';
 import { MainCategoryComponent } from '../generated/apolloComponents';
-import { menuItems } from '../lib/data';
 
 const AppContainer = styled.div`
   width: 80%;
@@ -37,7 +36,7 @@ export default class Home extends React.Component {
   render() {
     return (
       <div>
-        <Header logo="MyWebsite" menuItems={menuItems} />
+        <Header logo="MyWebsite" />
         <Spacer />
         <AppContainer>
           <BannerBox>

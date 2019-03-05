@@ -2,7 +2,6 @@ import { NextContext } from 'next';
 import { DefaultQuery } from 'next/router';
 import React from 'react';
 import Header from '../components/ui/Header';
-import { menuItems } from '../lib/data';
 
 interface MyError extends Error {
   statusCode?: number;
@@ -23,7 +22,7 @@ export default class Error extends React.Component<MyError> {
   render() {
     return (
       <div>
-        <Header menuItems={menuItems} />
+        <Header />
         <p>
           {this.props.statusCode
             ? `An error ${this.props.statusCode} occurred on server`

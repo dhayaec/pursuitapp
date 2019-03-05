@@ -1,19 +1,11 @@
-import { Card, Heading, Image, Paragraph, styled } from 'reakit';
+import { Card, Heading, Image, Paragraph } from 'reakit';
+import { Container } from '../components/ui/Container';
 import Header from '../components/ui/Header';
 import { NormalSubscriptionComponent } from '../generated/apolloComponents';
-import { menuItems } from '../lib/data';
-
-const Container = styled.div`
-  display: flex;
-  margin: auto;
-  flex-direction: column;
-  align-items: center;
-  align-content: flex-start;
-`;
 
 export default () => (
   <div>
-    <Header menuItems={menuItems} />
+    <Header />
     <Container>
       <div>
         <NormalSubscriptionComponent>

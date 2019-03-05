@@ -44,6 +44,12 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+*:focus{
+	border:0;
+	outline:none;
+	box-shadow:none;
+
+}
 /* app overrides */
 body {
     background: #f0f0f0;
