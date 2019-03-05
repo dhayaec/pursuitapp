@@ -3,6 +3,7 @@ import { Product } from '../../entity/Product';
 import { User } from '../../entity/User';
 import errorMessages from '../../i18n/error-messages';
 import { AppContext } from '../../types/types';
+import { isAuthenticated } from '../../utils/utils';
 import { Cart } from './../../entity/Cart';
 
 @Resolver(Cart)
@@ -25,9 +26,8 @@ export class CartResolver {
     @Arg('quantity', { defaultValue: 1 }) quantity: number,
   ): Promise<Cart> {
     const userId = ctx.req.session!.userId;
-    if (!userId) {
-      throw new Error(errorMessages.loginToContinue);
-    }
+
+    isAuthenticated(ctx);
 
     const product = await Product.findOne(productId);
     const user = await User.findOne(userId);
@@ -63,10 +63,7 @@ export class CartResolver {
     @Arg('cartId') cartId: string,
     @Arg('quantity', { defaultValue: 1 }) quantity: number,
   ): Promise<boolean> {
-    const userId = ctx.req.session!.userId;
-    if (!userId) {
-      throw new Error(errorMessages.loginToContinue);
-    }
+    isAuthenticated(ctx);
 
     const cart = await Cart.findOne(cartId);
     if (!cart) {
@@ -83,10 +80,7 @@ export class CartResolver {
     @Ctx() ctx: AppContext,
     @Arg('cartId') cartId: string,
   ): Promise<boolean> {
-    const userId = ctx.req.session!.userId;
-    if (!userId) {
-      throw new Error(errorMessages.loginToContinue);
-    }
+    isAuthenticated(ctx);
 
     const cart = await Cart.findOne(cartId);
 
@@ -102,9 +96,7 @@ export class CartResolver {
   async emptyCart(@Ctx() ctx: AppContext): Promise<boolean> {
     const userId = ctx.req.session!.userId;
 
-    if (!userId) {
-      throw new Error(errorMessages.loginToContinue);
-    }
+    isAuthenticated(ctx);
 
     const user = await User.findOne(userId);
     const cart = await Cart.find({

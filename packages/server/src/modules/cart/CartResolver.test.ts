@@ -83,17 +83,6 @@ describe('CartResolver', () => {
         },
       });
 
-      const res1 = await gqlCall({
-        source: print(addToCartMutation),
-        variableValues: {
-          productId: product.id,
-        },
-        userId: '',
-      });
-      expect(res1).toMatchObject({
-        errors: [{ message: errorMessages.loginToContinue }],
-      });
-
       const res2 = await gqlCall({
         source: print(addToCartMutation),
         variableValues: {
@@ -160,13 +149,6 @@ describe('CartResolver', () => {
       });
     });
     it('should emptyCart', async () => {
-      const res = await gqlCall({
-        source: print(emptyCartMutation),
-        userId: '',
-      });
-      expect(res).toMatchObject({
-        errors: [{ message: errorMessages.loginToContinue }],
-      });
       await gqlCall({
         source: print(addToCartMutation),
         variableValues: {

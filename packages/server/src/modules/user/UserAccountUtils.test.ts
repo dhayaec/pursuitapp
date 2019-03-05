@@ -216,19 +216,6 @@ describe('UserAccountUtils', () => {
         errors: [{ message: errorMessages.invalidOldPassword }],
       });
 
-      const failCase2 = await gqlCall({
-        source: print(changePasswordMutation),
-        variableValues: {
-          oldPassword: 'something',
-          password: '1234567',
-        },
-        userId: '',
-      });
-
-      expect(failCase2).toMatchObject({
-        errors: [{ message: errorMessages.loginToContinue }],
-      });
-
       const failCase3 = await gqlCall({
         source: print(changePasswordMutation),
         variableValues: {
@@ -261,18 +248,6 @@ describe('UserAccountUtils', () => {
             email: 'email@email.com',
           },
         },
-      });
-
-      const res1 = await gqlCall({
-        source: print(changeEmailMutation),
-        variableValues: {
-          email: 'email@email.com',
-        },
-        userId: '',
-      });
-
-      expect(res1).toMatchObject({
-        errors: [{ message: errorMessages.loginToContinue }],
       });
 
       const res2 = await gqlCall({

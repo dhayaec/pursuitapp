@@ -5,7 +5,7 @@ import errorMessages from '../../i18n/error-messages';
 import { redis } from '../../redis';
 import { AppContext } from '../../types/types';
 import { TokenTypes } from '../../utils/constants';
-import { createTokenLink } from '../../utils/utils';
+import { createTokenLink, isAuthenticated } from '../../utils/utils';
 
 @Resolver()
 export class UserAccountUtils {
@@ -83,9 +83,8 @@ export class UserAccountUtils {
     @Arg('password') password: string,
   ): Promise<User> {
     const userId = ctx.req.session!.userId;
-    if (!userId) {
-      throw new Error(errorMessages.loginToContinue);
-    }
+
+    isAuthenticated(ctx);
 
     const user = await User.findOne(userId);
     if (!user) {
@@ -109,9 +108,7 @@ export class UserAccountUtils {
     @Arg('email') email: string,
   ): Promise<User | undefined> {
     const userId = ctx.req.session!.userId;
-    if (!userId) {
-      throw new Error(errorMessages.loginToContinue);
-    }
+    isAuthenticated(ctx);
 
     const user = await User.findOne(userId);
     if (!user) {
