@@ -69,7 +69,6 @@
     "resave",
     "rspace",
     "slugify",
-    "styleguidist",
     "tsutils",
     "typeorm",
     "unfetch",
