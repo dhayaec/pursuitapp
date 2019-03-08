@@ -147,6 +147,17 @@ describe('CartResolver', () => {
           removeFromCart: true,
         },
       });
+
+      const res = await gqlCall({
+        source: print(removeFromCartMutation),
+        variableValues: {
+          cartId: '0',
+        },
+        userId: user.id,
+      });
+      expect(res).toMatchObject({
+        errors: [{ message: errorMessages.itemNotInCart }],
+      });
     });
     it('should emptyCart', async () => {
       await gqlCall({
@@ -164,6 +175,13 @@ describe('CartResolver', () => {
         data: {
           emptyCart: true,
         },
+      });
+      const res2 = await gqlCall({
+        source: print(emptyCartMutation),
+        userId: user.id,
+      });
+      expect(res2).toMatchObject({
+        errors: [{ message: errorMessages.cartIsEmpty }],
       });
     });
 
@@ -187,6 +205,18 @@ describe('CartResolver', () => {
           data: {
             updateCart: true,
           },
+        });
+
+        const res1 = await gqlCall({
+          source: print(updateCartMutation),
+          userId: user.id,
+          variableValues: {
+            cartId: '0',
+            quantity: 10,
+          },
+        });
+        expect(res1).toMatchObject({
+          errors: [{ message: errorMessages.itemNotInCart }],
         });
       });
     });
