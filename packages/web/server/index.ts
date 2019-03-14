@@ -14,10 +14,7 @@ app.prepare().then(() => {
     const parsedUrl = parse(req.url as string, true);
 
     handle(req, res, parsedUrl);
-  }).listen(port, (err: Error) => {
-    if (err) {
-      throw err;
-    }
+  }).listen(port, () => {
     console.log(`> Ready on http://localhost:${port}`);
   });
 });
