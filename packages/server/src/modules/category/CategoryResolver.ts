@@ -1,3 +1,4 @@
+import { errorMessages } from '@pursuitapp/common';
 import {
   Arg,
   Mutation,
@@ -11,7 +12,6 @@ import {
 } from 'type-graphql';
 import { getManager } from 'typeorm';
 import { Product } from '../../entity/Product';
-import errorMessages from '../../i18n/error-messages';
 import { checkIsAdmin } from '../../middlewares';
 import { Category } from './../../entity/Category';
 import { Notification, NotificationPayload } from './Notification';

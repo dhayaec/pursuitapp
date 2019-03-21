@@ -1,4 +1,4 @@
-export default {
+export const errorMessages = {
   invalidCategory: 'Invalid Category',
   passwordsDontMatch: 'passwords dont match',
   invalidToken: 'Invalid or expired Token',

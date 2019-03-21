@@ -1,7 +1,7 @@
+import { errorMessages } from '@pursuitapp/common';
 import * as bcryptjs from 'bcryptjs';
 import { Arg, Ctx, Mutation, Resolver } from 'type-graphql';
 import { User } from '../../entity/User';
-import errorMessages from '../../i18n/error-messages';
 import { redis } from '../../redis';
 import { AppContext } from '../../types/types';
 import { TokenTypes } from '../../utils/constants';

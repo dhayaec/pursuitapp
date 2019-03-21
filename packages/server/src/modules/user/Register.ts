@@ -1,8 +1,8 @@
 // import * as bcryptjs from 'bcryptjs';
 import { userSchema } from '@pursuitapp/common';
+import { errorMessages } from '@pursuitapp/common';
 import { Arg, Mutation, Resolver, UseMiddleware } from 'type-graphql';
 import { User } from '../../entity/User';
-import errorMessages from '../../i18n/error-messages';
 import { checkIsAdminToRegister } from '../../middlewares';
 import { validateInputs } from '../../utils/utils';
 import { RegisterInput } from './register/RegisterInput';

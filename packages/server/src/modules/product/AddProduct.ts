@@ -1,7 +1,7 @@
+import { errorMessages } from '@pursuitapp/common';
 import { Arg, Mutation, Resolver } from 'type-graphql';
 import { Category } from '../../entity/Category';
 import { Product } from '../../entity/Product';
-import errorMessages from '../../i18n/error-messages';
 import { ProductInput } from './ProductInput';
 
 @Resolver()

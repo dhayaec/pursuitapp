@@ -1,4 +1,4 @@
-// import errorMessages from '../i18n/error-messages';
+// import { errorMessages } from '@pursuitapp/common';
 import { isAuthenticated, printMessage } from './utils';
 
 describe('utils', () => {

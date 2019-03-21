@@ -20,3 +20,9 @@ export const loginMutation = gql`
     }
   }
 `;
+
+export const emptyCartMutation = gql`
+  mutation EmptyCart {
+    emptyCart
+  }
+`;
