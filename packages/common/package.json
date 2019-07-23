@@ -15,14 +15,6 @@
     "precommit": "lint-staged",
     "cover": "jest --coverage"
   },
-  "lint-staged": {
-    "*.{ts,tsx}": [
-      "yarn pretty",
-      "yarn lint",
-      "jest --bail --findRelatedTests",
-      "git add ."
-    ]
-  },
   "jest": {
     "collectCoverage": false,
     "rootDir": "./src",

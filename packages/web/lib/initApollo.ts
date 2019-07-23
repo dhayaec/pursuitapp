@@ -34,11 +34,11 @@ function create(initialState: any, { getToken }: Options) {
   const errorLink = onError(({ graphQLErrors, networkError }) => {
     if (graphQLErrors) {
       graphQLErrors.map(({ message, locations, path }) => {
-        // console.error(
-        //   `[GraphQL error]: Message: ${message}, Location: ${JSON.stringify(
-        //     locations,
-        //   )}, Path: ${path}`,
-        // );
+        console.error(
+          `[GraphQL error]: Message: ${message}, Location: ${JSON.stringify(
+            locations,
+          )}, Path: ${path}`,
+        );
 
         if (isBrowser && message.includes(errorMessages.loginToContinue)) {
           Router.replace('/login');

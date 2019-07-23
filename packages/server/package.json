@@ -32,7 +32,6 @@
     "create:db": "ts-node ./src/scripts/create-db.ts",
     "test": "jest",
     "test:w": "jest --watch",
-    "precommit": "lint-staged",
     "pretty": "prettier 'src/**/*.ts' --write",
     "cover": "jest --coverage",
     "debug:ts": "node --inspect --require ts-node/register  ./src/index.ts",
@@ -40,13 +39,13 @@
     "debug:jest": "node --inspect-brk ../../node_modules/.bin/jest --runInBand --bail",
     "test:ci": "jest --bail --findRelatedTests ./src/**/**.ts"
   },
-  "lint-staged": {
-    "*.{ts,tsx}": [
-      "yarn pretty",
-      "yarn lint",
-      "yarn test:ci",
-      "git add ."
-    ]
+  "devDependencies": {
+    "@types/helmet": "^0.0.43",
+    "@types/ioredis": "^4.0.13",
+    "@types/express": "4.17.0",
+    "@types/express-session": "^1.15.13",
+    "@types/connect-redis": "^0.0.10",
+    "@types/uuid": "^3.4.5"
   },
   "workspaces": {
     "nohoist": [
