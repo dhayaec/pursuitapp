@@ -78,6 +78,14 @@ export type LoginLogin = {
   name: string;
 };
 
+export type EmptyCartVariables = {};
+
+export type EmptyCartMutation = {
+  __typename?: 'Mutation';
+
+  emptyCart: boolean;
+};
+
 export type MainCategoryVariables = {};
 
 export type MainCategoryQuery = {
@@ -257,6 +265,48 @@ export function LoginHOC<TProps, TChildProps = any>(
     LoginVariables,
     LoginProps<TChildProps>
   >(LoginDocument, operationOptions);
+}
+export const EmptyCartDocument = gql`
+  mutation EmptyCart {
+    emptyCart
+  }
+`;
+export class EmptyCartComponent extends React.Component<
+  Partial<ReactApollo.MutationProps<EmptyCartMutation, EmptyCartVariables>>
+> {
+  render() {
+    return (
+      <ReactApollo.Mutation<EmptyCartMutation, EmptyCartVariables>
+        mutation={EmptyCartDocument}
+        {...(this as any)['props'] as any}
+      />
+    );
+  }
+}
+export type EmptyCartProps<TChildProps = any> = Partial<
+  ReactApollo.MutateProps<EmptyCartMutation, EmptyCartVariables>
+> &
+  TChildProps;
+export type EmptyCartMutationFn = ReactApollo.MutationFn<
+  EmptyCartMutation,
+  EmptyCartVariables
+>;
+export function EmptyCartHOC<TProps, TChildProps = any>(
+  operationOptions:
+    | ReactApollo.OperationOption<
+        TProps,
+        EmptyCartMutation,
+        EmptyCartVariables,
+        EmptyCartProps<TChildProps>
+      >
+    | undefined,
+) {
+  return ReactApollo.graphql<
+    TProps,
+    EmptyCartMutation,
+    EmptyCartVariables,
+    EmptyCartProps<TChildProps>
+  >(EmptyCartDocument, operationOptions);
 }
 export const MainCategoryDocument = gql`
   query MainCategory {

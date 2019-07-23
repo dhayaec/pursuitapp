@@ -1,3 +1,4 @@
+import { errorMessages } from '@pursuitapp/common';
 import {
   ApolloClient,
   InMemoryCache,
@@ -5,10 +6,12 @@ import {
   split,
 } from 'apollo-boost';
 import { setContext } from 'apollo-link-context';
+import { onError } from 'apollo-link-error';
 import { createHttpLink } from 'apollo-link-http';
 import { WebSocketLink } from 'apollo-link-ws';
 import { getMainDefinition } from 'apollo-utilities';
 import fetch from 'isomorphic-unfetch';
+import Router from 'next/router';
 import { isBrowser } from './isBrowser';
 
 let apolloClient: ApolloClient<NormalizedCacheObject> | null = null;
@@ -26,6 +29,25 @@ function create(initialState: any, { getToken }: Options) {
   const httpLink = createHttpLink({
     uri: 'http://localhost:4000/graphql',
     credentials: 'include',
+  });
+
+  const errorLink = onError(({ graphQLErrors, networkError }) => {
+    if (graphQLErrors) {
+      graphQLErrors.map(({ message, locations, path }) => {
+        console.error(
+          `[GraphQL error]: Message: ${message}, Location: ${JSON.stringify(
+            locations,
+          )}, Path: ${path}`,
+        );
+
+        if (isBrowser && message.includes(errorMessages.loginToContinue)) {
+          Router.replace('/login');
+        }
+      });
+    }
+    if (networkError) {
+      console.log(`[Network error]: ${networkError}`);
+    }
   });
 
   const wsLink = isBrowser
@@ -49,7 +71,7 @@ function create(initialState: any, { getToken }: Options) {
 
   const link = wsLink
     ? split(
-        // split based on operation type
+        // split based on operation type for subscription
         ({ query }) => {
           const definition = getMainDefinition(query);
           return (
@@ -66,7 +88,7 @@ function create(initialState: any, { getToken }: Options) {
   return new ApolloClient({
     connectToDevTools: isBrowser,
     ssrMode: !isBrowser, // Disables forceFetch on the server (so queries are only run once)
-    link: authLink.concat(link),
+    link: authLink.concat(errorLink.concat(link)),
     cache: new InMemoryCache().restore(initialState || {}),
   });
 }

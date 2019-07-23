@@ -17,16 +17,7 @@
     "build-storybook": "build-storybook -s public",
     "lint": "tslint -c ../../tslint.json 'src/**/*.t{s,sx}' --fix",
     "test": "echo 'hello ui'",
-    "pretty": "prettier 'src/**/*.t{s,sx}' --write",
-    "precommit": "lint-staged"
-  },
-  "lint-staged": {
-    "*.{ts,tsx}": [
-      "yarn pretty",
-      "yarn lint",
-      "jest --bail --findRelatedTests",
-      "git add ."
-    ]
+    "pretty": "prettier 'src/**/*.t{s,sx}' --write"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -44,11 +35,10 @@
     "@storybook/addon-links": "^4.1.7",
     "@storybook/addons": "^4.1.7",
     "@storybook/react": "^4.1.7",
-    "@types/storybook__addon-actions": "^3.4.1",
-    "@types/storybook__addon-info": "^3.4.2",
-    "@types/storybook__addon-links": "^3.3.3",
-    "@types/storybook__react": "^4.0.0",
-    "@types/styled-components": "^4.1.6",
+    "@types/storybook__addon-actions": "^3.4.3",
+    "@types/storybook__addon-info": "^4.1.2",
+    "@types/storybook__addon-links": "^3.3.5",
+    "@types/storybook__react": "^4.0.2",
     "awesome-typescript-loader": "^5.2.1",
     "babel-loader": "^8.0.5",
     "react-docgen-typescript": "^1.12.3",

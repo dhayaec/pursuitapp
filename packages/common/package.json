@@ -4,12 +4,11 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "license": "MIT",
-  "devDependencies": {
-    "@types/yup": "0.26.5",
-    "typescript": "3.2.4"
-  },
   "dependencies": {
     "yup": "^0.26.6"
+  },
+  "devDependencies": {
+    "@types/yup": "0.26.22"
   },
   "scripts": {
     "build": "tsc",
@@ -18,14 +17,6 @@
     "pretty": "prettier 'src/**/*.ts' --write",
     "precommit": "lint-staged",
     "cover": "jest --coverage"
-  },
-  "lint-staged": {
-    "*.{ts,tsx}": [
-      "yarn pretty",
-      "yarn lint",
-      "jest --bail --findRelatedTests",
-      "git add ."
-    ]
   },
   "jest": {
     "collectCoverage": false,

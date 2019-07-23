@@ -1,3 +1,4 @@
+import { errorMessages } from '@pursuitapp/common';
 import { print } from 'graphql/language/printer';
 import { Connection, getManager } from 'typeorm';
 import { connectTestDb } from '../../db';
@@ -11,7 +12,6 @@ import {
   getChildCategoriesQuery,
   removeCategoryMutation,
 } from '../../graphql-operations';
-import errorMessages from '../../i18n/error-messages';
 import { Category } from './../../entity/Category';
 import { getMainCategoryQuery } from './../../graphql-operations';
 import { gqlCall } from './../../utils/test-utils';

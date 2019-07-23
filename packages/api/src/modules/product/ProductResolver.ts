@@ -1,8 +1,8 @@
 import { productSchema } from '@pursuitapp/common';
+import { errorMessages } from '@pursuitapp/common';
 import { Arg, Mutation, Query, Resolver } from 'type-graphql';
 import { Category } from '../../entity/Category';
 import { Product } from '../../entity/Product';
-import errorMessages from '../../i18n/error-messages';
 import { ITEMS_PER_PAGE } from '../../utils/constants';
 import { skipPage, validateInputs } from '../../utils/utils';
 import { ProductInput } from './ProductInput';

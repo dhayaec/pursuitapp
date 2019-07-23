@@ -1,45 +1,71 @@
 {
   "private": true,
   "scripts": {
-    "build:server": "lerna run build --scope={@pursuitapp/common,@pursuitapp/server}",
+    "build:server": "lerna run build --scope={@pursuitapp/common,@pursuitapp/api}",
     "build:web": "lerna run build --scope={@pursuitapp/ui,@pursuitapp/common,@pursuitapp/web}",
-    "cover": "lerna run cover --scope={@pursuitapp/server,@pursuitapp/common,@pursuitapp/web}",
+    "cover": "lerna run cover --scope={@pursuitapp/api,@pursuitapp/common,@pursuitapp/web}",
     "lint": "lerna exec -- npm run lint",
     "pretty": "lerna exec -- npm run pretty",
     "new-version": "lerna version --conventional-commits --yes",
-    "test": "lerna run test",
-    "precommit": "lerna run --concurrency 1 --stream precommit"
+    "test": "lerna run test"
   },
   "workspaces": {
     "packages": [
       "packages/*"
     ]
   },
+  "lint-staged": {
+    "packages/server/*.ts": [
+      "yarn pretty",
+      "yarn lint",
+      "yarn test:ci",
+      "git add ."
+    ],
+    "packages/{web,ui,common}/*.{ts,tsx}": [
+      "yarn pretty",
+      "yarn lint",
+      "jest --bail --findRelatedTests",
+      "git add ."
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "devDependencies": {
-    "@babel/core": "^7.2.2",
-    "@types/graphql": "^14.0.7",
-    "@types/jest": "^23.3.13",
-    "@types/node": "^10.12.18",
+    "@babel/core": "^7.5.5",
+    "@types/enzyme": "^3.10.3",
+    "@types/enzyme-adapter-react-16": "^1.0.5",
+    "@types/faker": "^4.1.5",
+    "@types/graphql": "^14.2.3",
+    "@types/jest": "^24.0.15",
+    "@types/node": "12.6.8",
+    "@types/react": "^16.8.23",
+    "@types/react-dom": "^16.8.4",
+    "@types/styled-components": "^4.1.18",
     "faker": "^4.1.0",
-    "graphql-subscriptions": "^1.0.0",
+    "graphql-subscriptions": "^1.1.0",
     "graphql-tag": "^2.10.1",
-    "husky": "^1.3.1",
-    "jest": "^24.3.1",
-    "lerna": "^3.10.6",
-    "lint-staged": "^8.1.0",
-    "ts-jest": "^24.0.0",
-    "tslint": "^5.12.1",
+    "husky": "^3.0.1",
+    "jest": "^24.8.0",
+    "lerna": "^3.16.2",
+    "lint-staged": "^9.2.0",
+    "nodemon": "^1.19.1",
+    "ts-jest": "^24.0.2",
+    "ts-node": "^8.3.0",
+    "tslint": "^5.18.0",
     "tslint-config-prettier": "^1.17.0",
-    "tslint-react": "^3.6.0",
-    "typescript": "^3.3.3",
-    "typescript-tslint-plugin": "^0.3.1",
-    "webpack": "^4.29.3"
+    "tslint-react": "^4.0.0",
+    "typescript": "^3.5.3",
+    "typescript-tslint-plugin": "^0.5.4",
+    "webpack": "^4.36.1"
   },
   "resolutions": {
-    "graphql": "14.1.1"
+    "graphql": "^14.4.2"
   },
   "dependencies": {
-    "axios": "^0.18.0",
-    "graphql": "^14.1.1"
+    "axios": "^0.19.0",
+    "graphql": "^14.4.2"
   }
 }

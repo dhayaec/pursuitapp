@@ -1,5 +1,5 @@
+import { errorMessages } from '@pursuitapp/common';
 import { createError } from 'apollo-errors';
-import errorMessages from '../i18n/error-messages';
 
 export enum Env {
   development = 'development',

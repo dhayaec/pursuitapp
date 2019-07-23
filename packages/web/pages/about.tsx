@@ -1,6 +1,12 @@
 import * as React from 'react';
 import { Button, Tooltip } from 'reakit';
 import Header from '../components/ui/Header';
+import {
+  EmptyCartMutation,
+  EmptyCartProps,
+} from '../generated/apolloComponents';
+import { emptyCartMutation } from '../graphql/mutations';
+import { MyContext } from '../utils/MyContext';
 
 interface HomeState {
   readonly status: boolean;
@@ -12,6 +18,20 @@ export default class Home extends React.Component<any, HomeState> {
     status: false,
     name: 'Hello',
   };
+
+  static async getInitialProps({ apolloClient, ...ctx }: MyContext) {
+    console.log(ctx.req.url);
+    try {
+      const e = await apolloClient.mutate<EmptyCartMutation, EmptyCartProps>({
+        mutation: emptyCartMutation,
+      });
+      console.log(e);
+      return { message: '1' };
+    } catch (error) {
+      console.log('error', error);
+      return {};
+    }
+  }
 
   changeText = () =>
     this.setState(state =>
@@ -25,7 +45,7 @@ export default class Home extends React.Component<any, HomeState> {
     return (
       <div>
         <Header logo="MyWebsite" />
-        <h1>{name}</h1>
+        <p>{name}</p>
         <Button onClick={this.changeText}>
           Save
           <Tooltip>By Saving you agree to our terms of services</Tooltip>

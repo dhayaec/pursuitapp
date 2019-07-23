@@ -1,3 +1,4 @@
+import { errorMessages } from '@pursuitapp/common';
 import { print } from 'graphql/language/printer';
 import { Connection } from 'typeorm';
 import { connectTestDb } from '../../db';
@@ -11,7 +12,6 @@ import {
   resendVerifySignup as resendVerifySignupMutation,
   verifyForgotPasswordMutation,
 } from '../../graphql-operations';
-import errorMessages from '../../i18n/error-messages';
 import { redis } from '../../redis';
 import { TokenTypes } from '../../utils/constants';
 import { gqlCall } from '../../utils/test-utils';

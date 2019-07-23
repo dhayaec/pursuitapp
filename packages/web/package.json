@@ -5,9 +5,9 @@
     "analyze": "BUNDLE_ANALYZE=both next build",
     "analyze:server": "BUNDLE_ANALYZE=server next build",
     "analyze:browser": "BUNDLE_ANALYZE=browser next build",
-    "precommit": "lint-staged",
     "cover": "jest --coverage",
     "dev": "nodemon",
+    "debug:ts": "node --inspect -r ts-node/register server",
     "build": "NODE_ENV=production next build",
     "start": "NODE_ENV=production ts-node --project tsconfig.server.json server/index.ts",
     "type-check": "tsc",
@@ -16,20 +16,13 @@
     "test": "jest",
     "pretty": "prettier 'pages/**/*.t{s,sx}' 'server/**/*.t{s,sx}' 'lib/**/*.t{s,sx}' 'components/**/*.t{s,sx}' 'utils/**/*.t{s,sx}' --write"
   },
-  "lint-staged": {
-    "*.{ts,tsx}": [
-      "yarn pretty",
-      "yarn lint",
-      "jest --bail --findRelatedTests",
-      "git add ."
-    ]
-  },
   "dependencies": {
     "@pursuitapp/common": "^0.1.0",
     "@pursuitapp/ui": "^0.1.0",
     "@zeit/next-bundle-analyzer": "^0.1.2",
     "apollo-boost": "0.1.27",
     "apollo-link-context": "^1.0.14",
+    "apollo-link-error": "^1.1.9",
     "apollo-link-ws": "^1.0.14",
     "cleave.js": "^1.4.9",
     "formik": "^1.4.3",
@@ -46,25 +39,20 @@
     "terser": "^3.14"
   },
   "devDependencies": {
-    "@babel/preset-typescript": "^7.1.0",
-    "@types/cleave.js": "^1.4.0",
-    "@types/cookie": "^0.3.2",
-    "@types/next": "^7.0.6",
-    "@types/react": "^16.7.20",
-    "@types/react-dom": "^16.0.11",
-    "@types/styled-components": "^4.1.9",
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-typescript": "^1.1.1",
     "babel-plugin-styled-components": "^1.10.0",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.11.2",
     "file-loader": "^3.0.1",
     "graphql-code-generator": "^0.16.0",
     "graphql-codegen-typescript-client": "^0.16.0",
     "graphql-codegen-typescript-common": "^0.16.0",
     "graphql-codegen-typescript-react-apollo": "^0.16.0",
-    "nodemon": "^1.18.9",
-    "ts-node": "^8.0.1",
-    "typescript": "^3.2.4",
-    "url-loader": "^1.1.2"
+    "url-loader": "^1.1.2",
+    "@types/next": "^8.0.6",
+    "@types/cookie": "^0.3.3",
+    "@types/cleave.js": "^1.4.0"
   },
   "license": "ISC",
   "jest": {

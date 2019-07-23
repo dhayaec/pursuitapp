@@ -1,23 +1,8 @@
 {
-  "name": "@pursuitapp/server",
+  "name": "@pursuitapp/api",
   "version": "0.1.0",
   "private": true,
   "description": "Awesome project developed with TypeORM.",
-  "devDependencies": {
-    "@types/bcryptjs": "^2.4.2",
-    "@types/connect-redis": "^0.0.8",
-    "@types/express": "4.16.0",
-    "@types/express-session": "^1.15.11",
-    "@types/faker": "^4.1.5",
-    "@types/helmet": "^0.0.42",
-    "@types/ioredis": "^4.0.6",
-    "@types/node": "10.12.18",
-    "@types/uuid": "^3.4.4",
-    "nodemon": "1.18.9",
-    "ts-node": "8.0.1",
-    "tsconfig-paths": "^3.7.0",
-    "typescript": "3.2.4"
-  },
   "dependencies": {
     "apollo-env": "^0.3.2",
     "apollo-errors": "^1.9.0",
@@ -47,7 +32,6 @@
     "create:db": "ts-node ./src/scripts/create-db.ts",
     "test": "jest",
     "test:w": "jest --watch",
-    "precommit": "lint-staged",
     "pretty": "prettier 'src/**/*.ts' --write",
     "cover": "jest --coverage",
     "debug:ts": "node --inspect --require ts-node/register  ./src/index.ts",
@@ -55,13 +39,14 @@
     "debug:jest": "node --inspect-brk ../../node_modules/.bin/jest --runInBand --bail",
     "test:ci": "jest --bail --findRelatedTests ./src/**/**.ts"
   },
-  "lint-staged": {
-    "*.{ts,tsx}": [
-      "yarn pretty",
-      "yarn lint",
-      "yarn test:ci",
-      "git add ."
-    ]
+  "devDependencies": {
+    "@types/helmet": "^0.0.43",
+    "@types/ioredis": "^4.0.13",
+    "@types/express": "4.17.0",
+    "@types/express-session": "^1.15.13",
+    "@types/connect-redis": "^0.0.10",
+    "@types/uuid": "^3.4.5",
+    "@types/bcryptjs": "^2.4.2"
   },
   "workspaces": {
     "nohoist": [

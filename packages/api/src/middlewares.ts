@@ -1,5 +1,5 @@
+import { errorMessages } from '@pursuitapp/common';
 import { MiddlewareFn } from 'type-graphql';
-import errorMessages from './i18n/error-messages';
 import { AppContext } from './types/types';
 import { isAuthenticated, isAuthorized } from './utils/utils';
 

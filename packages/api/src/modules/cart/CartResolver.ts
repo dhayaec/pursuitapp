@@ -1,7 +1,7 @@
+import { errorMessages } from '@pursuitapp/common';
 import { Arg, Ctx, Mutation, Query, Resolver } from 'type-graphql';
 import { Product } from '../../entity/Product';
 import { User } from '../../entity/User';
-import errorMessages from '../../i18n/error-messages';
 import { AppContext } from '../../types/types';
 import { isAuthenticated } from '../../utils/utils';
 import { Cart } from './../../entity/Cart';

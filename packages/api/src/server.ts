@@ -74,7 +74,7 @@ export const startServer = async () => {
   const { graphqlPath, subscriptionsPath } = server;
 
   return httpServer.listen({ port }, async () => {
-    console.log(`🚀 Server http://${host}:${port}${graphqlPath}`);
-    console.log(`🚀 Subscription ws://${host}:${port}${subscriptionsPath}`);
+    console.log(`🚀 http://${host}:${port}${graphqlPath}`);
+    console.log(`🚀 ws://${host}:${port}${subscriptionsPath}`);
   });
 };
