@@ -1,9 +1,9 @@
 {
   "private": true,
   "scripts": {
-    "build:server": "lerna run build --scope={@pursuitapp/common,@pursuitapp/server}",
+    "build:server": "lerna run build --scope={@pursuitapp/common,@pursuitapp/api}",
     "build:web": "lerna run build --scope={@pursuitapp/ui,@pursuitapp/common,@pursuitapp/web}",
-    "cover": "lerna run cover --scope={@pursuitapp/server,@pursuitapp/common,@pursuitapp/web}",
+    "cover": "lerna run cover --scope={@pursuitapp/api,@pursuitapp/common,@pursuitapp/web}",
     "lint": "lerna exec -- npm run lint",
     "pretty": "lerna exec -- npm run pretty",
     "new-version": "lerna version --conventional-commits --yes",
@@ -35,7 +35,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
-    "@types/bcryptjs": "^2.4.2",
     "@types/enzyme": "^3.10.3",
     "@types/enzyme-adapter-react-16": "^1.0.5",
     "@types/faker": "^4.1.5",
@@ -45,7 +44,6 @@
     "@types/react": "^16.8.23",
     "@types/react-dom": "^16.8.4",
     "@types/styled-components": "^4.1.18",
-    "@types/yup": "0.26.22",
     "faker": "^4.1.0",
     "graphql-subscriptions": "^1.1.0",
     "graphql-tag": "^2.10.1",

@@ -7,6 +7,9 @@
   "dependencies": {
     "yup": "^0.26.6"
   },
+  "devDependencies": {
+    "@types/yup": "0.26.22"
+  },
   "scripts": {
     "build": "tsc",
     "lint": "tslint -c ../../tslint.json 'src/**/*.ts' --fix",
