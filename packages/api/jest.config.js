@@ -3,5 +3,6 @@ module.exports = {
   testEnvironment: 'node',
   globalSetup: './setup.js',
   globalTeardown: './teardown.js',
-  coveragePathIgnorePatterns: ['./src/db.ts']
+  modulePaths: ['<rootDir>/src/'],
+  coveragePathIgnorePatterns: ['./src/db.ts'],
 };

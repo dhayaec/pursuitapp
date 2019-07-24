@@ -1,6 +1,6 @@
 export const errorMessages = {
   invalidCategory: 'Invalid Category',
-  passwordsDontMatch: 'passwords dont match',
+  passwordsDoNotMatch: 'passwords do not match',
   invalidToken: 'Invalid or expired Token',
   userNotFound: 'User not found',
   loginToContinue: 'Please login to continue',
