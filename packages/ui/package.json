@@ -17,7 +17,8 @@
     "build-storybook": "build-storybook -s public",
     "lint": "eslint  'src/**/*.t{s,sx}' --fix",
     "test": "echo 'hello ui'",
-    "pretty": "prettier 'src/**/*.t{s,sx}' --write"
+    "pretty": "prettier 'src/**/*.t{s,sx}' --write",
+    "lintstaged": "lint-staged"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -44,5 +45,13 @@
     "react-docgen-typescript": "^1.12.3",
     "react-docgen-typescript-webpack-plugin": "^1.1.0",
     "typescript-styled-plugin": "^0.13.0"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "yarn pretty",
+      "yarn lint",
+      "jest --bail --findRelatedTests",
+      "git add ."
+    ]
   }
 }

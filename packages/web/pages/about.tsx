@@ -20,7 +20,6 @@ export default class Home extends React.Component<any, HomeState> {
   };
 
   static async getInitialProps({ apolloClient, ...ctx }: MyContext) {
-    console.log(ctx);
     try {
       const e = await apolloClient.mutate<EmptyCartMutation, EmptyCartProps>({
         mutation: emptyCartMutation,

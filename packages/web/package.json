@@ -14,7 +14,8 @@
     "generate": "gql-gen --debug --config codegen.yml",
     "lint": "eslint  'pages/**/*.t{s,sx}' 'server/**/*.t{s,sx}' 'lib/**/*.t{s,sx}' 'components/**/*.t{s,sx}' 'utils/**/*.t{s,sx}' --fix",
     "test": "jest",
-    "pretty": "prettier 'pages/**/*.t{s,sx}' 'server/**/*.t{s,sx}' 'lib/**/*.t{s,sx}' 'components/**/*.t{s,sx}' 'utils/**/*.t{s,sx}' --write"
+    "pretty": "prettier 'pages/**/*.t{s,sx}' 'server/**/*.t{s,sx}' 'lib/**/*.t{s,sx}' 'components/**/*.t{s,sx}' 'utils/**/*.t{s,sx}' --write",
+    "lintstaged": "lint-staged"
   },
   "dependencies": {
     "@pursuitapp/common": "^0.1.0",
@@ -73,6 +74,14 @@
     ],
     "collectCoverageFrom": [
       "**/*.{ts,tsx}"
+    ]
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "yarn pretty",
+      "yarn lint",
+      "jest --bail --findRelatedTests",
+      "git add ."
     ]
   }
 }

@@ -14,23 +14,9 @@
       "packages/*"
     ]
   },
-  "lint-staged": {
-    "packages/server/*.ts": [
-      "yarn pretty",
-      "yarn lint",
-      "yarn test:ci",
-      "git add ."
-    ],
-    "packages/{web,ui,common}/*.{ts,tsx}": [
-      "yarn pretty",
-      "yarn lint",
-      "jest --bail --findRelatedTests",
-      "git add ."
-    ]
-  },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lerna run --concurrency 1 --stream lintstaged"
     }
   },
   "devDependencies": {
