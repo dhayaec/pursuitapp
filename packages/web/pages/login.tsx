@@ -1,6 +1,6 @@
+import React from 'react';
 import { emailSchema } from '@pursuitapp/common';
 import { Field, Form, Formik } from 'formik';
-import React from 'react';
 import { Button, Heading } from 'reakit';
 import { ErrorField } from '../components/fields/ErrorField';
 import { InputField } from '../components/fields/InputField';
@@ -9,7 +9,7 @@ import Header from '../components/ui/Header';
 import { LoginComponent } from '../generated/apolloComponents';
 import { displayErrors } from '../utils/displayErrors';
 
-export default () => {
+const Login = () => {
   return (
     <div>
       <Header />
@@ -81,3 +81,5 @@ export default () => {
     </div>
   );
 };
+
+export default Login;

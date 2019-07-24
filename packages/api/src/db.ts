@@ -1,10 +1,7 @@
-// tslint:disable-next-line:no-var-requires
+/* eslint-disable @typescript-eslint/no-var-requires */
 require('dotenv-safe').config();
-// tslint:disable-next-line:no-import-side-effect
 import 'reflect-metadata';
-// tslint:disable-next-line:no-var-requires
 const iconv = require('iconv-lite');
-// tslint:disable-next-line:no-var-requires
 const encodings = require('iconv-lite/encodings');
 iconv.encodings = encodings;
 import { Connection, createConnection, getConnectionManager } from 'typeorm';
@@ -105,7 +102,6 @@ export async function createDb() {
   }
 
   const grantQ =
-    // tslint:disable-next-line:prefer-template
     'GRANT ALL ON ' + dbName + '.* TO `' + process.env.DB_USER + '`@`%`;';
 
   await rootConnection

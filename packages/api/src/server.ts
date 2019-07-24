@@ -1,6 +1,4 @@
-// tslint:disable-next-line:no-import-side-effect
 import 'reflect-metadata';
-// tslint:disable-next-line:no-var-requires
 require('dotenv-safe').config();
 import { ApolloServer } from 'apollo-server-express';
 import * as connectRedis from 'connect-redis';

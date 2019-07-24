@@ -18,6 +18,10 @@ import { gqlCall } from '../../utils/test-utils';
 import { User } from './../../entity/User';
 import { createTokenLink } from './../../utils/utils';
 
+function extractToken(t: string) {
+  return t.split('/').splice(-1)[0];
+}
+
 let userId: string;
 let name: string;
 let email: string;
@@ -327,7 +331,3 @@ describe('UserAccountUtils', () => {
     });
   });
 });
-
-function extractToken(t: string) {
-  return t.split('/').splice(-1)[0];
-}

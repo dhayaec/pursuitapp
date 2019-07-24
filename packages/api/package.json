@@ -27,7 +27,7 @@
   "scripts": {
     "start": "NODE_ENV=development nodemon",
     "generate": "gql-gen",
-    "lint": "tslint -c ../../tslint.json 'src/**/*.ts' --fix",
+    "lint": "eslint  'src/**/*.ts' --fix",
     "setup": "ts-node ./src/scripts/setup-test-db.ts",
     "create:db": "ts-node ./src/scripts/create-db.ts",
     "test": "jest",
