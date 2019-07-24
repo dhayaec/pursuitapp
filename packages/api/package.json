@@ -37,7 +37,8 @@
     "debug:ts": "node --inspect --require ts-node/register  ./src/index.ts",
     "debug:ts:brk": "node --inspect-brk --require ts-node/register ./src/index.ts",
     "debug:jest": "node --inspect-brk ../../node_modules/.bin/jest --runInBand --bail",
-    "test:ci": "jest --bail --findRelatedTests ./src/**/**.ts"
+    "test:ci": "jest --bail --findRelatedTests ./src/**/**.ts",
+    "build": "tsc --noEmit"
   },
   "devDependencies": {
     "@types/helmet": "^0.0.43",

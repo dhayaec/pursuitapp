@@ -1,12 +1,9 @@
 {
   "recommendations": [
     "CoenraadS.bracket-pair-colorizer",
-    "PeterJausovec.vscode-docker",
     "streetsidesoftware.code-spell-checker",
     "mikestead.dotenv",
     "xabikos.JavaScriptSnippets",
-    "andys8.jest-snippets",
-    "kumar-harsh.graphql-for-vscode",
     "esbenp.prettier-vscode",
     "WallabyJs.quokka-vscode",
     "dbaeumer.vscode-eslint"
