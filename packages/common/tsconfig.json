@@ -26,15 +26,5 @@
     }
   },
   "exclude": ["node_modules"],
-  "include": ["./src/**/*.tsx", "./src/**/*.ts"],
-  "plugins": [
-    {
-      "name": "typescript-tslint-plugin",
-      "alwaysShowRuleFailuresAsWarnings": false,
-      "ignoreDefinitionFiles": true,
-      "configFile": "../../tslint.json",
-      "suppressWhileTypeErrorsPresent": false,
-      "mockTypeScriptVersion": false
-    }
-  ]
+  "include": ["./src/**/*.tsx", "./src/**/*.ts"]
 }

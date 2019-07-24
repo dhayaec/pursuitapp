@@ -12,7 +12,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "lint": "tslint -c ../../tslint.json 'src/**/*.ts' --fix",
+    "lint": "eslint  'src/**/*.ts' --fix",
     "test": "jest",
     "pretty": "prettier 'src/**/*.ts' --write",
     "precommit": "lint-staged",

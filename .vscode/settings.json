@@ -1,8 +1,18 @@
 {
   "files.autoSave": "onFocusChange",
-  "prettier.singleQuote": true,
-  "prettier.trailingComma": "all",
   "editor.formatOnSave": true,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    {
+      "language": "typescript",
+      "autoFix": true
+    },
+    {
+      "language": "typescriptreact",
+      "autoFix": true
+    }
+  ],
   "git.enableSmartCommit": true,
   "files.exclude": {
     "**/node_modules/": true,
@@ -14,9 +24,6 @@
   },
   "git.autofetch": true,
   "editor.fontLigatures": true,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.tslint": true
-  },
   "editor.emptySelectionClipboard": false,
   "workbench.editor.enablePreviewFromQuickOpen": false,
   "workbench.editor.showTabs": true,
@@ -77,6 +84,5 @@
     "wcss",
     "woff",
     "zeit"
-  ],
-  "prettier.tslintIntegration": true
+  ]
 }

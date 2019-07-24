@@ -25,15 +25,5 @@
   },
   "exclude": ["node_modules"],
   "include": ["./src/**/*.tsx", "./src/**/*.ts"],
-  "references": [{ "path": "../common" }],
-  "plugins": [
-    {
-      "name": "typescript-tslint-plugin",
-      "alwaysShowRuleFailuresAsWarnings": false,
-      "ignoreDefinitionFiles": true,
-      "configFile": "../../tslint.json",
-      "suppressWhileTypeErrorsPresent": false,
-      "mockTypeScriptVersion": false
-    }
-  ]
+  "references": [{ "path": "../common" }]
 }

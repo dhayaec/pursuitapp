@@ -1,9 +1,10 @@
+import React from 'react';
 import { Card, Heading, Image, Paragraph } from 'reakit';
 import { Container } from '../components/ui/Container';
 import Header from '../components/ui/Header';
 import { NormalSubscriptionComponent } from '../generated/apolloComponents';
 
-export default () => (
+const Product = () => (
   <div>
     <Header />
     <Container>
@@ -47,3 +48,5 @@ export default () => (
     </Container>
   </div>
 );
+
+export default Product;
