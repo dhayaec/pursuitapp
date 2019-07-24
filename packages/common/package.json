@@ -16,7 +16,8 @@
     "test": "jest",
     "pretty": "prettier 'src/**/*.ts' --write",
     "precommit": "lint-staged",
-    "cover": "jest --coverage"
+    "cover": "jest --coverage",
+    "lintstaged": "lint-staged"
   },
   "jest": {
     "collectCoverage": false,
@@ -37,6 +38,14 @@
     ],
     "collectCoverageFrom": [
       "**/*.{ts,tsx}"
+    ]
+  },
+  "lint-staged": {
+    "*.ts": [
+      "yarn pretty",
+      "yarn lint",
+      "jest --bail --findRelatedTests",
+      "git add ."
     ]
   }
 }

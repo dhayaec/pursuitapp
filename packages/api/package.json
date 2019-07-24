@@ -38,7 +38,8 @@
     "debug:ts:brk": "node --inspect-brk --require ts-node/register ./src/index.ts",
     "debug:jest": "node --inspect-brk ../../node_modules/.bin/jest --runInBand --bail",
     "test:ci": "jest --bail --findRelatedTests ./src/**/**.ts",
-    "build": "tsc --noEmit"
+    "build": "tsc --noEmit",
+    "lintstaged": "lint-staged"
   },
   "devDependencies": {
     "@types/helmet": "^0.0.43",
@@ -53,6 +54,15 @@
     "nohoist": [
       "typeorm",
       "typeorm/**"
+    ]
+  },
+  "lint-staged": {
+    "*.ts": [
+      "yarn pretty",
+      "yarn lint",
+      "yarn build",
+      "yarn test:ci",
+      "git add ."
     ]
   }
 }
