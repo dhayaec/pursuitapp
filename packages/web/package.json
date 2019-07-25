@@ -14,7 +14,6 @@
     "generate": "gql-gen --debug --config codegen.yml",
     "lint": "eslint  'pages/**/*.t{s,sx}' 'server/**/*.t{s,sx}' 'lib/**/*.t{s,sx}' 'components/**/*.t{s,sx}' 'utils/**/*.t{s,sx}' --fix",
     "test": "jest",
-    "pretty": "prettier 'pages/**/*.t{s,sx}' 'server/**/*.t{s,sx}' 'lib/**/*.t{s,sx}' 'components/**/*.t{s,sx}' 'utils/**/*.t{s,sx}' --write",
     "lintstaged": "lint-staged"
   },
   "dependencies": {
@@ -26,12 +25,15 @@
     "apollo-link-error": "^1.1.9",
     "apollo-link-ws": "^1.0.14",
     "cleave.js": "^1.4.9",
+    "compression": "^1.7.4",
+    "fastify": "^2.6.0",
+    "fastify-compress": "^0.10.0",
     "formik": "^1.4.3",
     "isomorphic-unfetch": "^3.0.0",
     "next": "^8.0.0",
     "next-routes": "^1.4.2",
     "react": "^16.7.0",
-    "react-apollo": "^2.4.1",
+    "react-apollo": "^2.5.8",
     "react-dom": "^16.7.0",
     "reakit": "^0.16.0",
     "reakit-theme-default": "^0.2.0",
@@ -40,6 +42,10 @@
     "terser": "^3.14"
   },
   "devDependencies": {
+    "@types/cleave.js": "^1.4.0",
+    "@types/compression": "^0.0.36",
+    "@types/cookie": "^0.3.3",
+    "@types/next": "^8.0.6",
     "@zeit/next-css": "^1.0.1",
     "@zeit/next-typescript": "^1.1.1",
     "babel-plugin-styled-components": "^1.10.0",
@@ -50,10 +56,7 @@
     "graphql-codegen-typescript-client": "^0.16.0",
     "graphql-codegen-typescript-common": "^0.16.0",
     "graphql-codegen-typescript-react-apollo": "^0.16.0",
-    "url-loader": "^1.1.2",
-    "@types/next": "^8.0.6",
-    "@types/cookie": "^0.3.3",
-    "@types/cleave.js": "^1.4.0"
+    "url-loader": "^1.1.2"
   },
   "license": "ISC",
   "jest": {
@@ -78,7 +81,6 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "yarn pretty",
       "yarn lint",
       "jest --bail --findRelatedTests",
       "git add ."

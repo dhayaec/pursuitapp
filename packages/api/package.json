@@ -4,10 +4,8 @@
   "private": true,
   "description": "Awesome project developed with TypeORM.",
   "dependencies": {
-    "apollo-env": "^0.3.2",
     "apollo-errors": "^1.9.0",
     "apollo-server-express": "^2.4.0",
-    "argon2": "^0.20.0",
     "bcryptjs": "^2.4.3",
     "connect-redis": "^3.4.0",
     "dotenv-safe": "^6.1.0",
@@ -42,13 +40,13 @@
     "lintstaged": "lint-staged"
   },
   "devDependencies": {
-    "@types/helmet": "^0.0.43",
-    "@types/ioredis": "^4.0.13",
+    "@types/bcryptjs": "^2.4.2",
+    "@types/connect-redis": "^0.0.10",
     "@types/express": "4.17.0",
     "@types/express-session": "^1.15.13",
-    "@types/connect-redis": "^0.0.10",
-    "@types/uuid": "^3.4.5",
-    "@types/bcryptjs": "^2.4.2"
+    "@types/helmet": "^0.0.43",
+    "@types/ioredis": "^4.0.13",
+    "@types/uuid": "^3.4.5"
   },
   "workspaces": {
     "nohoist": [
