@@ -5,7 +5,6 @@
     "build:web": "lerna run build --scope={@pursuitapp/ui,@pursuitapp/common,@pursuitapp/web}",
     "cover": "lerna run cover --scope={@pursuitapp/api,@pursuitapp/common,@pursuitapp/web}",
     "lint": "lerna exec -- npm run lint",
-    "pretty": "lerna exec -- npm run pretty",
     "new-version": "lerna version --conventional-commits --yes",
     "test": "lerna run test"
   },
@@ -26,7 +25,7 @@
     "@types/faker": "^4.1.5",
     "@types/graphql": "^14.2.3",
     "@types/jest": "^24.0.15",
-    "@types/node": "12.6.8",
+    "@types/node": "^12.6.8",
     "@types/react": "^16.8.23",
     "@types/react-dom": "^16.8.4",
     "@types/styled-components": "^4.1.18",
