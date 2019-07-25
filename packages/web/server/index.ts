@@ -1,6 +1,8 @@
 import * as fastify from 'fastify';
 import { Server, IncomingMessage, ServerResponse } from 'http';
 import * as Next from 'next';
+import { parse } from 'url';
+import { routes } from './routes';
 
 const server: fastify.FastifyInstance<
   Server,
@@ -13,9 +15,9 @@ const dev = process.env.NODE_ENV !== 'production';
 
 server.register(require('fastify-compress'), { global: false });
 
-server.register((server, opts, next) => {
+server.register((server, _, next) => {
   const app = Next({ dev });
-  console.log(opts);
+  const handle = routes.getRequestHandler(app);
   app
     .prepare()
     .then(() => {
@@ -26,17 +28,17 @@ server.register((server, opts, next) => {
           });
         });
       }
-      server.get('/*', (req, reply) => {
-        return app.handleRequest(req.req, reply.res).then(() => {
-          reply.sent = true;
-        });
+
+      server.get('*', (req, reply) => {
+        const parsedUrl = parse(req.req.url as string, true);
+        return handle(req.req, reply.res, parsedUrl);
       });
 
-      server.setNotFoundHandler((request, reply) => {
-        return app.render404(request.req, reply.res).then(() => {
-          reply.sent = true;
-        });
+      server.setNotFoundHandler((req, reply) => {
+        const parsedUrl = parse(req.req.url as string, true);
+        return handle(req.req, reply.res, parsedUrl);
       });
+
       next();
     })
     .catch(err => next(err));
