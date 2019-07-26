@@ -1,4 +1,4 @@
-import { gql } from 'apollo-boost';
+import gql from 'graphql-tag';
 
 export const getMainCategoryQuery = gql`
   query MainCategory {
@@ -9,25 +9,12 @@ export const getMainCategoryQuery = gql`
     }
   }
 `;
-
 export const getCategoryBySlugQuery = gql`
   query CategoryBySlug($slug: String!) {
     getCategoryBySlug(slug: $slug) {
       id
       name
       slug
-    }
-  }
-`;
-
-export const getProductsByCategoryQuery = gql`
-  query ProductsByCategory($categoryId: String!) {
-    getProductsByCategory(categoryId: $categoryId) {
-      id
-      title
-      description
-      price
-      offerPrice
     }
   }
 `;

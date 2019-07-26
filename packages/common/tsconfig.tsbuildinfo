@@ -409,6 +409,10 @@
         "version": "a6742e25ac12860727c22a379707e050a126c48c4dd98ddd795a3a33dd0a63c7",
         "signature": "a6742e25ac12860727c22a379707e050a126c48c4dd98ddd795a3a33dd0a63c7"
       },
+      "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/compression/index.d.ts": {
+        "version": "96540c10532f7cab762185084744738f504244164689dfa11c140008cc321177",
+        "signature": "96540c10532f7cab762185084744738f504244164689dfa11c140008cc321177"
+      },
       "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/express-session/index.d.ts": {
         "version": "7a2539651dca938ab109ee6424d3fa3768d7079513d369099629551714e9e1c8",
         "signature": "7a2539651dca938ab109ee6424d3fa3768d7079513d369099629551714e9e1c8"
@@ -865,25 +869,37 @@
         "version": "d32ef7739402db3a15640222d047f0044e8e9a09ee123d49e8f57f3c66c2a732",
         "signature": "d32ef7739402db3a15640222d047f0044e8e9a09ee123d49e8f57f3c66c2a732"
       },
+      "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/mkdirp/index.d.ts": {
+        "version": "6396a7a06f3ef0fc31a7c89330e015146b78a2256b030c698b6d404594c37b8f",
+        "signature": "6396a7a06f3ef0fc31a7c89330e015146b78a2256b030c698b6d404594c37b8f"
+      },
+      "/users/sds-dhaya.r/work/pursuitapp/node_modules/next-server/dist/server/router.d.ts": {
+        "version": "ac61201539e43f7df2af5d40ef9233f2cc4e8027a3850c7aef0d43c52ab10b67",
+        "signature": "ac61201539e43f7df2af5d40ef9233f2cc4e8027a3850c7aef0d43c52ab10b67"
+      },
+      "/users/sds-dhaya.r/work/pursuitapp/node_modules/next-server/dist/server/next-server.d.ts": {
+        "version": "147b9c6c109163c0f82becabccf2b5f7b766431184fefb13cfeb7d1441ad8da7",
+        "signature": "147b9c6c109163c0f82becabccf2b5f7b766431184fefb13cfeb7d1441ad8da7"
+      },
+      "/users/sds-dhaya.r/work/pursuitapp/node_modules/next-server/index.d.ts": {
+        "version": "e3c7a6583098e8a081676e00caaab1c30162f6740c1b62c7e55f548163d8e4a8",
+        "signature": "e3c7a6583098e8a081676e00caaab1c30162f6740c1b62c7e55f548163d8e4a8"
+      },
       "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/next-server/next-config.d.ts": {
         "version": "f01dc0830bafe60d87359e6c2e91f48be44fcb0c08aeb61a1c06a7a3441c2e5b",
         "signature": "f01dc0830bafe60d87359e6c2e91f48be44fcb0c08aeb61a1c06a7a3441c2e5b"
-      },
-      "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/next-server/router.d.ts": {
-        "version": "de7fa3da001373c96bae22eb90ee809ebb6650ecdd1136829c113e933a3edc02",
-        "signature": "de7fa3da001373c96bae22eb90ee809ebb6650ecdd1136829c113e933a3edc02"
-      },
-      "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/next-server/index.d.ts": {
-        "version": "9a04477e6938cac78d42cc7b5d4c5f7c5d145a920970acf41d5600bbf83700e9",
-        "signature": "9a04477e6938cac78d42cc7b5d4c5f7c5d145a920970acf41d5600bbf83700e9"
       },
       "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node-fetch/externals.d.ts": {
         "version": "972f1e91dab93b182624a17eeed02f683b8cb3fefbda7b689cc84570029d5f73",
         "signature": "972f1e91dab93b182624a17eeed02f683b8cb3fefbda7b689cc84570029d5f73"
       },
       "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node-fetch/index.d.ts": {
-        "version": "f3f7973419fc20993547f9bddc20a80acedf2c2aa6c173d7ec712c662efb5202",
-        "signature": "f3f7973419fc20993547f9bddc20a80acedf2c2aa6c173d7ec712c662efb5202"
+        "version": "e3abff769dbf45ac355febb5cfdd28977a1c5cd18a1ffcdfefda7e74697d66d1",
+        "signature": "e3abff769dbf45ac355febb5cfdd28977a1c5cd18a1ffcdfefda7e74697d66d1"
+      },
+      "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/next-server/router.d.ts": {
+        "version": "de7fa3da001373c96bae22eb90ee809ebb6650ecdd1136829c113e933a3edc02",
+        "signature": "de7fa3da001373c96bae22eb90ee809ebb6650ecdd1136829c113e933a3edc02"
       },
       "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/next/router.d.ts": {
         "version": "cfcaebec437ca2ccbd362cc9369c23ef4fa08fe22d9014dc3ddde403e43d216e",
@@ -892,6 +908,10 @@
       "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/next/index.d.ts": {
         "version": "851749615bc04553449cff64f5228e6c3030af3fad6aed19b94f4d94f9bfadcb",
         "signature": "851749615bc04553449cff64f5228e6c3030af3fad6aed19b94f4d94f9bfadcb"
+      },
+      "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/next-server/index.d.ts": {
+        "version": "9a04477e6938cac78d42cc7b5d4c5f7c5d145a920970acf41d5600bbf83700e9",
+        "signature": "9a04477e6938cac78d42cc7b5d4c5f7c5d145a920970acf41d5600bbf83700e9"
       },
       "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/normalize-package-data/index.d.ts": {
         "version": "c9ad058b2cc9ce6dc2ed92960d6d009e8c04bef46d3f5312283debca6869f613",
@@ -990,8 +1010,8 @@
         "signature": "c3175d4a7894de56cdc5e62f4269f1f57c2f08da88d3a91ad47bc0652ac8cb46"
       },
       "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/webpack/index.d.ts": {
-        "version": "f200cd8971d209786c110f00b71dcce9cfb942559ea632f9e77557c61b77f465",
-        "signature": "f200cd8971d209786c110f00b71dcce9cfb942559ea632f9e77557c61b77f465"
+        "version": "c5535ef842832704946a3273ea8f9e231fec015fea2b3c673333ba7559d31824",
+        "signature": "c5535ef842832704946a3273ea8f9e231fec015fea2b3c673333ba7559d31824"
       },
       "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/ws/index.d.ts": {
         "version": "72b8e5974345f122fb42452ab341cbcbe9835e973db4979862e973ab7d6091aa",
@@ -1576,6 +1596,11 @@
         "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/body-parser/index.d.ts",
         "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/serve-static/index.d.ts",
         "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/express-serve-static-core/index.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/util.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/compression/index.d.ts": [
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/express/index.d.ts",
         "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/util.d.ts",
         "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -2367,21 +2392,34 @@
         "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/util.d.ts",
         "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/ts3.2/util.d.ts"
       ],
-      "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/next-server/next-config.d.ts": [
-        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/util.d.ts",
-        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/next-server/router.d.ts": [
-        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/react/index.d.ts",
-        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/url.d.ts",
-        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/util.d.ts",
-        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/next-server/index.d.ts": [
-        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/http.d.ts",
-        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/next-server/next-config.d.ts",
-        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/next-server/router.d.ts",
+      "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/mkdirp/index.d.ts": [
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/fs.d.ts",
         "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/ts3.2/index.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/util.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "/users/sds-dhaya.r/work/pursuitapp/node_modules/next-server/dist/server/router.d.ts": [
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/http.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/url.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/ts3.2/index.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/util.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "/users/sds-dhaya.r/work/pursuitapp/node_modules/next-server/dist/server/next-server.d.ts": [
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/http.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/querystring.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/url.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/next-server/dist/server/router.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/ts3.2/index.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/util.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "/users/sds-dhaya.r/work/pursuitapp/node_modules/next-server/index.d.ts": [
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/next-server/dist/server/next-server.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/util.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/next-server/next-config.d.ts": [
         "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/util.d.ts",
         "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -2397,6 +2435,12 @@
         "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/util.d.ts",
         "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/next-server/router.d.ts": [
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/react/index.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/url.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/util.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/next/router.d.ts": [
         "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/next-server/router.d.ts",
         "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/util.d.ts",
@@ -2405,10 +2449,18 @@
       "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/next/index.d.ts": [
         "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/http.d.ts",
         "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/url.d.ts",
-        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/next-server/index.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/next-server/index.d.ts",
         "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/next-server/next-config.d.ts",
         "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node-fetch/index.d.ts",
         "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/next/router.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/ts3.2/index.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/util.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/next-server/index.d.ts": [
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/http.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/next-server/next-config.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/next-server/router.d.ts",
         "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/ts3.2/index.d.ts",
         "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/util.d.ts",
         "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/ts3.2/util.d.ts"
@@ -3074,6 +3126,11 @@
         "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/util.d.ts",
         "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/compression/index.d.ts": [
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/express/index.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/util.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/express-session/index.d.ts": [
         "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/express/index.d.ts",
         "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/events.d.ts",
@@ -3862,21 +3919,34 @@
         "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/util.d.ts",
         "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/ts3.2/util.d.ts"
       ],
-      "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/next-server/next-config.d.ts": [
-        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/util.d.ts",
-        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/next-server/router.d.ts": [
-        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/react/index.d.ts",
-        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/url.d.ts",
-        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/util.d.ts",
-        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/ts3.2/util.d.ts"
-      ],
-      "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/next-server/index.d.ts": [
-        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/http.d.ts",
-        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/next-server/next-config.d.ts",
-        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/next-server/router.d.ts",
+      "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/mkdirp/index.d.ts": [
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/fs.d.ts",
         "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/ts3.2/index.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/util.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "/users/sds-dhaya.r/work/pursuitapp/node_modules/next-server/dist/server/router.d.ts": [
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/http.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/url.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/ts3.2/index.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/util.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "/users/sds-dhaya.r/work/pursuitapp/node_modules/next-server/dist/server/next-server.d.ts": [
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/http.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/querystring.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/url.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/next-server/dist/server/router.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/ts3.2/index.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/util.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "/users/sds-dhaya.r/work/pursuitapp/node_modules/next-server/index.d.ts": [
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/next-server/dist/server/next-server.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/util.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/next-server/next-config.d.ts": [
         "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/util.d.ts",
         "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/ts3.2/util.d.ts"
       ],
@@ -3892,6 +3962,12 @@
         "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/util.d.ts",
         "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/next-server/router.d.ts": [
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/react/index.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/url.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/util.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/next/router.d.ts": [
         "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/next-server/router.d.ts",
         "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/util.d.ts",
@@ -3904,6 +3980,14 @@
         "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/next-server/next-config.d.ts",
         "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node-fetch/index.d.ts",
         "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/next/router.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/ts3.2/index.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/util.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/next-server/index.d.ts": [
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/http.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/next-server/next-config.d.ts",
+        "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/next-server/router.d.ts",
         "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/ts3.2/index.d.ts",
         "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/util.d.ts",
         "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node/ts3.2/util.d.ts"
@@ -4154,6 +4238,7 @@
       "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/mime/index.d.ts",
       "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/serve-static/index.d.ts",
       "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/express/index.d.ts",
+      "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/compression/index.d.ts",
       "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/express-session/index.d.ts",
       "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/redis/ts3.1/index.d.ts",
       "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/connect-redis/index.d.ts",
@@ -4268,13 +4353,17 @@
       "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/jest/index.d.ts",
       "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/json-schema/index.d.ts",
       "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/long/index.d.ts",
+      "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/mkdirp/index.d.ts",
+      "/users/sds-dhaya.r/work/pursuitapp/node_modules/next-server/dist/server/router.d.ts",
+      "/users/sds-dhaya.r/work/pursuitapp/node_modules/next-server/dist/server/next-server.d.ts",
+      "/users/sds-dhaya.r/work/pursuitapp/node_modules/next-server/index.d.ts",
       "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/next-server/next-config.d.ts",
-      "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/next-server/router.d.ts",
-      "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/next-server/index.d.ts",
       "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node-fetch/externals.d.ts",
       "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/node-fetch/index.d.ts",
+      "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/next-server/router.d.ts",
       "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/next/router.d.ts",
       "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/next/index.d.ts",
+      "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/next-server/index.d.ts",
       "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/normalize-package-data/index.d.ts",
       "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/prettier/index.d.ts",
       "/users/sds-dhaya.r/work/pursuitapp/node_modules/@types/q/index.d.ts",

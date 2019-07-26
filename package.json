@@ -2,8 +2,8 @@
   "private": true,
   "scripts": {
     "build:server": "lerna run build --scope={@pursuitapp/common,@pursuitapp/api}",
-    "build:web": "lerna run build --scope={@pursuitapp/ui,@pursuitapp/common,@pursuitapp/web}",
-    "cover": "lerna run cover --scope={@pursuitapp/api,@pursuitapp/common,@pursuitapp/web}",
+    "build:web": "lerna run build --scope={@pursuitapp/ui,@pursuitapp/common,@pursuitapp/www}",
+    "cover": "lerna run cover --scope={@pursuitapp/api,@pursuitapp/common,@pursuitapp/www}",
     "lint": "lerna exec -- npm run lint",
     "new-version": "lerna version --conventional-commits --yes",
     "test": "lerna run test"

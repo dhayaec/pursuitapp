@@ -1,48 +1,73 @@
 import React from 'react';
 import Error from 'next/error';
-import { CATEGORY_LIST, Category } from '../../src/utils/constants';
 import Menu from '../../src/components/Menu';
+import {
+  CategoryBySlugDocument,
+  GCategory,
+} from '../../generated/urqlComponents';
+import { MyAppProps } from '../_app';
+import { apolloFetch } from '../../src/graphql/apollo-fetch';
+import { print } from 'graphql';
 
 interface CategoryDetailsProps {
   slug: string;
-  category: Category;
-  errorCode?: number;
+  getCategoryBySlug: GCategory;
+  error: any;
+  statusCode: number;
 }
 
 const CategoryDetails = ({
   slug,
-  category,
-  errorCode,
+  getCategoryBySlug,
+  error,
+  statusCode,
 }: CategoryDetailsProps) => {
   return (
     <div>
       <Menu></Menu>
-      {errorCode ? (
-        <Error statusCode={errorCode} />
-      ) : (
-        <>
-          <h1>{category.name}</h1>
-          <p>Page: {slug}</p>
-          <p>{category.description}</p>
-        </>
-      )}
+      <>
+        {getCategoryBySlug && (
+          <>
+            <p>{slug}</p>
+            <p>{getCategoryBySlug.id}</p>
+            <p>{getCategoryBySlug.name}</p>
+            <p>{getCategoryBySlug.slug}</p>
+          </>
+        )}
+
+        {error && <Error title={error.message} statusCode={statusCode} />}
+      </>
     </div>
   );
 };
 
-CategoryDetails.getInitialProps = async ({ query, res }) => {
+CategoryDetails.getInitialProps = async ({ query, res }: MyAppProps) => {
   const { slug } = query;
-
-  let errorCode = 0;
-
-  const c = CATEGORY_LIST.filter(x => x.slug === slug);
-
-  if (!c.length) {
-    res.statusCode = 404;
-    errorCode = 404;
+  let statusCode = 0;
+  try {
+    const result = await apolloFetch({
+      query: print(CategoryBySlugDocument),
+      variables: { slug },
+    });
+    if (result.data && result.data.getCategoryBySlug) {
+      const {
+        data: { getCategoryBySlug },
+      } = result;
+      return { slug, getCategoryBySlug };
+    }
+    if (result.errors) {
+      statusCode = 404;
+      res.statusCode = statusCode;
+      return { error: result.errors[0], slug, statusCode };
+    }
+  } catch (error) {
+    console.log(error);
+    statusCode = 500;
+    res.statusCode = statusCode;
+    res.end();
+    return { error, statusCode };
   }
-
-  return { slug, category: c[0], errorCode };
+  return { slug };
 };
 
 export default CategoryDetails;
