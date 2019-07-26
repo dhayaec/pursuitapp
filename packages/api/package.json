@@ -58,7 +58,6 @@
     "*.ts": [
       "yarn pretty",
       "yarn lint",
-      "yarn build",
       "yarn test:ci",
       "git add ."
     ]

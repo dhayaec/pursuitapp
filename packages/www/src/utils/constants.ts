@@ -37,3 +37,5 @@ export const CATEGORY_LIST: Category[] = [
     description: 'This is a sample description for category #4',
   },
 ];
+
+export const SERVER_ENDPOINT = 'http://localhost:4000/graphql';
