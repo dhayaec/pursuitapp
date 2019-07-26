@@ -1,5 +1,4 @@
 import React from 'react';
-
 import ssrPrepass from 'react-ssr-prepass';
 import initUrqlClient from './init-urql-client';
 import { Client } from 'urql';
@@ -9,9 +8,9 @@ interface UrqlProps {
   urqlClient: Client;
 }
 
-const withUrqlClient = App => {
+const withUrqlClient = (App: any) => {
   return class WithUrql extends React.Component<UrqlProps> {
-    static async getInitialProps(ctx) {
+    static async getInitialProps(ctx: any) {
       const { Component, router } = ctx;
 
       // Run the wrapped component's getInitialProps function
@@ -48,7 +47,7 @@ const withUrqlClient = App => {
       };
     }
     urqlClient: Client | SSRExchange;
-    constructor(props) {
+    constructor(props: any) {
       super(props);
 
       if (props.urqlClient) {

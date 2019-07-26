@@ -56,15 +56,13 @@ CategoryDetails.getInitialProps = async ({ query, res }: MyAppProps) => {
       return { slug, getCategoryBySlug };
     }
     if (result.errors) {
-      statusCode = 404;
-      res.statusCode = statusCode;
+      res ? (res.statusCode = statusCode = 404) : null;
       return { error: result.errors[0], slug, statusCode };
     }
   } catch (error) {
     console.log(error);
-    statusCode = 500;
-    res.statusCode = statusCode;
-    res.end();
+    res ? (res.statusCode = statusCode = 500) : null;
+    res && res.end();
     return { error, statusCode };
   }
   return { slug };
