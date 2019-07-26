@@ -1,6 +1,6 @@
 import React from 'react';
 import Menu from '../src/components/Menu';
-import { addAll } from '../src/utils/utils';
+import { addAll } from '../src/utils/web-utils';
 import { Button } from '../src/components/Button';
 import styled from '@emotion/styled';
 

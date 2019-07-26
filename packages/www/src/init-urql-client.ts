@@ -10,8 +10,8 @@ import 'isomorphic-unfetch';
 import { SSRExchange } from 'urql/dist/types/exchanges/ssr';
 import { SERVER_ENDPOINT } from './utils/constants';
 
-let urqlClient: Client = null;
-let ssrCache: SSRExchange = null;
+let urqlClient: Client;
+let ssrCache: SSRExchange;
 
 export default function initUrqlClient(initialState = {}) {
   // Create a new client for every server-side rendered request to reset its state

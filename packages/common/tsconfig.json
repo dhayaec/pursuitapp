@@ -16,7 +16,7 @@
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "allowSyntheticDefaultImports": true,
+
     "skipLibCheck": true,
     "composite": true,
     "rootDir": "src",

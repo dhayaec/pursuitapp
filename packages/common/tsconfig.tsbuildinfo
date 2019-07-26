@@ -1048,7 +1048,6 @@
       "noUnusedParameters": true,
       "noImplicitReturns": true,
       "noFallthroughCasesInSwitch": true,
-      "allowSyntheticDefaultImports": true,
       "skipLibCheck": true,
       "composite": true,
       "rootDir": "/Users/sds-dhaya.r/work/pursuitapp/packages/common/src",
