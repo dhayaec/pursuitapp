@@ -17,7 +17,7 @@ const Category = () => {
                   <li key={c.id}>
                     <div>
                       <span>{i + 1}. </span>
-                      <Link href={`category/${c.slug}`}>
+                      <Link href={`category/[slug]`} as={`category/${c.slug}`}>
                         <a href={`category/${c.slug}`}>{c.name}</a>
                       </Link>
                     </div>
@@ -26,8 +26,8 @@ const Category = () => {
                 <li key={99}>
                   <div>
                     <span>0. </span>
-                    <Link href={`category/blah/`}>
-                      <a href={`category/blah/`}>Blah Blah</a>
+                    <Link href={`category/blah/`} as={`category/blah/`}>
+                      <a>Blah Blah</a>
                     </Link>
                   </div>
                 </li>

@@ -20,6 +20,7 @@
   },
   "scripts": {
     "dev": "next dev",
+    "debug": "next dev",
     "build": "next build",
     "start": "next start",
     "analyze": "BUNDLE_ANALYZE=both next build",

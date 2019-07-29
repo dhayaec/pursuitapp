@@ -10,9 +10,9 @@ export const notFoundError = (page: string) => {
 };
 
 export const redirectTonNonSlash = (ctx: NextPageContext) => {
-  if (ctx) {
-    const url = ctx.pathname;
-    if (url.substr(-1) === '/') {
+  if (ctx && ctx.req) {
+    const url = ctx.req.url as string;
+    if (url && url.length > 1 && url.substr(-1) === '/') {
       const newUrl = url.substr(0, url.length - 1);
       if (ctx.res) {
         ctx.res.writeHead(301, {

@@ -28,7 +28,7 @@ const Menu = () => {
         </LI>
         <LI>
           <Link href="/about">
-            <a href="/about">About Us</a>
+            <a>About Us</a>
           </Link>
         </LI>
         <LI>
