@@ -5,9 +5,11 @@ import {
   CategoryBySlugDocument,
   GCategory,
 } from '../../generated/urqlComponents';
-import { MyAppProps } from '../_app';
 import { apolloFetch } from '../../src/graphql/apollo-fetch';
 import { print } from 'graphql';
+import withUrqlClient from '../../src/with-urql-client';
+import { NextPageContext } from 'next';
+import Head from 'next/head';
 
 interface CategoryDetailsProps {
   slug: string;
@@ -24,6 +26,9 @@ const CategoryDetails = ({
 }: CategoryDetailsProps) => {
   return (
     <div>
+      <Head>
+        <title>{getCategoryBySlug && getCategoryBySlug.name}</title>
+      </Head>
       <Menu></Menu>
       <>
         {getCategoryBySlug && (
@@ -41,7 +46,7 @@ const CategoryDetails = ({
   );
 };
 
-CategoryDetails.getInitialProps = async ({ query, res }: MyAppProps) => {
+CategoryDetails.getInitialProps = async ({ query, res }: NextPageContext) => {
   const { slug } = query;
   let statusCode = 0;
   try {
@@ -60,7 +65,6 @@ CategoryDetails.getInitialProps = async ({ query, res }: MyAppProps) => {
       return { error: result.errors[0], slug, statusCode };
     }
   } catch (error) {
-    console.log(error);
     res ? (res.statusCode = statusCode = 500) : null;
     res && res.end();
     return { error, statusCode };
@@ -68,4 +72,4 @@ CategoryDetails.getInitialProps = async ({ query, res }: MyAppProps) => {
   return { slug };
 };
 
-export default CategoryDetails;
+export default withUrqlClient(CategoryDetails);

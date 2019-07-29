@@ -26,7 +26,8 @@
     "analyze": "BUNDLE_ANALYZE=both next build",
     "analyze:server": "BUNDLE_ANALYZE=server next build",
     "analyze:browser": "BUNDLE_ANALYZE=browser next build",
-    "generate": "gql-gen --debug --config codegen.yml"
+    "generate": "gql-gen --debug --config codegen.yml",
+    "lint": "eslint  'src/**/*.t{s,sx}' --fix"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^1.4.0",
