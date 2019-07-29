@@ -23,22 +23,22 @@ const Menu = () => {
       <UL>
         <LI>
           <Link href="/">
-            <a href="/">Home</a>
+            <a>Home</a>
           </Link>
         </LI>
         <LI>
-          <Link href="/about">
+          <Link href="/about/">
             <a>About Us</a>
           </Link>
         </LI>
         <LI>
           <Link href="/category">
-            <a href="/category">Categories</a>
+            <a>Categories</a>
           </Link>
         </LI>
         <LI>
           <Link href="/contact">
-            <a href="/contact">Contact Us</a>
+            <a>Contact Us</a>
           </Link>
         </LI>
       </UL>

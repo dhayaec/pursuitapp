@@ -18,7 +18,7 @@ const Category = () => {
                     <div>
                       <span>{i + 1}. </span>
                       <Link href={`category/[slug]`} as={`category/${c.slug}`}>
-                        <a href={`category/${c.slug}`}>{c.name}</a>
+                        <a>{c.name}</a>
                       </Link>
                     </div>
                   </li>
