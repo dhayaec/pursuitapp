@@ -33,6 +33,7 @@ export class AddProduct {
       category,
     });
 
-    return await c.save();
+    const product = await c.save();
+    return product;
   }
 }

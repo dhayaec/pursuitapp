@@ -19,7 +19,8 @@ export class UserResolver {
     if (!id) {
       return;
     }
-    return await User.findOne(id);
+    const user = await User.findOne(id);
+    return user;
   }
 
   @Query(() => Boolean)

@@ -25,7 +25,8 @@ export class CategoryResolver {
     if (!id) {
       return;
     }
-    return await Category.findOne(id);
+    const category = await Category.findOne(id);
+    return category;
   }
 
   @Subscription({ topics: 'NOTIFICATIONS' })
@@ -69,9 +70,10 @@ export class CategoryResolver {
 
   @Query(() => [Category])
   async getMainCategory(): Promise<Category[]> {
-    return await getManager()
+    const categories = await getManager()
       .getTreeRepository(Category)
       .findRoots();
+    return categories;
   }
 
   @Query(() => Category)
@@ -81,9 +83,10 @@ export class CategoryResolver {
       throw new Error(errorMessages.invalidCategory);
     }
 
-    return await getManager()
+    const categories = await getManager()
       .getTreeRepository(Category)
       .findDescendantsTree(parent);
+    return categories;
   }
 
   @Query(() => Category)
@@ -93,9 +96,10 @@ export class CategoryResolver {
       throw new Error(errorMessages.invalidCategory);
     }
 
-    return await getManager()
+    const categories = await getManager()
       .getTreeRepository(Category)
       .findAncestorsTree(parent);
+    return categories;
   }
 
   @Mutation(() => Category)
@@ -116,7 +120,8 @@ export class CategoryResolver {
       name,
       parent,
     });
-    return await c.save();
+    const savedCategory = await c.save();
+    return savedCategory;
   }
 
   @Mutation(() => Boolean)

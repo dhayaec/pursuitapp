@@ -16,7 +16,11 @@ export class CartResolver {
     }
 
     const user = await User.findOne(userId);
-    return await Cart.find({ where: { user }, relations: ['product', 'user'] });
+    const cart = await Cart.find({
+      where: { user },
+      relations: ['product', 'user'],
+    });
+    return cart;
   }
 
   @Mutation(() => Cart)
@@ -54,7 +58,8 @@ export class CartResolver {
       quantity: quantity,
     });
 
-    return await c.save();
+    const savedCart = await c.save();
+    return savedCart;
   }
 
   @Mutation(() => Boolean)
