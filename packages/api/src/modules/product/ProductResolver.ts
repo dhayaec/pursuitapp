@@ -13,11 +13,12 @@ export class ProductResolver {
   async listProducts(
     @Arg('page', { defaultValue: 1 }) page: number,
   ): Promise<Product[]> {
-    return await Product.find({
+    const products = await Product.find({
       skip: skipPage(page),
       take: ITEMS_PER_PAGE,
       relations: ['category'],
     });
+    return products;
   }
 
   @Query(() => Product, { nullable: true })
@@ -25,7 +26,8 @@ export class ProductResolver {
     if (!id) {
       return;
     }
-    return await Product.findOne(id, { relations: ['category'] });
+    const product = await Product.findOne(id, { relations: ['category'] });
+    return product;
   }
 
   @Query(() => [Product])
@@ -38,12 +40,13 @@ export class ProductResolver {
       throw new Error(errorMessages.invalidCategory);
     }
 
-    return await Product.find({
+    const products = await Product.find({
       skip: skipPage(page),
       take: ITEMS_PER_PAGE,
       where: { category },
       relations: ['category'],
     });
+    return products;
   }
 
   @Mutation(() => Product)
@@ -82,6 +85,7 @@ export class ProductResolver {
       category,
     });
 
-    return await c.save();
+    const savedProduct = await c.save();
+    return savedProduct;
   }
 }

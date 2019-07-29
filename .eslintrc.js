@@ -21,6 +21,7 @@ module.exports = {
     'no-console': 1,
     '@typescript-eslint/no-explicit-any': 0,
     '@typescript-eslint/no-non-null-assertion': 0,
+    'no-return-await': 2,
   },
   settings: {
     react: {
