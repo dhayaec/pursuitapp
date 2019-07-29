@@ -20,7 +20,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "debug": "next dev",
+    "debug": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
     "start": "next start",
     "analyze": "BUNDLE_ANALYZE=both next build",
